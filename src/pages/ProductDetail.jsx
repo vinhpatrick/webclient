@@ -14,7 +14,7 @@ const ProductDetail = () => {
     const product = getProductWithId(productId)
     setProduct(product)
 
-    console.log(product)
+    console.log('product', product)
   }, [productId])
 
   return (
