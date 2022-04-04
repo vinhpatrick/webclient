@@ -13,8 +13,6 @@ const ProductDetail = () => {
   useEffect(() => {
     const product = getProductWithId(productId)
     setProduct(product)
-
-    console.log(product)
   }, [productId])
 
   return (
