@@ -1,38 +1,193 @@
-.App {
-  text-align: center;
+
+.row-header{
+  margin:0px auto;
+  padding:0px auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.row-content {
+  margin:0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height:400px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.footer{
+  background-color: #FFC107;
+
+  margin:0px auto;
+  padding: 20px 0px 20px 0px;
+}
+.jumbotron {
+  padding:70px 30px 70px 30px;
+  margin:0px auto;
+  background: green ;
+  color:floralwhite;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+address{
+  font-size:80%;
+  margin:0px;
+  color:#0f0f0f;
+}
+
+.navbar-dark {
+  background-color: #512DA8;
+}
+
+.page-enter {
+  opacity: 0.01;
+  transform: translateX(-100%);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 300ms ease-in;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.page-exit-active {
+  opacity: 0.01;
+  transform: translateX(100%);
+  transition: all 300ms ease-out;
+}
+.fix{
+  margin-left:  250px;
+}
+.welcome_area {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 600px; }
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .welcome_area {
+      height: 450px; } }
+  @media only screen and (max-width: 767px) {
+    .welcome_area {
+      height: 350px; } }
+  .welcome_area .hero-content h6 {
+    font-size: 18px;
+    color: #787878;
+    margin-bottom: 10px; }
+  .welcome_area .hero-content h2 {
+    font-size: 60px;
+    color: #000000;
+    margin-bottom: 50px; }
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+      .welcome_area .hero-content h2 {
+        font-size: 48px; } }
+    @media only screen and (max-width: 767px) {
+      .welcome_area .hero-content h2 {
+        font-size: 30px; } }
+  
+     .bg-img {
+          background-position: center center;
+          background-size: cover;
+          background-repeat: no-repeat; }
+.bg-img {
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat; }
+
+/* Essence Button */
+.essence-btn {
+  display: inline-block;
+  min-width: 170px;
+  height: 50px;
+  color: #ffffff;
+  border: none;
+  border-radius: 0;
+  padding: 0 40px;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 50px;
+  background-color: #0315ff;
+  letter-spacing: 1.5px;
+  font-weight: 600; }
+  .essence-btn:hover, .essence-btn:focus {
+    color: #ffffff;
+    background-color: #dc0345; }
+
+.card-item-hover:hover{
+  box-shadow: 2px 2px 3px 3px #afc0d3;
+}
+.card-price{
+  color: red;
+  font-weight:bold;
+}
+.card-price-old {
+  margin-left:20px;
+  text-decoration: line-through;
+}
+.section-heading {
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+.section-title {
+  color: #212529;
+}
+.last-item{
+  margin-bottom: 80px;
+}
+.search{
+  background-color:white;
+  width: 350px;
+  height: 40px;
+  border: 2px solid #fdb921;
+  border-radius: 50px;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+.search button {
+  /* border: 2px solid #fdb921;
+  border-radius: 0 50px 50px 0; */
+  border: 0;
+  background-color: white;
+  position: relative;
+  color: #888888;
+  padding-left: 15px;
+  border-left: 1.5px solid #f0f0f0 !important; }
+  .search input {
+    /* border: 2px solid #fdb921;
+    border-radius: 50px 0 0 50px; */
+    border: none;
+    outline: none;
+    font-size: 13px;
+    color: #888888;
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 15px; }
 
-.App-link {
-  color: #61dafb;
+.search button i {
+      font-size: 16px;
+      color: #333333; }
+.nav-search{
+  margin-left:100px;
 }
+.view-all-product{
+  text-align: center;
+  padding-top:20px;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.view-all-product a{
+  text-decoration: none;
+  color: #333333;
+  
+}
+/*detail pages  */ 
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/*****************globals*************/
+
+
+/*# sourceMappingURL=style.css.map */
