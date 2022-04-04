@@ -45,5 +45,5 @@ export const getRandomProduct = () => {
 }
 
 export const getProductWithId = (id) => {
-  return MOCK_PRODUCTS.find((product) => product.id === id)
+  return MOCK_PRODUCTS.find((product) => product.id.toString() === id)
 }
