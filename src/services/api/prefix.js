@@ -1,0 +1,6 @@
+export const USER_SERVICE_API = '/user-service/api'
+export const CUSTOMER_SERVICE_API = '/customer-service/api'
+export const COMMON_SERVICE_API = '/common-service/api'
+export const ADMIN_SERVICE_API = '/admin-service/api'
+export const SELLER_SERVICE_API = '/seller-service/api'
+export const STATISTICS_SERVICE_API = '/statistics-service/api'

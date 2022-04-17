@@ -1,0 +1,37 @@
+// Here you can add other styles
+    #changeProduct > input.form-check-input {
+        display: none;
+    }
+
+    th.table-primary.fw-semibold {
+        background-color: #ebedef;
+    }
+    label.form-label.col-auto.col-form-label {
+        display: none;
+    }
+    .row.my-2.mx-0 {
+        display: none;
+    }
+
+    #checkProduct{
+        position: absolute;
+        right: -20px;
+    }
+
+    #imageShow > img.img-fluid{
+        margin-left: 10px;
+    }
+
+    #inputSize > .row {
+        margin: 10px 0px;
+    }
+    #inputSize > button.btn.btn-dark.btn-sm.rounded-pill {
+        margin: 0px 5px;
+    }
+
+    .row.cart-content {
+        padding: 3rem 0rem;
+    }
+    th.NameShopInOrder {
+        font-size: 1.5rem;
+    }

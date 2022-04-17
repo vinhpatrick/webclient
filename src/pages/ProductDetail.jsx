@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import Layout from '../components/Layout'
+import Layout from '../layout/Layout'
 
 import { getProductWithId } from '../utils/getMockData'
 

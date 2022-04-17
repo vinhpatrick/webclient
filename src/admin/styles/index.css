@@ -1,0 +1,44 @@
+#Header {
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 10%);
+  text-align: center;
+}
+#Header,
+.ant-layout-header {
+  color: #000;
+  background-color: #041529;
+  /* height: 100px; */
+}
+.ant-image-img {
+  align-items: center;
+}
+.headerSearch {
+  margin-top: 25px;
+}
+.btn_headerSearch {
+  background-color: #006dcc;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 25%);
+}
+.ant-modal-title {
+  text-align: center;
+}
+
+/* icon login */
+span.ant-avatar.ant-avatar-circle.ant-avatar-icon {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  height: 50px;
+  width: 50px;
+}
+.ant-avatar.ant-avatar-icon {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+div#homeSeller {
+  position: absolute;
+  left: 300px;
+  width: 100vh;
+  height: 88vh;
+}
