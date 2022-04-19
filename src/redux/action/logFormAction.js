@@ -1,22 +1,88 @@
-export const _showLogForm = () => {
-  return (dispatch) =>
-    dispatch({
-      type: 'SHOW_LOG_FORM',
-    })
-}
+import * as ActionTypes from '../action/ActionTypes'
+import { baseUrl } from '../../shared/baseUrl'
 
-export const _hideLogForm = () => {
-  return (dispatch) =>
-    dispatch({
-      type: 'HIDE_LOG_FORM',
-    })
-}
-
-export const _changeLogForm = (mode) => {
-  return (dispatch) => {
-    dispatch({
-      type: 'CHANGE_FORM',
-      payload: { mode },
-    })
+export const requestLogin = (creds) => {
+  return {
+    type: ActionTypes.LOGIN_REQUEST,
+    creds,
   }
+}
+
+export const receiveLogin = (response) => {
+  return {
+    type: ActionTypes.LOGIN_SUCCESS,
+    token: response.token,
+  }
+}
+
+export const loginError = (message) => {
+  return {
+    type: ActionTypes.LOGIN_FAILURE,
+    message,
+  }
+}
+
+export const loginUser = (creds) => (dispatch) => {
+  // We dispatch requestLogin to kickoff the call to the API
+  dispatch(requestLogin(creds))
+
+  return fetch(baseUrl + 'users/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(creds),
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          console.log('dang nhap thanh cong')
+          return response
+        } else {
+          var error = new Error('Error ' + response.status + ': ' + response.statusText)
+          error.response = response
+          throw error
+        }
+      },
+      (error) => {
+        throw error
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.success) {
+        // If login was successful, set the token in local storage
+        localStorage.setItem('token', response.token)
+        localStorage.setItem('creds', JSON.stringify(creds))
+        // Dispatch the success action
+        // dispatch(fetchFavorites());
+        dispatch(receiveLogin(response))
+      } else {
+        var error = new Error('Error ' + response.status)
+        error.response = response
+        throw error
+      }
+    })
+    .catch((error) => dispatch(loginError(error.message)))
+}
+
+export const requestLogout = () => {
+  return {
+    type: ActionTypes.LOGOUT_REQUEST,
+  }
+}
+
+export const receiveLogout = () => {
+  return {
+    type: ActionTypes.LOGOUT_SUCCESS,
+  }
+}
+
+// Logs the user out
+export const logoutUser = () => (dispatch) => {
+  dispatch(requestLogout())
+  localStorage.removeItem('token')
+  localStorage.removeItem('creds')
+  // dispatch(favoritesFailed("Error 401: Unauthorized"));
+  dispatch(receiveLogout())
 }

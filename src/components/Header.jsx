@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Modal } from 'reactstrap'
-
+import { logoutUser } from '../redux/action/logFormAction'
+import {
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavbarToggler,
+  Collapse,
+  NavItem,
+  Modal,
+  Button,
+} from 'reactstrap'
 import { NavLink } from 'react-router-dom'
-
+import { useSelector, useDispatch } from 'react-redux'
 const Header = () => {
+  const dispatch = useDispatch()
+  const auth = useSelector((state) => state.logForm.isAuthenticated)
+  const username = ''
+  //  const username = useSelector((state) => state.logForm.user.username)
+
+  console.log('authenticated', auth)
   const [toggleNav, setToggleNav] = useState(false)
   const [toggleModal, setToggleModal] = useState(false)
 
@@ -15,6 +30,9 @@ const Header = () => {
   const hanldeToggleModel = () => {
     setToggleModal(!toggleModal)
   }
+  const handleLogout = () => {
+    dispatch(logoutUser())
+  }
 
   return (
     <React.Fragment>
@@ -23,14 +41,14 @@ const Header = () => {
           <NavbarToggler onClick={handleToggleNav} />
           <Collapse isOpen={toggleNav} navbar>
             <div>
-              <NavbarBrand className='okok' href='/'>
+              {/* <NavbarBrand className='okok' href='/'>
                 <img
                   src={`${process.env.PUBLIC_URL}/assets/images/logo3.png`}
                   height='30'
                   width='41'
                   alt='Ristorante Con Fusion'
                 />
-              </NavbarBrand>
+              </NavbarBrand> */}
             </div>
             <Nav navbar>
               <NavItem>
@@ -63,24 +81,36 @@ const Header = () => {
             </Nav>
             <Nav className='ml-auto' navbar>
               <NavItem className='fix'>
-                <NavLink className='nav-link' to='#'>
+                <NavLink className='nav-link' to='/cart'>
                   <span className='fa fa-shopping-cart fa-lg'></span> Cart
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={hanldeToggleModel} className='nav-link' to='#'>
-                  <span className='fa fa-user-circle fa-lg'></span> Login
-                </NavLink>
+                {!auth ? (
+                  <NavLink onClick={hanldeToggleModel} className='nav-link' to='#'>
+                    <span className='fa fa-user-circle fa-lg'></span> Login
+                  </NavLink>
+                ) : (
+                  <div>
+                    <div className='navbar-text mr-3'>{username ? username : ''}</div>
+                    <Button outline onClick={handleLogout}>
+                      <span className='fa fa-sign-out fa-lg'></span> Logout
+                      {/* {this.props.auth.isFetching ? (
+                        <span className='fa fa-spinner fa-pulse fa-fw'></span>
+                      ) : null} */}
+                    </Button>
+                  </div>
+                )}
               </NavItem>
             </Nav>
           </Collapse>
         </div>
       </Navbar>
       <Modal isOpen={toggleModal} toggle={hanldeToggleModel}>
-        <RegisterForm />
+        <LoginForm toggle={hanldeToggleModel} />
       </Modal>
     </React.Fragment>
   )
 }
 
-export default Header;
+export default Header

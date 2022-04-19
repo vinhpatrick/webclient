@@ -14,9 +14,9 @@ export const register = (payload) => {
 
 export const login = (payload) => {
   return apiRequest({
-    url: `${USER_SERVICE_API}/users/jwt`,
+    url: 'http://localhost:4000//users/login',
     method: 'POST',
-    data: payload
+    data: payload,
   })
 }
 

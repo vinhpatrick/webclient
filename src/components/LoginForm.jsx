@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from 'react-redux'
+import { useState } from 'react'
 import {
   ModalHeader,
   FormGroup,
@@ -10,24 +12,39 @@ import {
   Col,
   ModalFooter,
 } from 'reactstrap'
+import { _login, _setStatus } from '../redux/action/userAction'
+import { loginUser } from '../redux/action/logFormAction'
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const dispatch = useDispatch()
+  const initial = { username: '', password: '' }
+  const [loading, setLoading] = useState(false)
+  const [payload, setPayload] = useState(initial)
+  const { status, error } = useSelector((state) => state.user)
+  const handleValueChange = (e) => {
+    setPayload({ ...payload, [e.target.name]: e.target.value.trim() })
+    dispatch(_setStatus('', ''))
+  }
+  const login = (e) => {
+    dispatch(loginUser({ username: payload.username, password: payload.password }))
+    e.preventDefault()
+  }
   return (
     <>
-      <ModalHeader>Đăng Nhập</ModalHeader>
+      <ModalHeader toggle={props.toggle}>Đăng Nhập</ModalHeader>
       <ModalBody>
-        <Form>
+        <Form onSubmit={login}>
           <FormGroup>
             <Label style={{ fontWeight: 'bold', marginBottom: '10px' }} htmlFor='username'>
               Tên đăng Nhập
             </Label>
-            <Input type='text' id='username' name='username' />
+            <Input type='text' id='username' name='username' onChange={handleValueChange} />
           </FormGroup>
           <FormGroup>
             <Label style={{ fontWeight: 'bold', margin: '12px 0' }} htmlFor='password'>
               Mật Khẩu{' '}
             </Label>
-            <Input type='password' id='password' name='password' />
+            <Input type='password' id='password' name='password' onChange={handleValueChange} />
           </FormGroup>
           <FormGroup check>
             <Label style={{ marginTop: '20px' }} check>

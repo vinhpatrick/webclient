@@ -1,6 +1,5 @@
 import React from 'react'
-import { Media, Breadcrumb, BreadcrumbItem } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { Media } from 'reactstrap'
 import Layout from '../layout/Layout'
 import FavoriteItem from '../components/FavoriteItem'
 

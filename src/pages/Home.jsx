@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Layout from '../layout/Layout'
-import Product from '../components/Product'
+import ProductItem from '../components/ProductItem'
 import { getRandomProduct } from '../utils/getMockData'
 import BannerTop from '../components/BannerTop'
 const Home = () => {
@@ -17,15 +17,13 @@ const Home = () => {
 
           {[...new Array(4)].map((e, index) => (
             <div key={index} className='col-12 col-md m-1'>
-              <Product {...getRandomProduct()} />
+              <ProductItem {...getRandomProduct()} />
             </div>
           ))}
-
           <div className='view-all-product'>
             <Link to='/'>Xem tất cả sản phẩm</Link>
           </div>
         </div>
-
         <div className='row align-items-start'>
           <header className='section-heading'>
             <h3 className='section-title'>Sản Phẩm Bán Chạy</h3>
@@ -33,7 +31,7 @@ const Home = () => {
 
           {[...new Array(4)].map((e, index) => (
             <div key={index} className='col-12 col-md m-1'>
-              <Product {...getRandomProduct()} />
+              <ProductItem {...getRandomProduct()} />
             </div>
           ))}
 
@@ -49,7 +47,7 @@ const Home = () => {
 
           {[...new Array(4)].map((e, index) => (
             <div key={index} className='col-12 col-md m-1'>
-              <Product {...getRandomProduct()} />
+              <ProductItem {...getRandomProduct()} />
             </div>
           ))}
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { removeToken } from '../../../services/makeApiRequest'
+// import { removeToken } from '../../../services/makeApiRequest'
 import {
   CAvatar,
   CDropdown,
@@ -24,7 +24,10 @@ const AppHeaderDropdown = () => {
             Quay về trang chủ
           </CDropdownItem>
           <CDropdownDivider />
-          <CDropdownItem href='/' onClick={removeToken}>
+          <CDropdownItem
+            href='/'
+            // onClick={removeToken}
+          >
             <CIcon icon={cilLockLocked} className='me-2' />
             Đăng xuất
           </CDropdownItem>
