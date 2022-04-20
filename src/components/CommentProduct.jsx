@@ -1,3 +1,4 @@
+import 'antd/dist/antd.min.css'
 import { Comment, Tooltip, Avatar, Rate } from 'antd'
 import { Form, Button, Input } from 'antd'
 

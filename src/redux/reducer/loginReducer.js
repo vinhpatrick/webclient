@@ -3,7 +3,7 @@ import * as ActionTypes from '../action/ActionTypes'
 // The auth reducer. The starting state sets authentication
 // based on a token being in local storage. In a real app,
 // we would also want a util to check if the token is expired.
-const logFormReducer = (
+const loginReducer = (
   state = {
     isLoading: false,
     isAuthenticated: localStorage.getItem('token') ? true : false,
@@ -29,4 +29,4 @@ const logFormReducer = (
   }
 }
 
-export default logFormReducer
+export default loginReducer

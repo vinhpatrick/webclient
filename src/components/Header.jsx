@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
-import { logoutUser } from '../redux/action/logFormAction'
+import { logoutUser } from '../redux/action/loginAction'
+import { Link } from 'react-router-dom'
 import {
   Navbar,
   NavbarBrand,
@@ -10,45 +11,111 @@ import {
   Collapse,
   NavItem,
   Modal,
-  Button,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { _showLogForm, _hideLogForm } from '../redux/action/changeFormAction'
+
 const Header = () => {
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.logForm.isAuthenticated)
-  const username = ''
-  //  const username = useSelector((state) => state.logForm.user.username)
-
+  const user = useSelector((state) => state.logForm.user)
+  // console.log('token', username)
+  // const username = ''
   console.log('authenticated', auth)
   const [toggleNav, setToggleNav] = useState(false)
-  const [toggleModal, setToggleModal] = useState(false)
-
   const handleToggleNav = () => {
     setToggleNav(!toggleNav)
-  }
-  const hanldeToggleModel = () => {
-    setToggleModal(!toggleModal)
   }
   const handleLogout = () => {
     dispatch(logoutUser())
   }
+  const LogModal = (props) => {
+    const { isOpen, mode } = useSelector((state) => state.changeForm)
+    const dispatch = useDispatch()
+    const handleShowLogForm = () => {
+      dispatch(_showLogForm())
+    }
+    const handleHideLogForm = () => {
+      dispatch(_hideLogForm())
+    }
+    return (
+      <div>
+        <NavLink onClick={handleShowLogForm} className='nav-link' to='#'>
+          <span className='fa fa-user-circle fa-lg'></span> Login
+        </NavLink>
+        <Modal isOpen={isOpen} toggle={handleHideLogForm}>
+          {mode === 'login' ? <LoginForm /> : <RegisterForm />}
+        </Modal>
+      </div>
+    )
+  }
+  const UserMenu = (props) => {
+    const [menu, setMenu] = useState(false)
+    const handleUserMenu = () => {
+      setMenu(!menu)
+    }
+    return (
+      <Dropdown isOpen={menu} toggle={handleUserMenu}>
+        <DropdownToggle
+          style={{
+            backgroundColor: '#FFFF66',
+            borderRadius: '25px',
+          }}
+          caret
+        >
+          {!user ? '' : user.username}
+          <span className='fa fa-user-circle fa-lg'></span>
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>
+            <Link style={{ color: 'black' }} to='/contactus'>
+              <span style={{ marginRight: '10px' }} className=' fa fa-user-circle'></span>
+              Đồng Văn Vinh
+            </Link>
+          </DropdownItem>
+          <DropdownItem>
+            <Link style={{ color: 'black' }} to='/contactus'>
+              <span style={{ marginRight: '10px' }} className=' fa fa-cart-arrow-down'></span>
+              Đơn hàng
+            </Link>
+          </DropdownItem>
+          <DropdownItem>
+            <Link style={{ color: 'black' }} to='/seller'>
+              <span style={{ marginRight: '10px' }} className='fa fa-shopping-bag'></span>Kênh bán
+              hàng
+            </Link>
+          </DropdownItem>
+          <DropdownItem onClick={handleLogout}>
+            <Link style={{ color: 'black' }} to='/'>
+              <span style={{ marginRight: '10px' }} className='fa fa-sign-out'></span>
+              Đăng xuất
+            </Link>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    )
+  }
 
   return (
-    <React.Fragment>
-      <Navbar color='warning' expand='md' light fixed='top'>
+    <div>
+      <Navbar style={{ backgroundColor: '#FFD700' }} expand='md' light>
         <div className='container'>
           <NavbarToggler onClick={handleToggleNav} />
           <Collapse isOpen={toggleNav} navbar>
             <div>
-              {/* <NavbarBrand className='okok' href='/'>
+              <NavbarBrand className='okok' href='/'>
                 <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/logo3.png`}
+                  src={`${process.env.PUBLIC_URL}/assets/images/logo5.png`}
                   height='30'
                   width='41'
                   alt='Ristorante Con Fusion'
                 />
-              </NavbarBrand> */}
+              </NavbarBrand>
             </div>
             <Nav navbar>
               <NavItem>
@@ -62,12 +129,15 @@ const Header = () => {
                 </NavLink>
               </NavItem>
               <NavItem>
+                <NavLink className='nav-link' to='/aboutus'>
+                  <span className='fa fa-info fa-lg'></span> About Us
+                </NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink className='nav-link' to='/contactus'>
                   <span className='fa fa-address-card fa-lg'></span>Liên hệ
                 </NavLink>
               </NavItem>
-            </Nav>
-            <Nav navbar>
               <NavItem className='nav-search'>
                 <form>
                   <div className='search'>
@@ -78,38 +148,17 @@ const Header = () => {
                   </div>
                 </form>
               </NavItem>
-            </Nav>
-            <Nav className='ml-auto' navbar>
-              <NavItem className='fix'>
+              <NavItem className=''>
                 <NavLink className='nav-link' to='/cart'>
                   <span className='fa fa-shopping-cart fa-lg'></span> Cart
                 </NavLink>
               </NavItem>
-              <NavItem>
-                {!auth ? (
-                  <NavLink onClick={hanldeToggleModel} className='nav-link' to='#'>
-                    <span className='fa fa-user-circle fa-lg'></span> Login
-                  </NavLink>
-                ) : (
-                  <div>
-                    <div className='navbar-text mr-3'>{username ? username : ''}</div>
-                    <Button outline onClick={handleLogout}>
-                      <span className='fa fa-sign-out fa-lg'></span> Logout
-                      {/* {this.props.auth.isFetching ? (
-                        <span className='fa fa-spinner fa-pulse fa-fw'></span>
-                      ) : null} */}
-                    </Button>
-                  </div>
-                )}
-              </NavItem>
+              <NavItem>{!auth ? <LogModal /> : <UserMenu />}</NavItem>
             </Nav>
           </Collapse>
         </div>
       </Navbar>
-      <Modal isOpen={toggleModal} toggle={hanldeToggleModel}>
-        <LoginForm toggle={hanldeToggleModel} />
-      </Modal>
-    </React.Fragment>
+    </div>
   )
 }
 

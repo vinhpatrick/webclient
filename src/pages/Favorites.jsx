@@ -7,7 +7,7 @@ const Favorites = () => {
   return (
     <Layout>
       <div className='container' style={{ minHeight: '600px' }}>
-        <div style={{ marginTop: '100px' }} className='row'>
+        <div className='row'>
           <div className='col-12'>
             <h3>My Favorites</h3>
             <hr />

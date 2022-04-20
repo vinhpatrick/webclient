@@ -16,23 +16,8 @@ const AppContent = () => {
         <Routes>
           <Route path='/' element={<Dashboard />} />
           <Route path='add-product' element={<AddProduct />} />
-          {/* <Route path='change-product' element={<ChangeProduct />} /> */}
-          <Route path='' element={<NotFound />} />
-
-          {/* {routes.map((route, idx) => {
-            return (
-              route.element && (
-                <Route
-                  key={idx}
-                  path={route.path}
-                  // exact={route.exact}
-                  // name={route.name}
-                  element={<route.element />}
-                />
-              )
-            )
-          })} */}
-          {/* <Route path='/seller' exact={true} element={<AddPro />} /> */}
+          <Route path='change-product' element={<ChangeProduct />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Suspense>
     </CContainer>

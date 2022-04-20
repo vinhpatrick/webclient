@@ -3,8 +3,7 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
 const AddProduct = React.lazy(() => import('./views/products/AddProduct'))
-const AddPro = React.lazy(() => import('./views/products/AddPro'))
-// const ChangeProduct = React.lazy(() => import('./views/products/ChangeProduct'))
+const ChangeProduct = React.lazy(() => import('./views/products/ChangeProduct'))
 // const DeleteProduct = React.lazy(() => import('./views/products/DeleteProduct'))
 
 // const TableShop = React.lazy(() => import('./views/shops/TableShop'))
@@ -17,8 +16,8 @@ const AddPro = React.lazy(() => import('./views/products/AddPro'))
 
 const routes = [
   { path: '/seller', name: 'Kênh bán hàng', exact: true, element: Dashboard },
-  { path: '/seller/add-product', name: 'Thêm sản phẩm', element: AddPro },
-  // { path: '/seller/change-product', name: 'Sửa sản phẩm', component: ChangeProduct },
+  { path: '/seller/add-product', name: 'Thêm sản phẩm', element: AddProduct },
+  { path: '/seller/change-product', name: 'Sửa sản phẩm', component: ChangeProduct },
   // { path: '/seller/delete-product', name: 'Xóa sản phẩm', component: DeleteProduct },
   // { path: '/seller/orders', name: 'Danh sách đơn hàng', component: TableOrder },
   // { path: '/seller/waiting-orders', name: 'Đơn hàng chờ xác nhận', component: WaitingOrder },

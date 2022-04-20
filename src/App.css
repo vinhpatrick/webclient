@@ -12,7 +12,7 @@
 }
 
 .footer{
-  background-color: #FFC107;
+  background-color: #FFD700;
   margin:0px auto;
   padding: 20px 0px 20px 0px;
 }
@@ -139,7 +139,7 @@ address{
   height: 40px;
   border: 2px solid #fdb921;
   border-radius: 50px;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
@@ -164,14 +164,15 @@ address{
     font-size: 13px;
     color: #888888;
     flex: 1;
-    padding-left: 15px;
-    padding-right: 15px; }
+    /* padding-left: 15px;
+                padding-right: 15px; */
+    }
 
 .search button i {
       font-size: 16px;
       color: #333333; }
 .nav-search{
-  margin-left:100px;
+  /* margin-left:100px; */
 }
 .view-all-product{
   text-align: center;

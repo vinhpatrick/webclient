@@ -1,7 +1,6 @@
 import { Link, useParams, useHistory } from 'react-router-dom'
 import { Spin, Radio, InputNumber, message as Message } from 'antd'
 import Layout from '../layout/Layout'
-import styles from '../css_modules/css/all.module.css'
 import CommentProduct from '../components/CommentProduct'
 
 // import PriceChart from './components/PriceChart'

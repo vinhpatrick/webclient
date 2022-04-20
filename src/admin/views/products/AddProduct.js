@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
-// import { getShops, postProduct } from '../../../services/api/sellerApi'
+import { getShops, postProduct } from '../../../services/api/sellerApi'
 import {
   CButton,
   CCol,
@@ -53,7 +53,24 @@ const AddProduct = () => {
     formData.append('upload_preset', 'new_preset')
     // Tải ảnh lên cloudinary
     // API: https://api.cloudinary.com/v1_1/{Cloudinary-Name}/image/upload
-    axios
+    //okType
+    // const bearer = 'Bearer ' + localStorage.getItem('token')
+    // axios('http://localhost:4000/imageUpload/', {
+    //   method: 'POST',
+    //   formData,
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: bearer,
+    //   },
+    //   credentials: 'same-origin',
+    // })
+    //   .then((response) => {
+    //     //data.images.push(response.data.secure_url);
+    //     setImages([...images, response.data.secure_url])
+    //   })
+    //   .catch((err) => console.error(err))
+
+    axios()
       .post('http://localhost:4000/imageUpload/', formData)
       .then((response) => {
         //data.images.push(response.data.secure_url);
@@ -62,33 +79,33 @@ const AddProduct = () => {
       .catch((err) => console.error(err))
   }
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   setLoading(true)
-  //   data.images = images
-  //   // if (shopId == 0) {
-  //   //   warn('Vui lòng chọn cửa hàng')
-  //   //   setLoading(false)
-  //   // } else
-  //   if (data.sizes.length == 0) {
-  //     warn('Sản phẩm cần tối thiểu một loại hàng')
-  //     setLoading(false)
-  //   } else {
-  //     postProduct(shopId, data)
-  //       .then((respone) => {
-  //         if (respone.data.success == true) {
-  //           success(respone.data.message)
-  //           window.location.reload(false)
-  //         } else {
-  //           error(respone.data.message)
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         error(err.response.data.message)
-  //         setLoading(false)
-  //       })
-  //   }
-  // }
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    // setLoading(true)
+    data.images = images
+    // if (shopId == 0) {
+    //   warn('Vui lòng chọn cửa hàng')
+    //   setLoading(false)
+    // } else
+    if (data.sizes.length == 0) {
+      warn('Sản phẩm cần tối thiểu một loại hàng')
+      // setLoading(false)
+    } else {
+      postProduct(shopId, data)
+        .then((respone) => {
+          if (respone.data.success == true) {
+            success(respone.data.message)
+            window.location.reload(false)
+          } else {
+            error(respone.data.message)
+          }
+        })
+        .catch((err) => {
+          error(err.response.data.message)
+          // setLoading(false)
+        })
+    }
+  }
 
   const handleChange = (e) => setData({ ...data, [e.target.name]: e.target.value })
   // handle input change
@@ -273,12 +290,7 @@ const AddProduct = () => {
           </CRow>
         </div>
         <CCol xs={12}>
-          <CButton
-            disabled={loading}
-            //  onClick={handleSubmit}
-            type='submit'
-            color='primary'
-          >
+          <CButton disabled={loading} onClick={handleSubmit} type='submit' color='primary'>
             {!loading ? '' : <CSpinner component='span' size='sm' aria-hidden='true' />}
             Đăng sản phẩm
           </CButton>

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import {
   ModalHeader,
   FormGroup,
@@ -11,8 +12,27 @@ import {
   Col,
   ModalFooter,
 } from 'reactstrap'
+import { _changeLogForm, _showLogForm } from '../redux/action/changeFormAction'
 
 export default function RegisterForm() {
+  const dispatch = useDispatch()
+  // const initial = {
+  //   firstName: '',
+  //   lastName: '',
+  //   phoneNumber: '',
+  //   username: '',
+  //   password: '',
+  //   rePassword: '',
+  //   address: '',
+  //   email: '',
+  // }
+  // const [payload, setPayload] = useState(initial)
+  // // const [status, setStatus] = useState(initial)
+  // // const [suggest, setSuggest] = useState(initial)
+  // // const [loading, setLoading] = useState(false)
+  const handleLogin = () => {
+    dispatch(_changeLogForm('login'))
+  }
   return (
     <div>
       <>
@@ -52,6 +72,7 @@ export default function RegisterForm() {
             <Row style={{ marginTop: '20px' }}>
               <Col xs='6' style={{ textAlign: 'center' }}>
                 <Button
+                  onClick={handleLogin}
                   type='submit'
                   value='submit'
                   color='primary'

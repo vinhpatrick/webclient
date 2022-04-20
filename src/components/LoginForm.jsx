@@ -1,5 +1,6 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import { _changeLogForm, _hideLogForm } from '../redux/action/changeFormAction'
 import {
   ModalHeader,
   FormGroup,
@@ -12,18 +13,19 @@ import {
   Col,
   ModalFooter,
 } from 'reactstrap'
-import { _login, _setStatus } from '../redux/action/userAction'
-import { loginUser } from '../redux/action/logFormAction'
+import { _setStatus } from '../redux/action/userAction'
+import { loginUser } from '../redux/action/loginAction'
 
 const LoginForm = (props) => {
   const dispatch = useDispatch()
   const initial = { username: '', password: '' }
-  const [loading, setLoading] = useState(false)
   const [payload, setPayload] = useState(initial)
-  const { status, error } = useSelector((state) => state.user)
   const handleValueChange = (e) => {
     setPayload({ ...payload, [e.target.name]: e.target.value.trim() })
-    dispatch(_setStatus('', ''))
+    // dispatch(_setStatus('', ''))
+  }
+  const handleRegister = () => {
+    dispatch(_changeLogForm('register'))
   }
   const login = (e) => {
     dispatch(loginUser({ username: payload.username, password: payload.password }))
@@ -31,7 +33,7 @@ const LoginForm = (props) => {
   }
   return (
     <>
-      <ModalHeader toggle={props.toggle}>Đăng Nhập</ModalHeader>
+      <ModalHeader>Đăng Nhập</ModalHeader>
       <ModalBody>
         <Form onSubmit={login}>
           <FormGroup>
@@ -70,7 +72,7 @@ const LoginForm = (props) => {
           </Button>
         </Form>
         <Row>
-          <Col>
+          <Col onClick={handleRegister}>
             <a style={{ textDecoration: 'none' }} href='#'>
               Chưa có tài khoản?
             </a>

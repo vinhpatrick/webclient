@@ -1,4 +1,4 @@
-import * as ActionTypes from '../action/ActionTypes'
+import * as ActionTypes from './ActionTypes'
 import { baseUrl } from '../../shared/baseUrl'
 
 export const requestLogin = (creds) => {
@@ -83,6 +83,6 @@ export const logoutUser = () => (dispatch) => {
   dispatch(requestLogout())
   localStorage.removeItem('token')
   localStorage.removeItem('creds')
-  // dispatch(favoritesFailed("Error 401: Unauthorized"));
   dispatch(receiveLogout())
+  window.location.href = '/'
 }
