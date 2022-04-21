@@ -53,9 +53,9 @@ const Contact = () => {
               width='800'
               height='450'
               style={{ boder: '0' }}
-              allowfullscreen=''
+              allowFullScreen=''
               loading='lazy'
-              referrerpolicy='no-referrer-when-downgrade'
+              referrerPolicy='no-referrer-when-downgrade'
             ></iframe>
           </div>
           <div className='col-12 col-sm-11 offset-sm-1'>

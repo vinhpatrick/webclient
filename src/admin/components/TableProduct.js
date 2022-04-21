@@ -20,72 +20,72 @@
 //   const idDeleteProduct = {
 //     productIds: []
 //   }
-//   usersData.map((data, i) => {
-//     idProduct[i] = data._id
-//     data.idProduct = data._id
-//   })
+//   // usersData.map((data, i) => {
+//   //   idProduct[i] = data._id
+//   //   data.idProduct = data._id
+//   // })
 
-//   const handleDelete = () => {
-//     setLoading(true)
-//     idDelete.map((id, i) => (idDeleteProduct.productIds[i] = idProduct[id]))
-//     if (idDeleteProduct.productIds.length == 0) {
-//       warn('Vui lòng chọn sản phẩm cần xóa')
-//     } else {
-//       deleteProduct(usersData[0].shop._id, idDeleteProduct)
-//         .then((respone) => {
-//           setIdDelete([])
-//           success(respone.data.message)
-//           setTimeout(window.location.reload(), 3000)
-//         })
-//         .catch((err) => {
-//           {
-//             err.response.status == 500
-//               ? error('Có lỗi xảy ra. Vui lòng thử lại sau!')
-//               : error(err.response.data.message)
-//           }
-//         })
-//     }
-//   }
-//   const toggleDetails = (index) => {
-//     const position = details.indexOf(index)
-//     let newDetails = details.slice()
-//     if (position !== -1) {
-//       newDetails.splice(position, 1)
-//     } else {
-//       newDetails = [...details, index]
-//     }
-//     setDetails(newDetails)
-//   }
-//   const handleCheck = (id) => {
-//     setIdDelete((prev) => {
-//       const isChecked = idDelete.includes(id)
-//       if (isChecked) {
-//         return idDelete.filter((item) => item != id)
-//       } else {
-//         return [...prev, id]
-//       }
-//     })
-//   }
-//   const showDeleteConfirm = () => {
-//     if (idDelete.length == 0) {
-//       warn('Vui lòng chọn sản phẩm cần xóa')
-//     } else {
-//       confirm({
-//         title: 'Bạn chắc chắn xóa sản phẩm này?',
-//         icon: <ExclamationCircleOutlined />,
-//         style: { top: 200 },
-//         okText: 'Đồng ý',
-//         okType: 'danger',
-//         cancelText: 'Quay lại',
-//         onOk() {
-//           handleDelete()
-//         },
-//         onCancel() {
-//           setLoading(false)
-//         }
-//       })
-//     }
-//   }
+//   // const handleDelete = () => {
+//   //   setLoading(true)
+//   //   idDelete.map((id, i) => (idDeleteProduct.productIds[i] = idProduct[id]))
+//   //   if (idDeleteProduct.productIds.length == 0) {
+//   //     warn('Vui lòng chọn sản phẩm cần xóa')
+//   //   } else {
+//   //     deleteProduct(usersData[0].shop._id, idDeleteProduct)
+//   //       .then((respone) => {
+//   //         setIdDelete([])
+//   //         success(respone.data.message)
+//   //         setTimeout(window.location.reload(), 3000)
+//   //       })
+//   //       .catch((err) => {
+//   //         {
+//   //           err.response.status == 500
+//   //             ? error('Có lỗi xảy ra. Vui lòng thử lại sau!')
+//   //             : error(err.response.data.message)
+//   //         }
+//   //       })
+//   //   }
+//   // }
+//   // const toggleDetails = (index) => {
+//   //   const position = details.indexOf(index)
+//   //   let newDetails = details.slice()
+//   //   if (position !== -1) {
+//   //     newDetails.splice(position, 1)
+//   //   } else {
+//   //     newDetails = [...details, index]
+//   //   }
+//   //   setDetails(newDetails)
+//   // }
+//   // const handleCheck = (id) => {
+//   //   setIdDelete((prev) => {
+//   //     const isChecked = idDelete.includes(id)
+//   //     if (isChecked) {
+//   //       return idDelete.filter((item) => item != id)
+//   //     } else {
+//   //       return [...prev, id]
+//   //     }
+//   //   })
+//   // }
+//   // const showDeleteConfirm = () => {
+//   //   if (idDelete.length == 0) {
+//   //     warn('Vui lòng chọn sản phẩm cần xóa')
+//   //   } else {
+//   //     confirm({
+//   //       title: 'Bạn chắc chắn xóa sản phẩm này?',
+//   //       icon: <ExclamationCircleOutlined />,
+//   //       style: { top: 200 },
+//   //       okText: 'Đồng ý',
+//   //       okType: 'danger',
+//   //       cancelText: 'Quay lại',
+//   //       onOk() {
+//   //         handleDelete()
+//   //       },
+//   //       onCancel() {
+//   //         setLoading(false)
+//   //       }
+//   //     })
+//   //   }
+//   // }
 //   return (
 //     <div>
 //       <CSmartTable
@@ -117,7 +117,7 @@
 //                     shape="square"
 //                     size="sm"
 //                     onClick={() => {
-//                       toggleDetails(item._id)
+//                       // toggleDetails(item._id)
 //                     }}
 //                   >
 //                     {details.includes(item._id) ? 'Hide' : 'Show'}
@@ -129,7 +129,7 @@
 //                       className="form-check-input"
 //                       type="checkbox"
 //                       idDelete={idDelete.includes(item._id)}
-//                       onChange={() => handleCheck(item._id)}
+//                       // onChange={() => handleCheck(item._id)}
 //                       id="checkProduct"
 //                     ></input>
 //                   )}
@@ -159,7 +159,9 @@
 //         {type === 'fix' ? (
 //           ''
 //         ) : (
-//           <CButton disabled={loading} onClick={showDeleteConfirm} color="danger">
+//           <CButton disabled={loading} 
+//           // onClick={showDeleteConfirm} 
+//           color="danger">
 //             {!loading ? '' : <CSpinner component="span" size="sm" aria-hidden="true" />} Xóa{' '}
 //           </CButton>
 //         )}

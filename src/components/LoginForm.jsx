@@ -17,6 +17,7 @@ import { _setStatus } from '../redux/action/userAction'
 import { loginUser } from '../redux/action/loginAction'
 
 const LoginForm = (props) => {
+  const toggle = props.isToggle
   const dispatch = useDispatch()
   const initial = { username: '', password: '' }
   const [payload, setPayload] = useState(initial)
@@ -33,7 +34,7 @@ const LoginForm = (props) => {
   }
   return (
     <>
-      <ModalHeader>Đăng Nhập</ModalHeader>
+      <ModalHeader toggle={toggle}>Đăng Nhập</ModalHeader>
       <ModalBody>
         <Form onSubmit={login}>
           <FormGroup>

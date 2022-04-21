@@ -20,7 +20,7 @@ const ProductDetail = () => {
                     <div className='img-big-wrap'>
                       <img
                         className='card img-wrap'
-                        src={`${process.env.PUBLIC_URL}/assets/images/6.jpg`}
+                        src={`${process.env.PUBLIC_URL}/assets/images/xiaomi-civi.jpg`}
                       />
                     </div>
 
@@ -31,7 +31,7 @@ const ProductDetail = () => {
                         <img
                           // key={index}
                           className='item-thumb'
-                          src={`${process.env.PUBLIC_URL}/assets/images/9.jpg`}
+                          src={`${process.env.PUBLIC_URL}/assets/images/xiaomi-civi-3.jpg`}
                           // onClick={(e) => setTargetImage(e.target.src)}
                         />
                       </>

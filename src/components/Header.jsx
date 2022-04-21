@@ -3,6 +3,9 @@ import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import { logoutUser } from '../redux/action/loginAction'
 import { Link } from 'react-router-dom'
+import {} from '../api/productApi'
+import axios from 'axios'
+import axiosClient from '../api/axiosClient'
 import {
   Navbar,
   NavbarBrand,
@@ -19,8 +22,25 @@ import {
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { _showLogForm, _hideLogForm } from '../redux/action/changeFormAction'
+import { getProduct } from '../api/productApi'
+import { type } from '@testing-library/user-event/dist/type'
 
 const Header = () => {
+  // useEffect(() => {
+  //   // axiosClient
+  //   // .get('https://jsonplaceholder.typicode.com/posts')
+  //   getProduct()
+  //     .then(function (response) {
+  //       const product = response.data
+  //       // handle success
+  //       // const array = Object.keys(response)
+  //       console.log(product)
+  //     })
+  //     .catch(function (error) {
+  //       // handle error
+  //       console.log(error)
+  //     })
+  // }, [])
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.logForm.isAuthenticated)
   const user = useSelector((state) => state.logForm.user)
@@ -49,12 +69,18 @@ const Header = () => {
           <span className='fa fa-user-circle fa-lg'></span> Login
         </NavLink>
         <Modal isOpen={isOpen} toggle={handleHideLogForm}>
-          {mode === 'login' ? <LoginForm /> : <RegisterForm />}
+          {mode === 'login' ? (
+            <LoginForm isToggle={handleHideLogForm} />
+          ) : (
+            <RegisterForm isToggle={handleHideLogForm} />
+          )}
         </Modal>
       </div>
     )
   }
   const UserMenu = (props) => {
+    const admin = localStorage.getItem('admin')
+    console.log(admin)
     const [menu, setMenu] = useState(false)
     const handleUserMenu = () => {
       setMenu(!menu)
@@ -73,25 +99,29 @@ const Header = () => {
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem>
-            <Link style={{ color: 'black' }} to='/contactus'>
+            <Link style={{ color: 'black', textDecoration: 'none' }} to='/contactus'>
               <span style={{ marginRight: '10px' }} className=' fa fa-user-circle'></span>
-              Đồng Văn Vinh
+              {!user ? '' : user.username}
             </Link>
           </DropdownItem>
           <DropdownItem>
-            <Link style={{ color: 'black' }} to='/contactus'>
+            <Link style={{ color: 'black', textDecoration: 'none' }} to='/contactus'>
               <span style={{ marginRight: '10px' }} className=' fa fa-cart-arrow-down'></span>
               Đơn hàng
             </Link>
           </DropdownItem>
-          <DropdownItem>
-            <Link style={{ color: 'black' }} to='/seller'>
-              <span style={{ marginRight: '10px' }} className='fa fa-shopping-bag'></span>Kênh bán
-              hàng
-            </Link>
-          </DropdownItem>
+          {admin === 'true' ? (
+            <DropdownItem>
+              <Link style={{ color: 'black', textDecoration: 'none' }} to='/seller'>
+                <span style={{ marginRight: '10px' }} className='fa fa-shopping-bag'></span>Kênh bán
+                hàng
+              </Link>
+            </DropdownItem>
+          ) : (
+            ''
+          )}
           <DropdownItem onClick={handleLogout}>
-            <Link style={{ color: 'black' }} to='/'>
+            <Link style={{ color: 'black', textDecoration: 'none' }} to='/'>
               <span style={{ marginRight: '10px' }} className='fa fa-sign-out'></span>
               Đăng xuất
             </Link>
@@ -150,7 +180,7 @@ const Header = () => {
               </NavItem>
               <NavItem className=''>
                 <NavLink className='nav-link' to='/cart'>
-                  <span className='fa fa-shopping-cart fa-lg'></span> Cart
+                  <span className='fa fa-shopping-cart fa-lg'></span> Giỏ hàng
                 </NavLink>
               </NavItem>
               <NavItem>{!auth ? <LogModal /> : <UserMenu />}</NavItem>

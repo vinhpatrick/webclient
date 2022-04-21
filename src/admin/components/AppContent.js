@@ -6,10 +6,8 @@ import ChangeProduct from '../views/products/ChangeProduct'
 import Dashboard from '../views/dashboard/Dashboard'
 import NotFound from '../../pages/NotFound'
 // routes config
-import routes from '../routes'
 
 const AppContent = () => {
-  console.log('routes', routes)
   return (
     <CContainer lg>
       <Suspense fallback={<CSpinner color='primary' />}>

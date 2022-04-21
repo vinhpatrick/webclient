@@ -1,25 +1,21 @@
 import React, { useState, useEffect, Suspense } from 'react'
 import TableProduct from '../../components/TableProduct'
+import axios from 'axios'
 // import { getShops, getProducts } from '../../../../services/api/sellerApi'
 import { CFormSelect, CSpinner } from '@coreui/react'
 const ChangeProduct = () => {
-  const [shopId, setShopId] = useState('')
-  const [listShop, setListShop] = useState([])
   const [dataProducts, setDataProducts] = useState([])
-
-  // useEffect(() => {
-  //   getShops({}).then((response) => {
-  //     setListShop(response.data.data)
-  //   })
-  // }, [])
-
-  // useEffect(() => {
-  //   if (shopId != '' && shopId != 1) {
-  //     getProducts(shopId).then((response) => {
-  //       setDataProducts(response.data.data.products)
-  //     })
-  //   }
-  // }, [shopId])
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/products/')
+      .then((response) => {
+        console.log(response.data)
+        setDataProducts(response.data)
+      })
+      .catch((error) => {
+        return error
+      })
+  }, [])
 
   const columns = [
     {
@@ -49,24 +45,8 @@ const ChangeProduct = () => {
       _props: { color: 'primary', className: 'fw-semibold' },
     },
   ]
-
   return (
     <div>
-      <div className='mb-3' id='changeProduct'>
-        <CFormSelect
-          aria-label='Default select example'
-          // onChange={(e) => setShopId(e.target.value)}
-        >
-          <option value='1'>Chọn shop</option>
-          {listShop.map((shop) => {
-            return (
-              <option value={shop._id} key={shop._id}>
-                {shop.name}
-              </option>
-            )
-          })}
-        </CFormSelect>
-      </div>
       <Suspense fallback={<CSpinner color='primary' />}>
         {dataProducts.length != 0 ? (
           <TableProduct columns={columns} usersData={dataProducts} type='fix' />

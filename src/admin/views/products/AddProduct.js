@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
-import { getShops, postProduct } from '../../../services/api/sellerApi'
+import axiosClient from '../../../api/axiosClient'
+// import { getShops, postProduct } from '../../../services/api/sellerApi'
+import { postProduct } from '../../../api/productApi'
 import {
   CButton,
   CCol,
@@ -12,10 +14,10 @@ import {
   CInputGroupText,
   CImage,
   CRow,
-  CFormSelect,
   CSpinner,
 } from '@coreui/react'
 import { useToast } from '../../../contexts/toast'
+import { toast } from 'react-toastify'
 
 const AddProduct = () => {
   const style = { color: 'red' }
@@ -34,8 +36,8 @@ const AddProduct = () => {
 
   const [sizes, setSizes] = useState([{ name: '', numberInStock: '' }])
   const [images, setImages] = useState([])
-  const [shopId, setShopId] = useState('0')
-  const [listShop, setListShop] = useState([])
+  // const [shopId, setShopId] = useState('0')
+  // const [listShop, setListShop] = useState([])
   const [loading, setLoading] = useState(false)
 
   // useEffect(() => {
@@ -44,65 +46,53 @@ const AddProduct = () => {
   //   })
   // }, [shopId])
 
+  //
   const uploadImage = (image) => {
     // Tạo một form data chứa dữ liệu gửi lên
     const formData = new FormData()
     // Hình ảnh cần upload
     formData.append('file', image)
     // Tên preset vừa tạo ở bước 1
-    formData.append('upload_preset', 'new_preset')
+    formData.append('upload_preset', 'vinh_tech')
     // Tải ảnh lên cloudinary
     // API: https://api.cloudinary.com/v1_1/{Cloudinary-Name}/image/upload
-    //okType
-    // const bearer = 'Bearer ' + localStorage.getItem('token')
-    // axios('http://localhost:4000/imageUpload/', {
-    //   method: 'POST',
-    //   formData,
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: bearer,
-    //   },
-    //   credentials: 'same-origin',
-    // })
-    //   .then((response) => {
-    //     //data.images.push(response.data.secure_url);
-    //     setImages([...images, response.data.secure_url])
-    //   })
-    //   .catch((err) => console.error(err))
-
-    axios()
-      .post('http://localhost:4000/imageUpload/', formData)
+    axios
+      .post('https://api.cloudinary.com/v1_1/gratiot/image/upload', formData)
       .then((response) => {
         //data.images.push(response.data.secure_url);
         setImages([...images, response.data.secure_url])
       })
       .catch((err) => console.error(err))
   }
-
   const handleSubmit = (event) => {
     event.preventDefault()
-    // setLoading(true)
+    setLoading(true)
     data.images = images
-    // if (shopId == 0) {
-    //   warn('Vui lòng chọn cửa hàng')
-    //   setLoading(false)
-    // } else
     if (data.sizes.length == 0) {
       warn('Sản phẩm cần tối thiểu một loại hàng')
-      // setLoading(false)
+      setLoading(false)
     } else {
-      postProduct(shopId, data)
-        .then((respone) => {
-          if (respone.data.success == true) {
-            success(respone.data.message)
-            window.location.reload(false)
+      console.log('data', data)
+      const token = localStorage.getItem('token')
+      axiosClient
+        .post('http://localhost:4000/products', data)
+        .then((response) => {
+          if (response.data.success === true) {
+            console.log('them sp thanh cong')
+            success(response.data.status)
+            console.log('data', response.data)
           } else {
-            error(respone.data.message)
+            error(response.data.error)
           }
         })
         .catch((err) => {
-          error(err.response.data.message)
-          // setLoading(false)
+          console.log('them sp that bai')
+          error('Thêm sản phẩm thất bại')
+          // error(err.response.data.message)
+        })
+        .finally(() => {
+          setLoading(false)
+          setData(initData)
         })
     }
   }
@@ -155,6 +145,7 @@ const AddProduct = () => {
             name='name'
             placeholder='Nhập tên sản phẩm'
             onChange={(e) => handleChange(e)}
+            value={data.name}
           />
         </div>
         <div className='mb-3'>

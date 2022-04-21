@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import Layout from '../layout/Layout'
 import ProductItem from '../components/ProductItem'
 import { getRandomProduct } from '../utils/getMockData'
 import BannerTop from '../components/BannerTop'
+import { getProduct } from '../api/productApi'
 const Home = () => {
   return (
     <Layout>

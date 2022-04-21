@@ -1,0 +1,202 @@
+[
+  {
+    "_id": "626112a7d04468741daf2ea8",
+    "name": "Điện thoại Xiaomi CIVI (Snap 778G)",
+    "description": "Xiaomi CIVI sở hữu vi xử lý Snapdragon 778G tiến trình 6nm mới nhất, hiệu năng mạnh mẽ, chưa kể việc hỗ trợ 5G đa kết nối giúp người dùng truy cập mạng internet tốt hơn.",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650528901/zrl9xm5ybai0rdoksyz4.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650528906/bqnvg4j3bpr2nkrjlfvx.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650528910/m2gjexgzbwgfkmv5woky.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650528914/eqjm52cn228wsoclsnkw.jpg"
+    ],
+    "price": 9950000,
+    "originalPrice": 10250000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:15:35.659Z",
+    "updatedAt": "2022-04-21T08:15:35.659Z",
+    "__v": 0
+  },
+  {
+    "_id": "6261145cd04468741daf2eb6",
+    "name": "Điện thoại Iphone 12",
+    "description": "Mỗi thế hệ smartphone của nhà \"Táo khuyết\" đều khiến người ta phải trầm trồ về độ sịn sò cũng như nâng cấp toàn diện về mặt hiệu năng. Chính thức đổ bộ thị trường vào tháng 10 năm 2020, iPhone 12 là một trong những đại diện cho thế hệ iPhone mới với những cải tiến vượt trội so với thế hệ trước.",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529163/x4filuzd5ku3xbfbn46h.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529166/hmbktb05pxglumbk0llg.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529170/kamy1sqzkmocdrryfwpm.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529175/ze7jq2p6wiktqhkmtxlo.jpg"
+    ],
+    "price": 18050000,
+    "originalPrice": 20000000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:22:52.387Z",
+    "updatedAt": "2022-04-21T08:22:52.387Z",
+    "__v": 0
+  },
+  {
+    "_id": "62611523d04468741daf2ec4",
+    "name": "Điện thoại iPhone 13 Pro Max Chính hãng VN/A (128GB)",
+    "description": "So sánh với người đàn anh iPhone 12 Pro Max, chúng ta có thể dễ dàng nhìn ra những ưu điểm vượt trội của iPhone 13 Pro Max. Nâng cấp đáng giá đầu tiên chính là con chip Apple A15 siêu mạnh, (775.519 điểm Antutu) so với A14 (568.674 điểm Antutu). Thứ 2 phải kể đến là màn hình Promotion 120Hz với \"tai thỏ\" nhỏ gọn hơn cho trải nghiệm khác biệt hoàn toàn màn hình 60Hz trên iPhone 12 Pro Max.",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529520/tlavl1hmhclf071nglrz.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529524/attuvevf0x6yz3ethtn2.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529528/pk6t869p5bpto03iwfk9.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529531/t4yl5xvnypmmk96u3lci.jpg"
+    ],
+    "price": 29050000,
+    "originalPrice": 30450000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:26:11.780Z",
+    "updatedAt": "2022-04-21T08:26:11.780Z",
+    "__v": 0
+  },
+  {
+    "_id": "626115e9d04468741daf2ed0",
+    "name": "Điện thoại iPhone XS Max(256GB)",
+    "description": "Với hàng loạt công nghệ tiên tiến cùng những nâng cấp về phần cứng, iPhone XS Max cũ xứng đáng là chiếc smartphone cao cấp nhất trên thị trường hiện nay. Hãy cùng MobileCity đánh giá chi tiết chiếc smartphone này nhé!",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529721/tofbfuij0ci1l89uwjwz.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529725/t7lkpqpkgr4wcabssmtx.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529730/i9bqnghyrljcwbgxctyi.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529733/glqd60udd6gd8gyde9i1.jpg"
+    ],
+    "price": 10350000,
+    "originalPrice": 11450000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:29:29.770Z",
+    "updatedAt": "2022-04-21T08:29:29.770Z",
+    "__v": 0
+  },
+  {
+    "_id": "62611682d04468741daf2edb",
+    "name": "Điện thoại Xiaomi Redmi K40 Gaming Edition (Sẵn tiếng Việt)",
+    "description": "Xiaomi Redmi K40 Gaming Edition chạy chip Dimensity 1200 6nm đem đến hiệu năng mạnh mẽ, máy kết hợp với RAM 6GB và 8GB (tuỳ từng phiên bản) đem đến khả năng chơi game bền bỉ, đa nhiệm các tác vụ trên máy một cách mượt mà trơn tru nhất. Xiaomi Redmi K40 Gaming Edition xứng đáng là một chiếc gaming phone giá rẻ, hiệu năng cao mà người tiêu dùng nhất định phải sở hữu.",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529882/f8wjsilkcnwvlnv9vfik.png",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529885/dbhwzs8nveb8gi5civdh.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529889/gvohedaza5u4j5vdusci.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650529893/n3xqp43nwpdadh7zjipx.jpg"
+    ],
+    "price": 7650000,
+    "originalPrice": 8050000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:32:02.122Z",
+    "updatedAt": "2022-04-21T08:32:02.122Z",
+    "__v": 0
+  },
+  {
+    "_id": "62611704d04468741daf2ee6",
+    "name": "Điện thoại Xiaomi Redmi Note 11S (Chính hãng DGW 128GB)",
+    "description": "Xiaomi Redmi Note 11S là một trong những chiếc máy thuộc dòng Redmi Note 11 series được trình làng trong tháng 1 năm 2022. Không sử dụng chip Snapdragon hay Dimensity như những người anh em cùng ra mắt, Xiaomi Redmi Note 11S được trang bị con chip Helio G96, một đối thủ đáng gờm của Snapdragon 720G, giúp tối ưu khả năng gaming cho bạn thoải mái chiến các tựa game mobile ở mức đồ hoạ cao nhất.",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530012/eodg0fht4sfiiorguvpw.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530016/s3smxbkmwzmk8pc3ff39.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530020/osztmn00b1qfs1vytpod.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530023/qpj4u5q4dugpilfvztie.jpg"
+    ],
+    "price": 5300000,
+    "originalPrice": 5700000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:34:12.761Z",
+    "updatedAt": "2022-04-21T08:34:12.761Z",
+    "__v": 0
+  },
+  {
+    "_id": "62611784d04468741daf2ef1",
+    "name": "Điện thoại Samsung Galaxy S20(256GB)",
+    "description": "Ngày 11 tháng 2 năm 2020, Gã không lồ công nghệ Samsung đã chính thức trình làng bộ 3 flagship Galaxy S mới, bao gồm: Galaxy 20, Galaxy S20 Plus và Galaxy S20 Ultra. Trong đó, Galaxy S20 là chiếc điện thoại nhỏ gọn nhất nhưng vẫn có đầy đủ các tính năng cao cấp như mặt lưng kính, khung kim loại cùng với hiệu năng cực mạnh.",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530153/d2fmo3bi8qalsmrwkjs1.png",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530157/qxk43slkhgcnnu5timbt.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530160/ngqfidahknvdbibr4hia.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530163/df58qhcqr8w2oeabcqsc.jpg"
+    ],
+    "price": 7450000,
+    "originalPrice": 8150000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:36:20.524Z",
+    "updatedAt": "2022-04-21T08:36:20.524Z",
+    "__v": 0
+  },
+  {
+    "_id": "626117fdd04468741daf2efc",
+    "name": "SamsungĐiện thoại Samsung Galaxy A53 5G (Chính hãng 8-128)",
+    "description": "Nối tiếp thành công của rất nhiều siêu phẩm tầm trung, giá rẻ trên thị trường, Samsung đã chính thức cho ra mắt Samsung Galaxy A53 5G Chính hãng với thiết kế trẻ trung, hiệu năng mạnh mẽ cùng tính năng camera hiện đại, hứa hẹn đem đến những trải nghiệm giải trí tuyệt vời nhất cho người dùng.",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530278/ay6fq2twv1wz1pi1gft1.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530281/zwwfysktvgp8bfthewiq.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530284/ravq2e0aciqpjsqgkufz.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530287/r2tlde3bmgdtbemwj3rb.jpg"
+    ],
+    "price": 7950000,
+    "originalPrice": 8450000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:38:21.164Z",
+    "updatedAt": "2022-04-21T08:38:21.164Z",
+    "__v": 0
+  },
+  {
+    "_id": "62611877d04468741daf2f07",
+    "name": "SamsungĐiện thoại Samsung Galaxy S22 (Chính hãng)",
+    "description": "Ngày ra mắt Samsung Galaxy S22 series đang tới gần với rất nhiều sự mong ngóng từ những Sam Fans nói riêng và những ai mê công nghệ và yêu thích sự phát triển của công nghệ nói chung. Dự kiến trong lễ ra mắt lần này, nhân vật chính sẽ là ba chiếc điện thoại hàng đầu của hãng Samsung Galaxy S22, Samsung Galaxy S22+ và Samsung Galaxy S22.Khoan hãy nhắc tới hai chiếc điện thoại nâng cấp kia thì thứ mà tất cả chúng ta đang mong chờ chắc chắn là sự xuất hiện của Samsung Galaxy S22 Chính hãng một chiếc điện thoại đáp ứng vừa đủ các yêu cầu từ bình thường cho đến nâng cao nhất.",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530397/o7xgij46w6c1ej3qk7tr.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530400/upnnlr57ezphpedmvval.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530404/tnkzeehrngwzjjipd3dt.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530407/p8dp93qbvvmz2gjngsk2.jpg"
+    ],
+    "price": 15650000,
+    "originalPrice": 17150000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:40:23.268Z",
+    "updatedAt": "2022-04-21T08:40:23.268Z",
+    "__v": 0
+  },
+  {
+    "_id": "626118dfd04468741daf2f12",
+    "name": "Điện thoại Samsung Galaxy S22 Ultra",
+    "description": "Ngày 09/02/2022, Samsung đã tung ra dòng flagship Galaxy S thế hệ tiếp theo. Máy có thiết kế đậm chất của Galaxy Note huyền thoại.",
+    "rating": 5,
+    "category": "smartphone",
+    "images": [
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530496/lsi39eumvr6j7brtvioe.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530499/cfnijuumadyg1vsuhkht.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530502/jpnfww31ic6vt29e6vln.jpg",
+      "https://res.cloudinary.com/gratiot/image/upload/v1650530505/hp9x3ms5chfwacrwgzgh.jpg"
+    ],
+    "price": 23250000,
+    "originalPrice": 28250000,
+    "sold": 0,
+    "view": 0,
+    "createdAt": "2022-04-21T08:42:07.406Z",
+    "updatedAt": "2022-04-21T08:42:07.406Z",
+    "__v": 0
+  }
+]

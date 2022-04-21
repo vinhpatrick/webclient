@@ -1,6 +1,7 @@
 import * as ActionTypes from './ActionTypes'
 import { baseUrl } from '../../shared/baseUrl'
 
+
 export const requestLogin = (creds) => {
   return {
     type: ActionTypes.LOGIN_REQUEST,
@@ -54,6 +55,7 @@ export const loginUser = (creds) => (dispatch) => {
         // If login was successful, set the token in local storage
         localStorage.setItem('token', response.token)
         localStorage.setItem('creds', JSON.stringify(creds))
+        localStorage.setItem('admin', response.admin)
         // Dispatch the success action
         // dispatch(fetchFavorites());
         dispatch(receiveLogin(response))
