@@ -1,6 +1,5 @@
 import axiosClient from './axiosClient'
-import { baseUrl } from '../shared/baseUrl'
-
+import query2string from '../helpers/validating/query2string'
 export const getProduct = () => {
   return axiosClient({
     url: '/products',
@@ -14,5 +13,13 @@ export const postProduct = (payload) => {
     url: '/products',
     method: 'POST',
     data: payload,
+  })
+}
+
+export const searchProducts = (query) => {
+  const queryString = query2string(query)
+  return axiosClient({
+    url: `/products/?${queryString}`,
+    method: 'GET',
   })
 }

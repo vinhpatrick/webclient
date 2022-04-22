@@ -26,27 +26,12 @@ import { getProduct } from '../api/productApi'
 import { type } from '@testing-library/user-event/dist/type'
 
 const Header = () => {
-  // useEffect(() => {
-  //   // axiosClient
-  //   // .get('https://jsonplaceholder.typicode.com/posts')
-  //   getProduct()
-  //     .then(function (response) {
-  //       const product = response.data
-  //       // handle success
-  //       // const array = Object.keys(response)
-  //       console.log(product)
-  //     })
-  //     .catch(function (error) {
-  //       // handle error
-  //       console.log(error)
-  //     })
-  // }, [])
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.logForm.isAuthenticated)
   const user = useSelector((state) => state.logForm.user)
   // console.log('token', username)
   // const username = ''
-  console.log('authenticated', auth)
+  // console.log('authenticated', auth)
   const [toggleNav, setToggleNav] = useState(false)
   const handleToggleNav = () => {
     setToggleNav(!toggleNav)
@@ -149,7 +134,7 @@ const Header = () => {
             </div>
             <Nav navbar>
               <NavItem>
-                <NavLink className='nav-link' to='/home'>
+                <NavLink className='nav-link' to='/'>
                   <span className='fa fa-home fa-lg'></span> Trang chủ
                 </NavLink>
               </NavItem>

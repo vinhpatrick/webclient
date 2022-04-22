@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route exact path='/home' element={<Navigate to='/' replace />} />
+        {/* <Route exact path='/home' element={<Navigate to='/' replace />} /> */}
         <Route path='/products/'>
           <Route index element={<div>All products page</div>} />
           <Route path=':productId' element={<ProductDetail />} />

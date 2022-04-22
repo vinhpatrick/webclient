@@ -180,11 +180,10 @@ address{
   font-size: 20px;
   text-decoration: none;
   font-weight: bold;
+  margin-bottom: 40px;
 }
-.view-all-product a{
-  /* text-decoration: none; */
-  color: #333333;
-  
+.view-all-product a:hover {
+  color: black
 }
 
 /* ================== PAGE DETAILS ==================  */
@@ -359,4 +358,38 @@ a.itemside {
   border-bottom: 1px solid #e4e4e4;
   padding-bottom: 10px;
   margin-bottom: 10px;
+}
+/* i  images productitem */
+/* a:hover {
+  text-decoration: none;
+} */
+a {
+  text-decoration: none
+}
+
+.img-wrap {
+  text-align: center;
+  display: block;
+}
+
+.img-wrap img {
+  max-width: 100%;
+}
+
+.icon-wrap {
+  text-align: center;
+  display: inline-block;
+}
+
+.price-wrap {
+  letter-spacing: -0.7px;
+}
+
+.content-body {
+  flex: 1 1 auto;
+  padding: 2rem 2.3rem;
+}
+
+.section-title {
+  color: #212529;
 }
