@@ -5,7 +5,6 @@ import styles from '../css_modules/css/all.module.css'
 
 const ProductItem = (props) => {
   const { _id, name, images, price, originalPrice, sold, view } = props
-  console.log(images)
   return (
     <>
       <div className={`${styles['col-md-3']}`}>

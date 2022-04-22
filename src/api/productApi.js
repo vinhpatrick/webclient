@@ -1,5 +1,7 @@
 import axiosClient from './axiosClient'
 import query2string from '../helpers/validating/query2string'
+
+//get all
 export const getProduct = () => {
   return axiosClient({
     url: '/products',
@@ -20,6 +22,13 @@ export const searchProducts = (query) => {
   const queryString = query2string(query)
   return axiosClient({
     url: `/products/?${queryString}`,
+    method: 'GET',
+  })
+}
+
+export const getProductById = (id) => {
+  return axiosClient({
+    url: `/products/${id}`,
     method: 'GET',
   })
 }

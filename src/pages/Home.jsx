@@ -77,7 +77,6 @@ const Home = (props) => {
         setLoadingSells(false)
       })
   }, [])
-  console.log('start game')
   return (
     <Layout>
       <BannerTop />
