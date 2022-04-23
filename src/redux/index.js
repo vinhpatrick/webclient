@@ -4,11 +4,13 @@ import { combineReducers, createStore, applyMiddleware } from 'redux'
 
 import loginReducer from './reducer/loginReducer'
 import changeFormReducer from './reducer/changeFormReducer'
+import cartReducer from './reducer/cartReducer'
 import { InitialFeedback } from './reducer/form'
 
 const reducers = combineReducers({
   logForm: loginReducer,
   changeForm: changeFormReducer,
+  cart: cartReducer,
   ...createForms({
     feedback: InitialFeedback,
   }),

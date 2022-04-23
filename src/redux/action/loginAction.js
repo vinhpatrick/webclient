@@ -56,6 +56,7 @@ export const loginUser = (creds) => (dispatch) => {
         localStorage.setItem('token', response.token)
         localStorage.setItem('creds', JSON.stringify(creds))
         localStorage.setItem('admin', response.admin)
+        localStorage.setItem('userId', response.userId)
         // Dispatch the success action
         // dispatch(fetchFavorites());
         dispatch(receiveLogin(response))

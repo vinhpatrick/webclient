@@ -97,7 +97,10 @@ const LoginForm = (props) => {
               backgroundColor: '#40a9ff',
             }}
           >
-            <img style={{ height: '2.5em', width: '2.5em' }} src='icons/Google.png' />
+            <img
+              style={{ height: '2.5em', width: '2.5em' }}
+              src={`${process.env.PUBLIC_URL}/icons/Google.png`}
+            />
           </Button>
         </Col>
         <Col xs='4' style={{ textAlign: 'center' }}>
@@ -109,7 +112,10 @@ const LoginForm = (props) => {
               backgroundColor: '#40a9ff',
             }}
           >
-            <img style={{ height: '3em', width: '3em' }} src='icons/Facebook.png' />
+            <img
+              style={{ height: '3em', width: '3em' }}
+              src={`${process.env.PUBLIC_URL}/icons/Facebook.png`}
+            />
           </Button>
         </Col>
         <Col xs='4' style={{ textAlign: 'center' }}>
@@ -121,7 +127,10 @@ const LoginForm = (props) => {
               backgroundColor: '#40a9ff',
             }}
           >
-            <img style={{ height: '3em', width: '3em' }} src='icons/Apple.png' />
+            <img
+              style={{ height: '3em', width: '3em' }}
+              src={`${process.env.PUBLIC_URL}/icons/Apple.png`}
+            />
           </Button>
         </Col>
       </Row>

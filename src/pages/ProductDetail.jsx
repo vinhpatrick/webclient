@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { Spin, Radio, InputNumber, message as Message } from 'antd'
 import Layout from '../layout/Layout'
 import CommentProduct from '../components/CommentProduct'
 import { getProductById } from '../api/productApi'
 // import PriceChart from './components/PriceChart'
 import { ToastProvider } from '../contexts/ToastProvider'
+import { _showLogForm } from '../redux/action//changeFormAction'
+import { addToCart } from '../api/userApi'
 import styles from '../css_modules/css/all.module.css'
 import numberSeparator from '../helpers/validating/numberSeparator'
 
 const ProductDetail = () => {
+  const dispatch = useDispatch()
+  const auth = useSelector((state) => state.logForm.isAuthenticated)
+  const userId = localStorage.getItem('userId') ? localStorage.getItem('userId') : ''
   const { productId } = useParams()
   const [loading, setLoading] = useState(false)
   const [product, setProduct] = useState({})
@@ -23,7 +29,7 @@ const ProductDetail = () => {
     getProductById(productId)
       .then((response) => {
         const data = response.data
-        console.log(data)
+        // console.log(data)
         setProduct(data)
         setLoading(false)
       })
@@ -38,6 +44,42 @@ const ProductDetail = () => {
         setLoading(false)
       })
   }, [productId])
+  //handle add to cart
+
+  const handleAddToCart = async (e) => {
+    setLoading(true)
+    if (!targetSize) {
+      Message.error('Vui lòng chọn size!')
+      setLoading(false)
+    } else if (!quantity) {
+      Message.error('Vui lòng nhập số lượng muốn mua!')
+      setLoading(false)
+    } else if (!auth) {
+      dispatch(_showLogForm())
+      setLoading(false)
+    } else {
+      addToCart({ product: productId, size: targetSize, user: userId, quantity })
+        .then((response) => {
+          Message.success(`Thêm ${quantity} sản phẩm vào giỏ hàng thành công !`)
+          setLoading(false)
+          setQuantity(1)
+          // dispatch(_getMyCart())
+        })
+        .catch((e) => {
+          // const { status, data } = e.response
+          // if (status >= 500) {
+          console.log('error', e)
+          Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
+          setLoading(false)
+          // } else {
+          //   const { message } = data
+          //   Message.error(message)
+          // }
+
+          // setLoading(false)
+        })
+    }
+  }
 
   return (
     <Layout>
@@ -194,10 +236,7 @@ const ProductDetail = () => {
                           >
                             Mua ngay
                           </button>
-                          <button
-                            className='btn btn-light'
-                            // onClick={handleAddToCart}
-                          >
+                          <button className='btn btn-light' onClick={handleAddToCart}>
                             Thêm vào giỏ
                           </button>
                         </div>
