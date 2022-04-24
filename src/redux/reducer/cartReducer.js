@@ -1,6 +1,7 @@
 const cartInitialState = {
   loading: false,
   data: [],
+  items: [],
   error: '',
 }
 

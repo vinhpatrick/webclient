@@ -11,6 +11,7 @@ import { _showLogForm } from '../redux/action//changeFormAction'
 import { addToCart } from '../api/userApi'
 import styles from '../css_modules/css/all.module.css'
 import numberSeparator from '../helpers/validating/numberSeparator'
+import { _addToCart, _getMyCart } from '../redux/action/cartAction'
 
 const ProductDetail = () => {
   const dispatch = useDispatch()
@@ -63,7 +64,7 @@ const ProductDetail = () => {
           Message.success(`Thêm ${quantity} sản phẩm vào giỏ hàng thành công !`)
           setLoading(false)
           setQuantity(1)
-          // dispatch(_getMyCart())
+          dispatch(_getMyCart())
         })
         .catch((e) => {
           // const { status, data } = e.response

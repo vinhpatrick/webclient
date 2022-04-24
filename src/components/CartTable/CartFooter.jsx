@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Promise } from 'bluebird'
 // import { ORDER_STATUSES } from 'accommerce-helpers'
 import numberSeparator from '../../helpers/validating/numberSeparator'
-// import { _deleteCartItems, _getMyCart, _order } from '../../../../redux/actions/cartActions'
+import { _deleteCartItems, _getMyCart } from '../../redux/action/cartAction'
 // import { order } from '../../../../services/api/customerApi'
 
 const CartFooter = (props) => {
@@ -106,10 +106,10 @@ const CartFooter = (props) => {
   //   }
   // }
 
-  // const handleDelete = (e) => {
-  //   const cartItemIds = selectedItems.map((item) => item.cartItemId)
-  //   dispatch(_deleteCartItems(cartItemIds))
-  // }
+  const handleDelete = (e) => {
+    const cartItemIds = selectedItems.map((item) => item.cartItemId)
+    dispatch(_deleteCartItems(cartItemIds))
+  }
 
   return (
     <div className='row'>
@@ -208,7 +208,7 @@ const CartFooter = (props) => {
             className='btn btn-danger'
             data-toggle='tooltip'
             title='Xoá sản phẩm đã chọn'
-            // onClick={handleDelete}
+            onClick={handleDelete}
             icon={<i className='fa fa-trash' style={{ marginRight: '5px' }} />}
           >
             Xoá các sản phẩm ({selectedItems.length})

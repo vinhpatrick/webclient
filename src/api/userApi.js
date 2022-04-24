@@ -33,5 +33,15 @@ export const addToCart = (payload) => {
   })
 }
 
+export const removeFromCart = (payload) => {
+  return axiosClient({
+    url: '/carts',
+    method: 'DELETE',
+    data: payload,
+  })
+}
+
+
+
 export const handleAddToWishlist = () => {}
 
