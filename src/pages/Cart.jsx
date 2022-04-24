@@ -62,7 +62,7 @@ const Cart = () => {
                     // }}
                     loading={loading}
                     pagination={{ position: ['bottomCenter'] }}
-                    // footer={() => <CartFooter selectedItems={selectedItems} discount={discount} />}
+                    footer={() => <CartFooter selectedItems={selectedItems} discount={discount} />}
                   >
                     <Table.Column
                       title='SẢN PHẨM'
