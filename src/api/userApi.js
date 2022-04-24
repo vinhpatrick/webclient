@@ -4,7 +4,7 @@ import axiosClient from './axiosClient'
 
 export const login = (payload) => {
   axiosClient({
-    url: 'users/login',
+    url: '/users/login',
     method: 'POST',
     data: payload,
   })
@@ -12,7 +12,7 @@ export const login = (payload) => {
 
 export const register = (payload) => {
   return axiosClient({
-    url: 'users/signup',
+    url: '/users/signup',
     method: 'POST',
     data: payload,
   })
@@ -20,14 +20,14 @@ export const register = (payload) => {
 
 export const getCart = (userId) => {
   return axiosClient({
-    url: 'carts',
+    url: '/carts',
     method: 'GET',
   })
 }
 
 export const addToCart = (payload) => {
   return axiosClient({
-    url: 'carts',
+    url: '/carts',
     method: 'POST',
     data: payload,
   })
@@ -40,8 +40,18 @@ export const removeFromCart = (payload) => {
     data: payload,
   })
 }
+export const editCartItem = (payload) => {
+  const { cartItemId, ...data } = payload
+  return axiosClient({
+    url: `/carts/${cartItemId}`,
+    method: 'PUT',
+    data,
+  })
+}
 
-
-
-export const handleAddToWishlist = () => {}
+export const handleAddToWishlist = (payload) => {
+  // return axiosClient({
+  //   url:''
+  // })
+}
 

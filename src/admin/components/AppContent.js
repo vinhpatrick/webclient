@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { CContainer, CSpinner } from '@coreui/react'
 import AddProduct from '../views/products/AddProduct'
 import ChangeProduct from '../views/products/ChangeProduct'
+import DeleteProduct from '../views/products/DeleteProduct'
 import Dashboard from '../views/dashboard/Dashboard'
 import NotFound from '../../pages/NotFound'
 // routes config
@@ -15,6 +16,7 @@ const AppContent = () => {
           <Route path='/' element={<Dashboard />} />
           <Route path='add-product' element={<AddProduct />} />
           <Route path='change-product' element={<ChangeProduct />} />
+          <Route path='delete-product' element={<DeleteProduct />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Suspense>

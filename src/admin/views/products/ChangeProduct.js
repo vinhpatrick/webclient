@@ -1,19 +1,18 @@
 import React, { useState, useEffect, Suspense } from 'react'
 import TableProduct from '../../components/TableProduct'
-import axios from 'axios'
-// import { getShops, getProducts } from '../../../../services/api/sellerApi'
-import { CFormSelect, CSpinner } from '@coreui/react'
+import { getProduct } from '../../../api/adminApi'
+import { CSpinner } from '@coreui/react'
 const ChangeProduct = () => {
   const [dataProducts, setDataProducts] = useState([])
   useEffect(() => {
-    axios
-      .get('http://localhost:4000/products/')
+    getProduct({ sort: '-createdAt' })
       .then((response) => {
-        console.log(response.data)
-        setDataProducts(response.data)
+        const { products } = response.data
+        setDataProducts(products)
+        console.log('lay sp thanh cong')
       })
       .catch((error) => {
-        return error
+        console.log('err', error)
       })
   }, [])
 
@@ -48,8 +47,8 @@ const ChangeProduct = () => {
   return (
     <div>
       <Suspense fallback={<CSpinner color='primary' />}>
-        {dataProducts.length != 0 ? (
-          <TableProduct columns={columns} usersData={dataProducts} type='fix' />
+        {dataProducts.length > 0 ? (
+          <TableProduct columns={columns} usersData={dataProducts && dataProducts} type='fix' />
         ) : (
           'Không có sản phẩm nào'
         )}

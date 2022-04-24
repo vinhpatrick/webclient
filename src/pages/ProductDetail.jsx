@@ -83,7 +83,6 @@ const ProductDetail = () => {
   }
   //handle add to wishlist
   const handleAddToWishlist = () => {
-    console.log('add to wishlist')
   }
 
   return (

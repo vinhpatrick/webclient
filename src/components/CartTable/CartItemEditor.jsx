@@ -4,46 +4,40 @@ import { Button, Select, InputNumber, message as Message } from 'antd'
 
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {
-  _deleteCartItems,
-  _getMyCart,
-  _hideEditForm,
-  _showEditForm,
-} from '../../../../redux/actions/cartActions'
-import { editCartItem } from '../../../../services/api/customerApi'
+import { _getMyCart } from '../../redux/action/cartAction'
+import { editCartItem } from '../../api/userApi'
 
 const CartItemActions = (props) => {
   const dispatch = useDispatch()
   const { cartItemId, sizes, size, quantity } = props
-
   const [editSize, setEditSize] = useState(size)
   const [editQuantity, setEditQuantity] = useState(quantity)
   const isEdited = () =>
     (editSize && editSize !== size) || (editQuantity && editQuantity !== quantity)
-
+  console.log('cartitemid', cartItemId)
   const handleEditCartItem = (e) => {
+    console.log('bạn đang edit cart')
     dispatch({
       type: 'LOAD_CART',
     })
-
     editCartItem({
-      cartItemId,
+      cartItemId: '626206cb995796aaf7ef53f1',
       size: editSize || size,
       quantity: editQuantity || quantity,
     })
       .then((res) => {
-        const { message } = res.data
-        Message.success(message)
+        // const { message } = res.data
+        Message.success('Bạn đã cập nhật giỏ hàng thành công')
         dispatch(_getMyCart())
       })
       .catch((e) => {
-        const { status, data } = e.response
-        if (status >= 500) {
-          Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
-        } else {
-          const { message } = data
-          Message.error(message)
-        }
+        // const { status, data } = e.response
+        // if (status >= 500) {
+        Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
+        // } else {
+        //   const { message } = data
+        //   Message.error(message)
+        // }
 
         setEditSize(size)
         setEditQuantity(quantity)
@@ -105,12 +99,12 @@ const CartItemActions = (props) => {
       <div className='col'>
         <Button
           size='large'
-          className={`${styles['btn']} ${styles['btn-success']} ${styles['align-middle']}`}
+          className='btn btn-success'
           disabled={!isEdited()}
           onClick={handleEditCartItem}
           style={{ marginLeft: '1rem' }}
         >
-          <i className={`${styles['fa']} ${styles['fa-check']}`} />
+          <i className='fa fa-check' />
         </Button>
       </div>
     </div>

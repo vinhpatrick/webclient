@@ -1,23 +1,21 @@
 import React, { useState, useEffect, Suspense } from 'react'
 import TableProduct from '../../components/TableProduct'
-import { getShops, getProducts } from '../../../../services/api/sellerApi'
+import { getProduct } from '../../../api/adminApi'
 import { CFormSelect, CSpinner } from '@coreui/react'
 const DeleteProduct = () => {
-  // const [dataProducts, setDataProducts] = useState([])
-  // useEffect(() => {
-  //   getShops({}).then((response) => {
-  //     setListShop(response.data.data)
-  //   })
-  // }, [])
+  const [dataProducts, setDataProducts] = useState([])
 
-  // useEffect(() => {
-  //   if (shopId != '' && shopId != 1) {
-  //     getProducts(shopId).then((response) => {
-  //       setDataProducts(response.data.data.products)
-  //     })
-  //   }
-  // }, [shopId])
-
+  useEffect(() => {
+    getProduct({ sort: '-createdAt' })
+      .then((response) => {
+        const { products } = response.data
+        setDataProducts(products)
+        console.log('lay sp thanh cong')
+      })
+      .catch((error) => {
+        console.log('err', error)
+      })
+  }, [])
   const columns = [
     {
       label: 'Tên sản Phẩm',
@@ -50,24 +48,13 @@ const DeleteProduct = () => {
   return (
     <div>
       <Suspense fallback={<h1>Loading posts...</h1>}>
-        <div className='mb-3'>
-          {/* <CFormSelect aria-label="Default select example" onChange={(e) => setShopId(e.target.value)}>
-            <option value="1">Chọn shop</option>
-            {listShop.map((shop) => {
-              return (
-                <option value={shop._id} key={shop._id}>
-                  {shop.name}
-                </option>
-              )
-            })}
-          </CFormSelect> */}
-        </div>
-        {/* 
+        <div className='mb-3'></div>
+
         {dataProducts.length != 0 ? (
-          <TableProduct columns={columns} usersData={dataProducts} />
+          <TableProduct columns={columns} usersData={dataProducts && dataProducts} />
         ) : (
           'Không có sản phẩm nào'
-        )} */}
+        )}
       </Suspense>
     </div>
   )

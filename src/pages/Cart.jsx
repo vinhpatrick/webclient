@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom'
 import Layout from '../layout/Layout'
 import CartItemProduct from '../components/CartTable/CartItemProduct'
 import CartFooter from '../components/CartTable/CartFooter'
+import CartItemEditor from '../components/CartTable/CartItemEditor'
 import styles from '../css_modules/css/all.module.css'
 import { Spin } from 'antd'
 import { _getMyCart } from '../redux/action/cartAction'
@@ -36,7 +37,7 @@ const Cart = () => {
       price,
     }
   })
-  console.log('data', tableData)
+  // console.log('data', tableData)
   return (
     <Layout>
       {!auth && <Navigate to='/' />}
@@ -55,11 +56,11 @@ const Cart = () => {
                         selectedItems = items
                       },
                     }}
-                    // expandable={{
-                    //   rowExpandable: (record) => !(record.shopDisabled || record.productDisabled),
-                    //   expandedRowRender: (record) => <CartItemEditor {...record} />,
-                    //   expandRowByClick: true
-                    // }}
+                    expandable={{
+                      rowExpandable: (record) => record.productId,
+                      expandedRowRender: (record) => <CartItemEditor {...record} />,
+                      expandRowByClick: true,
+                    }}
                     loading={loading}
                     pagination={{ position: ['bottomCenter'] }}
                     footer={() => <CartFooter selectedItems={selectedItems} discount={discount} />}

@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import axiosClient from '../../../api/axiosClient'
-// import { getShops, postProduct } from '../../../services/api/sellerApi'
-import { postProduct } from '../../../api/productApi'
 import {
   CButton,
   CCol,
@@ -36,17 +34,7 @@ const AddProduct = () => {
 
   const [sizes, setSizes] = useState([{ name: '', numberInStock: '' }])
   const [images, setImages] = useState([])
-  // const [shopId, setShopId] = useState('0')
-  // const [listShop, setListShop] = useState([])
   const [loading, setLoading] = useState(false)
-
-  // useEffect(() => {
-  //   getShops({}).then((response) => {
-  //     setListShop(response.data.data)
-  //   })
-  // }, [shopId])
-
-  //
   const uploadImage = (image) => {
     // Tạo một form data chứa dữ liệu gửi lên
     const formData = new FormData()
