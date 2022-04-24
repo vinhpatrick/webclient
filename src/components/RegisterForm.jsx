@@ -60,7 +60,7 @@ export default function RegisterForm(props) {
         const user = response.data
         // handle success
         // const array = Object.keys(response)
-        console.log(user)
+        // console.log(user)
         dispatch(_changeLogForm('login'))
       })
       .catch(function (error) {

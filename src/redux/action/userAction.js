@@ -1,81 +1,106 @@
-// import { login } from '../../services/api/userApi'
-// import { getUserInformation } from '../../services/api/customerApi'
-// import { isAuthenticated, setToken, removeToken } from '../../services/makeApiRequest'
-// import hasPassword from '../../helpers/validating/hashPassword'
-// import { getLocalData, removeLocalData, setLocalData } from '../../services/StorageServices'
-// import { useSelector } from 'react-redux'
+import * as ActionTypes from './ActionTypes'
+// import { login } from '../../api/userApi'
+import { baseUrl } from '../../shared/baseUrl'
+import axiosClient from '../../api/axiosClient'
 
-// export const _setStatus = (status = '', error = '') => {
-//   return (dispatch) =>
-//     dispatch({
-//       type: 'LOG_STATUS',
-//       payload: { status, error },
+export const requestLogin = (creds) => {
+  return {
+    type: ActionTypes.LOGIN_REQUEST,
+    creds,
+  }
+}
+
+export const receiveLogin = (response) => {
+  return {
+    type: ActionTypes.LOGIN_SUCCESS,
+    token: response.data.token,
+  }
+}
+
+export const loginError = (message) => {
+  return {
+    type: ActionTypes.LOGIN_FAILURE,
+    message,
+  }
+}
+export const loginUser = (creds) => (dispatch) => {
+  dispatch(requestLogin(creds))
+  axiosClient
+    .post(baseUrl + 'users/login', creds)
+    .then((response) => {
+      console.log('dang nhap thanh cong')
+      const { data } = response
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('creds', JSON.stringify(creds))
+      localStorage.setItem('admin', data.admin)
+      localStorage.setItem('userId', data.userId)
+      dispatch(receiveLogin(response))
+    })
+    .catch((error) => dispatch(loginError(error.message)))
+}
+// export const loginUser = (creds) => (dispatch) => {
+//   // We dispatch requestLogin to kickoff the call to the API
+//   dispatch(requestLogin(creds))
+
+//   return fetch(baseUrl + 'users/login', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(creds),
+//   })
+//     .then(
+//       (response) => {
+//         if (response.ok) {
+//           console.log('dang nhap thanh cong')
+//           return response
+//         } else {
+//           var error = new Error('Error ' + response.status + ': ' + response.statusText)
+//           error.response = response
+//           throw error
+//         }
+//       },
+//       (error) => {
+//         throw error
+//       }
+//     )
+//     .then((response) => response.json())
+//     .then((response) => {
+//       if (response.success) {
+//         // If login was successful, set the token in local storage
+//         localStorage.setItem('token', response.token)
+//         localStorage.setItem('creds', JSON.stringify(creds))
+//         localStorage.setItem('admin', response.admin)
+//         localStorage.setItem('userId', response.userId)
+//         // Dispatch the success action
+//         // dispatch(fetchFavorites());
+//         dispatch(receiveLogin(response))
+//       } else {
+//         var error = new Error('Error ' + response.status)
+//         error.response = response
+//         throw error
+//       }
 //     })
+//     .catch((error) => dispatch(loginError(error.message)))
 // }
 
-// export const _login = (username, password) => {
-//   return (dispatch) => {
-//     dispatch({
-//       type: 'LOG_STATUS',
-//       payload: { status: 'validating', error: '' },
-//     })
-//     return login({
-//       username: username.toLowerCase(),
-//       password: hasPassword(password),
-//     })
-//       .then((response) => {
-//         const { token } = response.data
-//         setToken(token)
+export const requestLogout = () => {
+  return {
+    type: ActionTypes.LOGOUT_REQUEST,
+  }
+}
 
-//         dispatch({
-//           type: 'LOG_STATUS',
-//           payload: { status: 'success', error: '' },
-//         })
+export const receiveLogout = () => {
+  return {
+    type: ActionTypes.LOGOUT_SUCCESS,
+  }
+}
 
-//         // dispatch({
-//         //   type: 'HIDE_LOG_FORM',
-//         // })
-//       })
-//       .catch((e) => {
-//         const { message } = e.response.data
-//         dispatch({
-//           type: 'LOG_STATUS',
-//           payload: { status: 'error', error: message },
-//         })
-//       })
-//   }
-// }
-
-// // export const _setUser = () => {
-// //   return (dispatch) => {
-// //     dispatch({
-// //       type: 'LOADING_USER'
-// //     })
-
-// //     return getUserInformation()
-// //       .then((response) => {
-// //         const { _id, username, firstName, lastName, roles, address, phoneNumber, email } = response.data.data
-// //         dispatch({
-// //           type: 'LOG_IN',
-// //           payload: { userId: _id, username, firstName, lastName, address, roles, phoneNumber, email }
-// //         })
-// //       })
-// //       .catch((e) => {
-// //         const { message } = e.response.data
-// //         dispatch({
-// //           type: 'LOG_STATUS',
-// //           payload: { status: 'error', error: message }
-// //         })
-// //       })
-// //   }
-// // }
-
-// // export const _logout = () => {
-// //   removeToken()
-// //   return (dispatch) => {
-// //     dispatch({
-// //       type: 'LOG_OUT'
-// //     })
-// //     window.location.href = '/'
-// //   }
-// // }
+// Logs the user out
+export const logoutUser = () => (dispatch) => {
+  dispatch(requestLogout())
+  localStorage.removeItem('token')
+  localStorage.removeItem('creds')
+  dispatch(receiveLogout())
+  window.location.href = '/'
+}

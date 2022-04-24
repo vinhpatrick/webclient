@@ -1,7 +1,6 @@
 const cartInitialState = {
   loading: false,
   data: [],
-  items: [],
   error: '',
 }
 
@@ -14,23 +13,7 @@ const cartReducer = (state = cartInitialState, action) => {
 
     case 'SET_CART': {
       const { data } = action.payload
-      const items = data
-      items.map((item) => {
-        const { _id: cartItemId, quantity, size, product } = item
-        const { _id: productId, name: productName, images: productImages, price, sizes } = product
-        const thumbnail = productImages[0]
-        return {
-          productId,
-          productName,
-          thumbnail,
-          sizes,
-          price,
-          size,
-          quantity,
-          cartItemId,
-        }
-      })
-      return { ...state, data, items, loading: false, error: '' }
+      return { ...state, data, loading: false, error: '' }
     }
 
     case 'ADD_TO_CART': {

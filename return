@@ -1,0 +1,96 @@
+[33mcommit b631966c10b07f55ed71740b0c031f6f96a64297[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Sat Apr 23 17:27:36 2022 +0700
+
+    addtocart complete
+
+[33mcommit 35e56565f1802d884c2d0486342eda5f5a27d107[m[33m ([m[1;31morigin/develop-2[m[33m, [m[1;32mdevelop-2[m[33m)[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Fri Apr 22 23:26:07 2022 +0700
+
+    product detail
+
+[33mcommit ec750353567bae1ac5d68c88bc1dad578d206f35[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Fri Apr 22 21:26:56 2022 +0700
+
+    home page done
+
+[33mcommit d53b4b0ac5cda9f055babb1d687ef96bbad182ca[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Fri Apr 22 00:53:01 2022 +0700
+
+    login+register+addproduct
+
+[33mcommit 963eb193b280f76396ea2d63e8c637bb2291acdb[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Wed Apr 20 15:41:24 2022 +0700
+
+    loginform
+
+[33mcommit ce54032659c8666665f5f121914924ac1ac3e57b[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Tue Apr 19 14:19:43 2022 +0700
+
+    login sucessfully
+
+[33mcommit 4ad67f5203af741d19b02935b370d20ced525bf4[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Sun Apr 17 22:22:52 2022 +0700
+
+    update favorites component
+
+[33mcommit 52eafd679360950c1872457c2327949a240cc1b8[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Sun Apr 17 21:38:55 2022 +0700
+
+    favorites component
+
+[33mcommit 277965d82ddc586d2daddd53977f1b9a5dbc7398[m
+Merge: 714481e 1ad18ad
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Mon Apr 4 23:11:50 2022 +0700
+
+    Merge branch 'develop' of https://github.com/vinhgod/vinh-technology
+
+[33mcommit 1ad18adb08edd7b974c8e0a81127ecd48cd1c67e[m[33m ([m[1;31morigin/develop[m[33m)[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Mon Apr 4 23:07:26 2022 +0700
+
+    test 2
+
+[33mcommit 714481eacbf2052b3bbe2c5fb8edea6fb6f74c63[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Mon Apr 4 23:06:14 2022 +0700
+
+    test
+
+[33mcommit 9e42a94e0b866d120e807bbcf520f66f6a365674[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Mon Apr 4 22:49:28 2022 +0700
+
+    Remove console.log
+
+[33mcommit f2ab1739d70ace3678144c6f132165e9bac461e3[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Mon Apr 4 22:46:43 2022 +0700
+
+    Hooks
+
+[33mcommit 09e84f3714a454c8511b04ff6ec7aa957b92de81[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Mon Apr 4 17:11:53 2022 +0700
+
+    Home page
+
+[33mcommit 5f9c5b770fc6a6cc8f0c5d72f7d67aa56dca7009[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Mon Apr 4 11:39:43 2022 +0700
+
+    first
+
+[33mcommit 95fcb41beac8675274e325d146e8ebf1815cdcc8[m
+Author: Vinh God <vinh572000@gmail.com>
+Date:   Sun Mar 27 18:03:44 2022 +0700
+
+    Initialize project using Create React App

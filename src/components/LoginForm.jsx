@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { _changeLogForm, _hideLogForm } from '../redux/action/changeFormAction'
+import { _changeLogForm } from '../redux/action/changeFormAction'
 import {
   ModalHeader,
   FormGroup,
@@ -13,8 +13,8 @@ import {
   Col,
   ModalFooter,
 } from 'reactstrap'
-import { _setStatus } from '../redux/action/userAction'
-import { loginUser } from '../redux/action/loginAction'
+import { loginUser } from '../redux/action/userAction'
+// import { _hideLogForm } from '../redux/action/changeFormAction'
 
 const LoginForm = (props) => {
   const toggle = props.isToggle
@@ -31,6 +31,7 @@ const LoginForm = (props) => {
   const login = (e) => {
     dispatch(loginUser({ username: payload.username, password: payload.password }))
     e.preventDefault()
+    // dispatch(_hideLogForm)
   }
   return (
     <>

@@ -68,7 +68,7 @@ const ProductDetail = () => {
         .catch((e) => {
           // const { status, data } = e.response
           // if (status >= 500) {
-          console.log('error', e)
+          // console.log('error', e)
           Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
           setLoading(false)
           // } else {
@@ -79,6 +79,10 @@ const ProductDetail = () => {
           // setLoading(false)
         })
     }
+  }
+  //handle add to wishlist
+  const handleAddToWishlist = () => {
+    console.log('add to wishlist')
   }
 
   return (
@@ -139,7 +143,7 @@ const ProductDetail = () => {
                             </li>
                           </ul>
                           <span className='label-rating mr-3 text-muted'>5/5</span>
-                          <a className='btn-link  mr-3 text-muted'>
+                          <a className='btn-link  mr-3 text-muted' onClick={handleAddToWishlist}>
                             {' '}
                             <i className='fa fa-heart' /> Thích{' '}
                           </a>

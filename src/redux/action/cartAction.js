@@ -6,10 +6,10 @@ export const _getMyCart = (userId) => {
     })
     return getCart(userId)
       .then((response) => {
-        // const { data } = response.data
+        const { data } = response
         dispatch({
           type: 'SET_CART',
-          payload: response.data,
+          payload: { data },
         })
       })
       .catch((error) => {

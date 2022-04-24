@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import Layout from '../layout/Layout'
 import CartItemProduct from '../components/CartTable/CartItemProduct'
+import CartFooter from '../components/CartTable/CartFooter'
 import styles from '../css_modules/css/all.module.css'
 import { Spin } from 'antd'
 import { _getMyCart } from '../redux/action/cartAction'
@@ -18,9 +19,11 @@ const Cart = () => {
   }, [])
   let selectedItems = []
   const [discount, setDiscount] = useState(0)
-  const { items, loading } = useSelector((state) => state.cart)
-  const tableData = items.map((item) => {
-    const { productId, productName, thumbnail, sizes, price, size, quantity, cartItemId } = item
+  const { data, loading } = useSelector((state) => state.cart)
+  const tableData = data.map((item) => {
+    const { _id: cartItemId, quantity, size, product } = item
+    const { _id: productId, name: productName, images: productImages, price, sizes } = product
+    const thumbnail = productImages[0]
     return {
       key: { cartItemId, quantity, price },
       cartItemId,
@@ -33,6 +36,7 @@ const Cart = () => {
       price,
     }
   })
+  console.log('data', tableData)
   return (
     <Layout>
       {!auth && <Navigate to='/' />}
@@ -43,27 +47,28 @@ const Cart = () => {
             <div className='row'>
               <main className='col-md-12'>
                 <div className='card'>
-                  {/* <Table
-                    // dataSource={tableData}
+                  <Table
+                    dataSource={tableData}
                     rowSelection={{
                       type: 'checkbox',
-                      // onChange: (items) => {
-                      //   selectedItems = items
-                      // }
+                      onChange: (items) => {
+                        selectedItems = items
+                      },
                     }}
                     // expandable={{
                     //   rowExpandable: (record) => !(record.shopDisabled || record.productDisabled),
-                    //   expandedRowRender: (record) => <CartItemEditor {...record} />
-                    //   ,expandRowByClick: true
+                    //   expandedRowRender: (record) => <CartItemEditor {...record} />,
+                    //   expandRowByClick: true
                     // }}
                     loading={loading}
                     pagination={{ position: ['bottomCenter'] }}
-
-                    footer={() => <CartFooter selectedItems={selectedItems} discount={discount} 
-                    />}
+                    // footer={() => <CartFooter selectedItems={selectedItems} discount={discount} />}
                   >
-                    <Table.Column title="SẢN PHẨM" render={(record) => <CartItemProduct {...record} />} />
-                  </Table> */}
+                    <Table.Column
+                      title='SẢN PHẨM'
+                      render={(record) => <CartItemProduct key={Math.random()} {...record} />}
+                    />
+                  </Table>
                 </div>
               </main>
             </div>

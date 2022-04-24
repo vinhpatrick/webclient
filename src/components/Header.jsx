@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
-import { logoutUser } from '../redux/action/loginAction'
+import { logoutUser } from '../redux/action/userAction'
 import { Link } from 'react-router-dom'
 import {} from '../api/productApi'
-import axios from 'axios'
-import axiosClient from '../api/axiosClient'
 import {
   Navbar,
   NavbarBrand,
@@ -22,8 +20,6 @@ import {
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { _showLogForm, _hideLogForm } from '../redux/action/changeFormAction'
-import { getProduct } from '../api/productApi'
-import { type } from '@testing-library/user-event/dist/type'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -65,7 +61,7 @@ const Header = () => {
   }
   const UserMenu = (props) => {
     const admin = localStorage.getItem('admin')
-    console.log(admin)
+    // console.log(admin)
     const [menu, setMenu] = useState(false)
     const handleUserMenu = () => {
       setMenu(!menu)

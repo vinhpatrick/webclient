@@ -1,37 +1,35 @@
-// const userInitialState = {
-//   loading: false,
-//   status: '',
-//   username: '',
-//   firstName: '',
-//   lastName: '',
-//   error: '',
-// }
+import * as ActionTypes from '../action/ActionTypes'
 
-// const userReducer = (state = userInitialState, action) => {
-//   switch (action.type) {
-//     case 'LOADING_USER': {
-//       return { ...state, loading: true }
-//     }
-//     case 'LOG_IN': {
-//       const { username, firstName, lastName } = action.payload
-//       return {
-//         loading: false,
-//         username,
-//         firstName,
-//         lastName,
-//         error: '',
-//       }
-//     }
-//     case 'LOG_OUT': {
-//       return userInitialState
-//     }
-//     case 'LOG_STATUS': {
-//       const { status, error } = action.payload
-//       return { ...state, loading: false, status, error }
-//     }
-//     default:
-//       return state
-//   }
-// }
+// The auth reducer. The starting state sets authentication
+// based on a token being in local storage. In a real app,
+// we would also want a util to check if the token is expired.
+const userReducer = (
+  state = {
+    isLoading: false,
+    isAuthenticated: localStorage.getItem('token') ? true : false,
+    token: localStorage.getItem('token'),
+    user: localStorage.getItem('creds') ? JSON.parse(localStorage.getItem('creds')) : null,
+    userId: localStorage.getItem('userId') ? localStorage.getItem('userId') : '',
+    errMess: null,
+    address: '',
+    email: '',
+  },
+  action
+) => {
+  switch (action.type) {
+    case ActionTypes.LOGIN_REQUEST:
+      return { ...state, isLoading: true, isAuthenticated: false, user: action.creds }
+    case ActionTypes.LOGIN_SUCCESS:
+      return { ...state, isLoading: false, isAuthenticated: true, errMess: '', token: action.token }
+    case ActionTypes.LOGIN_FAILURE:
+      return { ...state, isLoading: false, isAuthenticated: false, errMess: action.message }
+    case ActionTypes.LOGOUT_REQUEST:
+      return { ...state, isLoading: true, isAuthenticated: true }
+    case ActionTypes.LOGOUT_SUCCESS:
+      return { ...state, isLoading: false, isAuthenticated: false, token: '', user: null }
+    default:
+      return state
+  }
+}
 
-// export default userReducer
+export default userReducer

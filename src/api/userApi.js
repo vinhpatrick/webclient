@@ -1,4 +1,15 @@
 import axiosClient from './axiosClient'
+
+
+
+export const login = (payload) => {
+  axiosClient({
+    url: 'users/login',
+    method: 'POST',
+    data: payload,
+  })
+}
+
 export const register = (payload) => {
   return axiosClient({
     url: 'users/signup',
@@ -21,4 +32,6 @@ export const addToCart = (payload) => {
     data: payload,
   })
 }
+
+export const handleAddToWishlist = () => {}
 
