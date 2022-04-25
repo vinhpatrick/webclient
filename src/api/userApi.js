@@ -41,9 +41,9 @@ export const removeFromCart = (payload) => {
   })
 }
 export const editCartItem = (payload) => {
-  const { cartItemId, ...data } = payload
+  const { cartId, ...data } = payload
   return axiosClient({
-    url: `/carts/${cartItemId}`,
+    url: `/carts/${cartId}`,
     method: 'PUT',
     data,
   })

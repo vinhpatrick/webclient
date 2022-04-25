@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { CSmartTable, CButton, CCollapse, CCardBody, CSpinner } from '@coreui/react-pro'
-// import { deleteProduct } from '../../../services/api/sellerApi'
+import { deleteProduct } from '../../api/adminApi'
 import { useToast } from '../../contexts/toast'
 import { Modal } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
@@ -25,27 +25,28 @@ const TableProduct = ({ columns, usersData, type }) => {
     data.idProduct = data._id
   })
 
-  // const handleDelete = () => {
-  //   setLoading(true)
-  //   idDelete.map((id, i) => (idDeleteProduct.productIds[i] = idProduct[id]))
-  //   if (idDeleteProduct.productIds.length == 0) {
-  //     warn('Vui lòng chọn sản phẩm cần xóa')
-  //   } else {
-  //     deleteProduct(usersData[0].shop._id, idDeleteProduct)
-  //       .then((respone) => {
-  //         setIdDelete([])
-  //         success(respone.data.message)
-  //         setTimeout(window.location.reload(), 3000)
-  //       })
-  //       .catch((err) => {
-  //         {
-  //           err.response.status == 500
-  //             ? error('Có lỗi xảy ra. Vui lòng thử lại sau!')
-  //             : error(err.response.data.message)
-  //         }
-  //       })
-  //   }
-  // }
+  const handleDelete = () => {
+    setLoading(true)
+    idDelete.map((id, i) => (idDeleteProduct.productIds[i] = idProduct[id]))
+    if (idDeleteProduct.productIds.length == 0) {
+      warn('Vui lòng chọn sản phẩm cần xóa')
+    } else {
+      deleteProduct(idDeleteProduct.toString())
+        .then((respone) => {
+          setIdDelete([])
+          success('Xóa sản phẩm thành công')
+          setTimeout(window.location.reload(), 3000)
+        })
+        .catch((err) => {
+          {
+            error('Có lỗi vui lòng thử lại sau')
+            // err.response.status == 500
+            //   ? error('Có lỗi xảy ra. Vui lòng thử lại sau!')
+            //   : error(err.response.data.message)
+          }
+        })
+    }
+  }
   const toggleDetails = (index) => {
     const position = details.indexOf(index)
     let newDetails = details.slice()
@@ -78,7 +79,7 @@ const TableProduct = ({ columns, usersData, type }) => {
         okType: 'danger',
         cancelText: 'Quay lại',
         onOk() {
-          // handleDelete()
+          handleDelete()
         },
         onCancel() {
           setLoading(false)

@@ -14,14 +14,15 @@ const CartItemActions = (props) => {
   const [editQuantity, setEditQuantity] = useState(quantity)
   const isEdited = () =>
     (editSize && editSize !== size) || (editQuantity && editQuantity !== quantity)
-  console.log('cartitemid', cartItemId)
+  // console.log('cartitemid', cartItemId)
+  const cartId = cartItemId && cartItemId
   const handleEditCartItem = (e) => {
     console.log('bạn đang edit cart')
     dispatch({
       type: 'LOAD_CART',
     })
     editCartItem({
-      cartItemId: '626206cb995796aaf7ef53f1',
+      cartId,
       size: editSize || size,
       quantity: editQuantity || quantity,
     })

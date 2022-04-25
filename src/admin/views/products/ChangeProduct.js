@@ -9,7 +9,6 @@ const ChangeProduct = () => {
       .then((response) => {
         const { products } = response.data
         setDataProducts(products)
-        console.log('lay sp thanh cong')
       })
       .catch((error) => {
         console.log('err', error)

@@ -34,7 +34,6 @@ const FormDetail = (recvData) => {
   const [imageUrls, setImageUrls] = useState(data.images)
   const [loading, setLoading] = useState(false)
   const handleSubmit = (event) => {
-    console.log('idproduct', recvData.data.idProduct)
     event.preventDefault()
     if (data.price == recvData.data.price) {
       delete data.price
