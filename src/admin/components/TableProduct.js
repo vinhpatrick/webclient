@@ -11,7 +11,6 @@ import numberSeparator from '../../helpers/validating/numberSeparator'
 
 const { confirm } = Modal
 const TableProduct = ({ columns, usersData, type }) => {
-  // console.log('userdata', usersData)
   const { error, warn, info, success } = useToast()
   const [details, setDetails] = useState([])
   const [idDelete, setIdDelete] = useState([])

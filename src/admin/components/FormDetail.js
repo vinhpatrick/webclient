@@ -29,28 +29,32 @@ const FormDetail = (recvData) => {
     price: recvData.data.price,
     originalPrice: recvData.data.originalPrice,
   })
-  const [dataUpdate, setDataUpdate] = useState({})
+  // const [dataUpdate, setDataUpdate] = useState({})
   const [sizes, setSizes] = useState(data.sizes)
   const [imageUrls, setImageUrls] = useState(data.images)
   const [loading, setLoading] = useState(false)
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   if (data.price == recvData.data.price) {
-  //     delete data.price
-  //   }
-  //   data.images = imageUrls
-  //   setLoading(true)
-  //   updateProduct(recvData.data.shop._id, recvData.data.idProduct, data)
-  //     .then((respone) => {
-  //       success(respone.data.message)
-  //       window.location.reload(false)
-  //     })
-  //     .catch((err) => {
-  //       error(err.response.data.message)
-  //       setLoading(false)
-  //     })
-  // }
+  const handleSubmit = (event) => {
+    console.log('idproduct', recvData.data.idProduct)
+    event.preventDefault()
+    if (data.price == recvData.data.price) {
+      delete data.price
+    }
+    data.images = imageUrls
+    const productId = recvData.data.idProduct && recvData.data.idProduct
+    setLoading(true)
+    updateProduct(productId, data)
+      .then((respone) => {
+        success('Update sản phẩm thành công !')
+        // window.location.reload(false)
+      })
+      .catch((err) => {
+        error('Update sản phẩm thất bại')
+        setLoading(false)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
   const handleChange = (e) => setData({ ...data, [e.target.name]: e.target.value })
 
   const uploadImage = (image) => {
@@ -86,14 +90,14 @@ const FormDetail = (recvData) => {
     data.sizes.splice(index, 1)
   }
 
-  // handle click event of the Add button
-  // const handleAddClick = () => {
-  //   if (sizes[sizes.length - 1].name == '' || sizes[sizes.length - 1].name == '') {
-  //     warn('Vui lòng điền đủ thông tin về kích thước trước khi thêm mới')
-  //   } else {
-  //     setSizes([...sizes, { name: '', numberInStock: '' }])
-  //   }
-  // }
+  //handle click event of the Add button
+  const handleAddClick = () => {
+    if (sizes[sizes.length - 1].name == '' || sizes[sizes.length - 1].name == '') {
+      warn('Vui lòng điền đủ thông tin về kích thước trước khi thêm mới')
+    } else {
+      setSizes([...sizes, { name: '', numberInStock: '' }])
+    }
+  }
   const deleteFile = (e) => {
     const s = imageUrls.filter((image, index) => index !== e)
     setImageUrls(s)
@@ -160,12 +164,7 @@ const FormDetail = (recvData) => {
                   </CCol>
                 </CRow>
                 {sizes.length - 1 === i && (
-                  <CButton
-                    color='dark'
-                    shape='rounded-pill'
-                    // onClick={handleAddClick}
-                    size='sm'
-                  >
+                  <CButton color='dark' shape='rounded-pill' onClick={handleAddClick} size='sm'>
                     Thêm
                   </CButton>
                 )}
@@ -242,11 +241,7 @@ const FormDetail = (recvData) => {
           </CRow>
         </div>
         <CCol xs={12}>
-          <CButton
-            disabled={loading}
-            // onClick={handleSubmit}
-            type='submit'
-          >
+          <CButton disabled={loading} onClick={handleSubmit} type='submit'>
             {!loading ? '' : <CSpinner component='span' size='sm' aria-hidden='true' />}
             Lưu
           </CButton>
