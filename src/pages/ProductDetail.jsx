@@ -162,17 +162,19 @@ const ProductDetail = () => {
                         <hr />
 
                         {/* Descroption */}
-                        <div className='mb-3'>
+                        ;<div className='mb-3'>
                           <h6 style={{ fontWeight: 'bold' }}>Mô tả</h6>
                           <>
                             {product.description.split('\n').map((paragraph, index) => {
-                              return <p key={index}>{paragraph}</p>
+                              return <p key={Math.random()}>{paragraph}</p>
                             })}
                           </>
                         </div>
 
-                        {/* Sizes */}
-                        <div className='form-group'>
+                        {
+                          /* Sizes */
+                        }
+                        ;<div className='form-group'>
                           <label className='text-dark' style={{ fontWeight: 'bold' }}>
                             Loại hàng
                           </label>
@@ -190,7 +192,7 @@ const ProductDetail = () => {
                                   const { name, numberInStock } = size
                                   return (
                                     <Radio.Button
-                                      key={size._id}
+                                      key={Math.random()}
                                       value={name}
                                       disabled={numberInStock === 0}
                                       style={{ margin: '3px' }}
@@ -259,9 +261,7 @@ const ProductDetail = () => {
                 <div className='card-body'>
                   <h5>Bình luận</h5>
                   <ToastProvider>
-                    <CommentProduct
-                    // productId={productId}
-                    />
+                    <CommentProduct productId={productId} />
                   </ToastProvider>
                 </div>
               </article>

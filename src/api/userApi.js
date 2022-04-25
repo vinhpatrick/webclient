@@ -67,6 +67,20 @@ export const searchProducts = (query) => {
   })
 }
 
+export const getComment = (productId) => {
+  return axiosClient({
+    url: '/comments',
+    method: 'GET',
+  })
+}
+export const postComment = (payload) => {
+  return axiosClient({
+    url: '/comments',
+    method: 'POST',
+    data: payload,
+  })
+}
+
 
 export const handleAddToWishlist = (payload) => {
   // return axiosClient({

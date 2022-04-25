@@ -30,11 +30,7 @@ const CartItemProduct = (props) => {
           </Link>
 
           <div className='row'>
-            <Link
-              to='/'
-              className={`${styles['col']}`}
-              // style={{ pointerEvents: shopDisabled ? 'none' : 'auto' }}
-            >
+            <Link to='/' className={`${styles['col']}`}>
               Shop: Vinhok
             </Link>
             <div className='col row'>
@@ -52,21 +48,7 @@ const CartItemProduct = (props) => {
           </div>
 
           <div className='row'>
-            <div className={`${styles['col']}`}>
-              {/* {shopDisabled ? (
-                <span className={`${styles['text-danger']}`}>Gian hàng hiện không hoạt động</span>
-              ) : sizeDisabled ? (
-                <span className={`${styles['text-danger']}`}>Loại hàng này không còn được bày bán</span>
-              ) : productDisabled ? (
-                <span className={`${styles['text-danger']}`}>Sản phẩm không còn được bày bán</span>
-              ) : !numberInStock ? (
-                <span className={`${styles['text-warning']}`}>Sản phẩm hiện đang hết hàng</span>
-              ) : (
-                numberInStock < quantity && (
-                  <span className={`${styles['text-warning']}`}>Trong kho chỉ còn {numberInStock} sản phẩm</span>
-                )
-              )} */}
-            </div>
+            <div className={`${styles['col']}`}></div>
 
             <div className='col row'>
               <div className='col-sm-3'>Thành tiền: </div>
