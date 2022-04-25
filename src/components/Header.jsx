@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import { logoutUser } from '../redux/action/userAction'
-import { Link } from 'react-router-dom'
-import {} from '../api/productApi'
+import { Link, useNavigate } from 'react-router-dom'
+import { _search } from '../redux/action/searchAction'
 import {
   Navbar,
   NavbarBrand,
@@ -22,12 +22,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import { _showLogForm, _hideLogForm } from '../redux/action/changeFormAction'
 
 const Header = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.logForm.isAuthenticated)
   const user = useSelector((state) => state.logForm.user)
-  // console.log('token', username)
-  // const username = ''
-  // console.log('authenticated', auth)
+  const [keyword, setKeyword] = useState('')
+
+  const { sort, limit } = useSelector((state) => state.search)
+  const handleSearchClick = (e) => {
+    e.preventDefault()
+    navigate(`/search/?keyword=${keyword.trim()}`)
+    dispatch(_search(keyword.trim(), 1, limit, sort))
+  }
+  const handlePressEnter = (e) => {
+    if (e.key === 'Enter') {
+      handleSearchClick(e)
+    }
+  }
+
   const [toggleNav, setToggleNav] = useState(false)
   const handleToggleNav = () => {
     setToggleNav(!toggleNav)
@@ -70,7 +82,7 @@ const Header = () => {
       <Dropdown isOpen={menu} toggle={handleUserMenu}>
         <DropdownToggle
           style={{
-            backgroundColor: '#FFFF66',
+            backgroundColor: 'white',
             borderRadius: '25px',
           }}
           caret
@@ -86,7 +98,7 @@ const Header = () => {
             </Link>
           </DropdownItem>
           <DropdownItem>
-            <Link style={{ color: 'black', textDecoration: 'none' }} to='/contactus'>
+            <Link style={{ color: 'black', textDecoration: 'none' }} to='/order'>
               <span style={{ marginRight: '10px' }} className=' fa fa-cart-arrow-down'></span>
               Đơn hàng
             </Link>
@@ -152,10 +164,26 @@ const Header = () => {
               <NavItem className='nav-search'>
                 <form>
                   <div className='search'>
-                    <input type='text' name='' placeholder='Nhập tên sản phẩm ...' />
-                    <button>
-                      <i className='fa fa-search'></i>
-                    </button>
+                    <input
+                      type='text'
+                      name=''
+                      placeholder='Tìm kiếm mặt hàng,sản phẩm ...'
+                      onChange={(e) => {
+                        setKeyword(e.target.value)
+                      }}
+                      onKeyPress={handlePressEnter}
+                    />
+                    {keyword ? (
+                      <button onClick={handleSearchClick}>
+                        <i className='fa fa-search'></i>
+                      </button>
+                    ) : (
+                      <a href='/'>
+                        <button>
+                          <i className='fa fa-search'></i>
+                        </button>
+                      </a>
+                    )}
                   </div>
                 </form>
               </NavItem>

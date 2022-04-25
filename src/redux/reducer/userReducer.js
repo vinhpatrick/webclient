@@ -20,7 +20,13 @@ const userReducer = (
     case ActionTypes.LOGIN_REQUEST:
       return { ...state, isLoading: true, isAuthenticated: false, user: action.creds }
     case ActionTypes.LOGIN_SUCCESS:
-      return { ...state, isLoading: false, isAuthenticated: true, errMess: '', token: action.token }
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: true,
+        errMess: '',
+        token: action.token,
+      }
     case ActionTypes.LOGIN_FAILURE:
       return { ...state, isLoading: false, isAuthenticated: false, errMess: action.message }
     case ActionTypes.LOGOUT_REQUEST:

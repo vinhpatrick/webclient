@@ -28,12 +28,12 @@ export const loginUser = (creds) => (dispatch) => {
   axiosClient
     .post(baseUrl + 'users/login', creds)
     .then((response) => {
-      console.log('dang nhap thanh cong')
       const { data } = response
       localStorage.setItem('token', data.token)
       localStorage.setItem('creds', JSON.stringify(creds))
       localStorage.setItem('admin', data.admin)
       localStorage.setItem('userId', data.userId)
+      localStorage.setItem('address', data.user.address)
       dispatch(receiveLogin(response))
     })
     .catch((error) => dispatch(loginError(error.message)))
@@ -101,6 +101,9 @@ export const logoutUser = () => (dispatch) => {
   dispatch(requestLogout())
   localStorage.removeItem('token')
   localStorage.removeItem('creds')
+  localStorage.removeItem('admin')
+  localStorage.removeItem('userId')
+  localStorage.removeItem('address')
   dispatch(receiveLogout())
   window.location.href = '/'
 }

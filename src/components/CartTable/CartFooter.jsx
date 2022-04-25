@@ -4,25 +4,27 @@ import { Button, Form, Input, message as Message, Spin } from 'antd'
 
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { useHistory } from 'react-router-dom'
+ import { useNavigate } from 'react-router-dom'
 
-import { Promise } from 'bluebird'
-// import { ORDER_STATUSES } from 'accommerce-helpers'
+ import { Promise } from 'bluebird'
+ import { ORDER_STATUSES } from '../../helpers/order/index'
 import numberSeparator from '../../helpers/validating/numberSeparator'
 import { _deleteCartItems, _getMyCart } from '../../redux/action/cartAction'
-// import { order } from '../../../../services/api/customerApi'
+import { order } from '../../api/userApi'
 
 const CartFooter = (props) => {
-  // const history = useHistory()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { selectedItems, discount } = props
+  const addressUser = localStorage.getItem('address')
   const [address, setAddress] = useState('')
-  // const { loading, address: initialAddress } = useSelector((state) => state.user)
-  // useEffect(() => {
-  //   if (initialAddress) {
-  //     setAddress(initialAddress)
-  //   }
-  // }, [initialAddress])
+  const { users } = useSelector((state) => state.logForm)
+  console.log('address', users)
+  useEffect(() => {
+    if (addressUser) {
+      setAddress(addressUser)
+    }
+  }, [addressUser])
 
   const orderPrice = (items) => {
     let sum = 0
@@ -61,50 +63,36 @@ const CartFooter = (props) => {
   //   return Promise.map(shops, async (items) => order({ cartItems: items, receivingAddress: address }))
   // }
 
-  // const handleOrder = (e) => {
-  //   if (selectedItems.length === 0) {
-  //     Message.error('Chọn ít nhất một món hàng!')
-  //   } else if (!address) {
-  //     Message.error('Vui lòng nhập địa chỉ nhận hàng!')
-  //   } else if (orderShops(selectedItems).length > 1) {
-  //     dispatch({
-  //       type: 'LOAD_CART'
-  //     })
-  //     const shops = orderShops(selectedItems)
-  //     orderMultipleShops(shops, address)
-  //       .then((res) => {
-  //         dispatch(_getMyCart())
-  //         history.push('/order', ORDER_STATUSES.WAITING_FOR_SELLER_CONFIRM)
-  //       })
-  //       .catch((e) => {
-  //         Message.error(e)
-  //         dispatch(_getMyCart())
-  //       })
-  //   } else {
-  //     dispatch({
-  //       type: 'LOAD_CART'
-  //     })
+  const handleOrder = (e) => {
+    if (selectedItems.length === 0) {
+      Message.error('Chọn ít nhất một món hàng!')
+    } else if (!address) {
+      Message.error('Vui lòng nhập địa chỉ nhận hàng!')
+    } else {
+      // dispatch({
+      //   type: 'LOAD_CART'
+      // })
 
-  //     const cartItems = selectedItems.map((item) => item.cartItemId)
-  //     order({ cartItems, receivingAddress: address })
-  //       .then((res) => {
-  //         Message.success('Đặt hàng thành công!')
-  //         dispatch(_getMyCart())
-  //         history.push('/order', ORDER_STATUSES.WAITING_FOR_SELLER_CONFIRM)
-  //       })
-  //       .catch((e) => {
-  //         const { status, data } = e.response
-  //         if (status >= 500) {
-  //           Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
-  //         } else {
-  //           const { message } = data
-  //           Message.error(message)
-  //         }
+      const cartItems = selectedItems.map((item) => item.cartItemId)
+      order({ cartItems, receivingAddress: address })
+        .then((res) => {
+          Message.success('Đặt hàng thành công!')
+          dispatch(_getMyCart())
+          navigate.push('/order', ORDER_STATUSES.WAITING_FOR_SELLER_CONFIRM)
+        })
+        .catch((e) => {
+          const { status, data } = e.response
+          if (status >= 500) {
+            Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
+          } else {
+            const { message } = data
+            Message.error(message)
+          }
 
-  //         dispatch(_getMyCart())
-  //       })
-  //   }
-  // }
+          dispatch(_getMyCart())
+        })
+    }
+  }
 
   const handleDelete = (e) => {
     const cartItemIds = selectedItems.map((item) => item.cartItemId)
@@ -167,7 +155,7 @@ const CartFooter = (props) => {
           label='Địa chỉ nhận hàng'
           hasFeedback
           required
-          // help={!address ? 'Cần nhập địa chỉ nhận hàng' : ''}
+          help={!address ? 'Cần nhập địa chỉ nhận hàng' : ''}
         >
           <Spin spinning={false}>
             <Input
@@ -194,7 +182,7 @@ const CartFooter = (props) => {
             className='btn btn-success'
             data-toggle='tooltip'
             title='Đặt hàng'
-            // onClick={handleOrder}
+           onClick={handleOrder}
             icon={<i className='fa fa-shopping-cart' style={{ marginRight: '5px' }} />}
           >
             Đặt hàng ({selectedItems.length})

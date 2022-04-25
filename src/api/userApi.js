@@ -1,6 +1,5 @@
 import axiosClient from './axiosClient'
-
-
+import query2string from '../helpers/validating/query2string'
 
 export const login = (payload) => {
   axiosClient({
@@ -48,6 +47,26 @@ export const editCartItem = (payload) => {
     data,
   })
 }
+
+export const order = ({ cartItems, receivingAddress }) => {
+  return axiosClient({
+    url: `/orders`,
+    method: 'POST',
+    data: {
+      cartItems,
+      receivingAddress,
+    },
+  })
+}
+
+export const searchProducts = (query) => {
+  const queryString = query2string(query)
+  return axiosClient({
+    url: `/products/?${queryString}`,
+    method: 'GET',
+  })
+}
+
 
 export const handleAddToWishlist = (payload) => {
   // return axiosClient({

@@ -5,6 +5,8 @@ import About from './pages/About'
 import Favorites from './pages/Favorites'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import Order from './pages/Order'
+import Search from './pages/Search'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import './scss/style.scss'
@@ -25,6 +27,8 @@ function App() {
         <Route path='/aboutus' element={<About />} />
         <Route path='/contactus' element={<Contact />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/order' element={<Order />} />
+        <Route path='/search' element={<Search />} />
         <Route path='/seller/*' element={<Seller />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

@@ -61,7 +61,7 @@ const AddProduct = () => {
       setLoading(false)
     } else {
       console.log('data', data)
-      const token = localStorage.getItem('token')
+      // const token = localStorage.getItem('token')
       axiosClient
         .post('http://localhost:4000/products', data)
         .then((response) => {
