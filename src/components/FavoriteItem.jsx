@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Media, Button } from 'reactstrap'
+import { deleteWishList, getWishlist } from '../api/userApi'
+import { Spin, message as Message } from 'antd'
 
-export default function FavoriteItem() {
+export default function FavoriteItem(props) {
+  const [loading, setLoading] = useState(false)
+  const { _id: productId, name, description, images } = props
+  const handleDeleteWishList = () => {
+    setLoading(true)
+    deleteWishList(productId)
+      .then((response) => {
+        Message.success('Bạn đã xóa thành công sản phẩm khỏi wishlist!')
+        setLoading(false)
+      })
+      .catch((error) => {
+        Message.error('Lỗi hệ thống vui lòng thử lại sau!')
+        setLoading(false)
+      })
+  }
   return (
     <Media tag='li'>
       <Media left middle>
@@ -13,33 +29,18 @@ export default function FavoriteItem() {
             height: '150px',
           }}
           object
-          src={`${process.env.PUBLIC_URL}/assets/images/7.jpg`}
+          src={images[0]}
           alt='hihi'
         />
       </Media>
       <Media body className='ml-5'>
-        <Media heading>Iphone 13 promax</Media>
-        <p>
-          Galaxy S22 Ultra 5G chiếc smartphone cao cấp nhất trong bộ 3 Galaxy S22 series mà Samsung
-          đã cho ra mắt. Tích hợp bút S Pen hoàn hảo trong thân máy, trang bị vi xử lý mạnh mẽ cho
-          các tác vụ sử dụng vô cùng mượt mà và nổi bật hơn với cụm camera không viền độc đáo mang
-          đậm dấu ấn riêng.
-        </p>
-        <Button
-          outline
-          color='danger'
-          // onClick={() => deleteFavorite(dish._id)}
-        >
-          <span className='fa fa-times'>Xóa</span>
-        </Button>
-        <Button
-          style={{ marginLeft: '20px' }}
-          outline
-          color='danger'
-          // onClick={() => deleteFavorite(dish._id)}
-        >
-          <span className='fa fa-shopping-cart fa-sm'>Add to cart</span>
-        </Button>
+        <Media heading>{name}</Media>
+        <p>{description}</p>
+        <Spin spinning={loading}>
+          <Button outline color='danger' onClick={handleDeleteWishList}>
+            <span className='fa fa-times'>Xóa</span>
+          </Button>
+        </Spin>
       </Media>
     </Media>
   )

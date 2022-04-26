@@ -90,7 +90,7 @@ const Home = (props) => {
               <div className='row'>
                 {news.length &&
                   news.map((item, index) => {
-                    return <ProductItem key={index} {...item} />
+                    return <ProductItem key={Math.random()} {...item} />
                   })}
               </div>
             </Spin>
@@ -105,7 +105,7 @@ const Home = (props) => {
               <div className='row'>
                 {populars.length &&
                   populars.map((item, index) => {
-                    return <ProductItem key={index} {...item} />
+                    return <ProductItem key={Math.random()} {...item} />
                   })}
               </div>
             </Spin>
@@ -120,7 +120,7 @@ const Home = (props) => {
               <div className='row'>
                 {sells.length &&
                   sells.map((item, index) => {
-                    return <ProductItem key={index} {...item} />
+                    return <ProductItem key={Math.random()} {...item} />
                   })}
               </div>
             </Spin>

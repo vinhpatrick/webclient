@@ -95,4 +95,17 @@ export const addToWishlist = (payload) => {
     data: payload,
   })
 }
+export const getWishlist = (payload) => {
+  return axiosClient({
+    url: '/favorites',
+    method: 'GET',
+    data: payload,
+  })
+}
+export const deleteWishList = (productId) => {
+  return axiosClient({
+    url: `/favorites/${productId}`,
+    method: 'DELETE',
+  })
+}
 

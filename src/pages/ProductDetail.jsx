@@ -127,7 +127,7 @@ const ProductDetail = () => {
         Message.success('Bạn đã thêm thành công sản phẩm vào Wishlist!')
       })
       .catch((error) => {
-        Message.error('Sản phẩm bạn vừa thêm đã có trong wishlist!')
+        Message.warning('Sản phẩm bạn vừa thêm đã có trong wishlist!')
       })
   }
 
