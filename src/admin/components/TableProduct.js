@@ -25,13 +25,13 @@ const TableProduct = ({ columns, usersData, type }) => {
     data.idProduct = data._id
   })
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
     setLoading(true)
     idDelete.map((id, i) => (idDeleteProduct.productIds[i] = idProduct[id]))
     if (idDeleteProduct.productIds.length == 0) {
       warn('Vui lòng chọn sản phẩm cần xóa')
     } else {
-      deleteProduct(idDeleteProduct.toString())
+      deleteProduct(idDeleteProduct)
         .then((respone) => {
           setIdDelete([])
           success('Xóa sản phẩm thành công')

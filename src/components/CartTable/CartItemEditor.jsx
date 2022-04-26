@@ -70,7 +70,7 @@ const CartItemActions = (props) => {
                 .map((item, index) => {
                   return (
                     <Select.Option
-                      key={Math.random()}
+                      key={index}
                       value={item.name}
                       disabled={item.numberInStock === 0}
                     >

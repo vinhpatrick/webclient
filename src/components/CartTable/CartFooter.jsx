@@ -19,7 +19,7 @@ const CartFooter = (props) => {
   const addressUser = localStorage.getItem('address')
   const [address, setAddress] = useState('')
   const { users } = useSelector((state) => state.logForm)
-  console.log('address', users)
+  // console.log('address', users)
   useEffect(() => {
     if (addressUser) {
       setAddress(addressUser)
@@ -182,7 +182,7 @@ const CartFooter = (props) => {
             className='btn btn-success'
             data-toggle='tooltip'
             title='Đặt hàng'
-           onClick={handleOrder}
+            onClick={handleOrder}
             icon={<i className='fa fa-shopping-cart' style={{ marginRight: '5px' }} />}
           >
             Đặt hàng ({selectedItems.length})

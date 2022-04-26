@@ -22,7 +22,7 @@ const Favorites = () => {
         console.log(error)
       })
   }, [])
-  console.log('wishlist', wishlist)
+  // console.log('wishlist', wishlist)
   return (
     <Layout>
       <Spin spinning={loading}>

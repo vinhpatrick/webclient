@@ -142,22 +142,22 @@ const Header = () => {
             </div>
             <Nav navbar>
               <NavItem>
-                <NavLink tag='span' className='nav-link' to='/'>
+                <NavLink className='nav-link' to='/'>
                   <span className='fa fa-home fa-lg'></span> Trang chủ
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag='span' className='nav-link' to='/favorites'>
+              <NavItem as='li'>
+                <NavLink className='nav-link' to='/favorites'>
                   <span className='fa fa-heart fa-lg'></span> Wish List
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag='span' className='nav-link' to='/aboutus'>
+                <NavLink className='nav-link' to='/aboutus'>
                   <span className='fa fa-info fa-lg'></span> About Us
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag='span' className='nav-link' to='/contactus'>
+                <NavLink className='nav-link' to='/contactus'>
                   <span className='fa fa-address-card fa-lg'></span>Liên hệ
                 </NavLink>
               </NavItem>
@@ -188,7 +188,7 @@ const Header = () => {
                 </form>
               </NavItem>
               <NavItem className=''>
-                <NavLink tag='span' className='nav-link' to='/cart'>
+                <NavLink className='nav-link' to='/cart'>
                   <span className='fa fa-shopping-cart fa-lg'></span> Giỏ hàng
                 </NavLink>
               </NavItem>

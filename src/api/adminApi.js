@@ -16,9 +16,10 @@ export const updateProduct = (productId, payload) => {
     data: payload,
   })
 }
-export const deleteProduct = (productId) => {
+export const deleteProduct = (payload) => {
   return axiosClient({
-    url: `/products/${productId}`,
+    url: '/products',
     method: 'DELETE',
+    data: payload,
   })
 }

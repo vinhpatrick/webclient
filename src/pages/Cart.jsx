@@ -7,7 +7,7 @@ import CartItemProduct from '../components/CartTable/CartItemProduct'
 import CartFooter from '../components/CartTable/CartFooter'
 import CartItemEditor from '../components/CartTable/CartItemEditor'
 import styles from '../css_modules/css/all.module.css'
-import { Spin } from 'antd'
+// import { Spin } from 'antd'
 import { _getMyCart } from '../redux/action/cartAction'
 
 const Cart = () => {
@@ -57,7 +57,7 @@ const Cart = () => {
                       },
                     }}
                     expandable={{
-                      rowExpandable: (record) => record.productId,
+                      // rowExpandable: (record) => record.cartItemId,
                       expandedRowRender: (record) => <CartItemEditor {...record} />,
                       expandRowByClick: true,
                     }}
@@ -67,7 +67,7 @@ const Cart = () => {
                   >
                     <Table.Column
                       title='SẢN PHẨM'
-                      render={(record) => <CartItemProduct key={Math.random()} {...record} />}
+                      render={(record) => <CartItemProduct key={record.cartItemId} {...record} />}
                     />
                   </Table>
                 </div>
