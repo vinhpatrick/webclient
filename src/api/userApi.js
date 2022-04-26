@@ -80,6 +80,12 @@ export const postComment = (payload) => {
     data: payload,
   })
 }
+export const deleteComment = (commentId) => {
+  return axiosClient({
+    url: `/comments/${commentId}`,
+    method: 'DELETE',
+  })
+}
 
 
 export const handleAddToWishlist = (payload) => {
