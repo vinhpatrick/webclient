@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams, useHistory } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Spin, Radio, InputNumber, message as Message } from 'antd'
 import Layout from '../layout/Layout'
 import CommentProduct from '../components/CommentProduct'
 import { getProductById } from '../api/productApi'
-// import PriceChart from './components/PriceChart'
+import { addToWishlist } from '../api/userApi'
 import { ToastProvider } from '../contexts/ToastProvider'
 import { _showLogForm } from '../redux/action//changeFormAction'
 import { addToCart } from '../api/userApi'
@@ -14,6 +14,7 @@ import numberSeparator from '../helpers/validating/numberSeparator'
 import { _addToCart, _getMyCart } from '../redux/action/cartAction'
 
 const ProductDetail = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.logForm.isAuthenticated)
   const userId = localStorage.getItem('userId') ? localStorage.getItem('userId') : ''
@@ -81,8 +82,53 @@ const ProductDetail = () => {
         })
     }
   }
+  const handleBuy = () => {
+    setLoading(true)
+    if (!targetSize) {
+      Message.error('Vui lòng chọn size!')
+      setLoading(false)
+    } else if (!quantity) {
+      Message.error('Vui lòng nhập số lượng muốn mua!')
+      setLoading(false)
+    } else if (!auth) {
+      dispatch(_showLogForm())
+      setLoading(false)
+    } else {
+      addToCart({ product: productId, size: targetSize, user: userId, quantity })
+        .then((response) => {
+          Message.success(`Thêm ${quantity} sản phẩm vào giỏ hàng thành công !`)
+          setLoading(false)
+          setQuantity(1)
+          dispatch(_getMyCart())
+          navigate('/cart')
+        })
+        .catch((e) => {
+          // const { status, data } = e.response
+          // if (status >= 500) {
+          // console.log('error', e)
+          Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
+          setLoading(false)
+          // } else {
+          //   const { message } = data
+          //   Message.error(message)
+          // }
+
+          // setLoading(false)
+        })
+    }
+  }
   //handle add to wishlist
   const handleAddToWishlist = () => {
+    addToWishlist({
+      productId: productId,
+      userId: userId,
+    })
+      .then((response) => {
+        Message.success('Bạn đã thêm thành công sản phẩm vào Wishlist!')
+      })
+      .catch((error) => {
+        Message.error('Sản phẩm bạn vừa thêm đã có trong wishlist!')
+      })
   }
 
   return (
@@ -121,7 +167,6 @@ const ProductDetail = () => {
                     <main className='col-md-6'>
                       <article>
                         {/* Category */}
-
                         {/* Name */}
                         <h3 className='title'>{product.name}</h3>
                         {/* Rating */}
@@ -160,9 +205,8 @@ const ProductDetail = () => {
                           </Link>
                         </div>
                         <hr />
-
-                        {/* Descroption */}
-                        ;<div className='mb-3'>
+                        {/* Descroption */};
+                        <div className='mb-3'>
                           <h6 style={{ fontWeight: 'bold' }}>Mô tả</h6>
                           <>
                             {product.description.split('\n').map((paragraph, index) => {
@@ -170,11 +214,8 @@ const ProductDetail = () => {
                             })}
                           </>
                         </div>
-
-                        {
-                          /* Sizes */
-                        }
-                        ;<div className='form-group'>
+                        {/* Sizes */};
+                        <div className='form-group'>
                           <label className='text-dark' style={{ fontWeight: 'bold' }}>
                             Loại hàng
                           </label>
@@ -207,7 +248,6 @@ const ProductDetail = () => {
                             <span>{targetSize && `${targetStock} sản phẩm có sẵn`}</span>
                           </div>
                         </div>
-
                         {/* Quantity */}
                         <div className='form-group'>
                           <label className='text-dark' style={{ fontWeight: 'bold' }}>
@@ -222,7 +262,6 @@ const ProductDetail = () => {
                             />
                           </div>
                         </div>
-
                         {/* Price */}
                         <div className='mb-3'>
                           <var className='price h4' style={{ color: 'red' }}>
@@ -236,10 +275,7 @@ const ProductDetail = () => {
                           )}
                         </div>
                         <div className='mb-4'>
-                          <button
-                            className='btn btn-primary mr-1'
-                            //  onClick={handleBuy}
-                          >
+                          <button className='btn btn-primary mr-1' onClick={handleBuy}>
                             Mua ngay
                           </button>
                           <button className='btn btn-light' onClick={handleAddToCart}>

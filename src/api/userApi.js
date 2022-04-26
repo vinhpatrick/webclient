@@ -88,9 +88,11 @@ export const deleteComment = (commentId) => {
 }
 
 
-export const handleAddToWishlist = (payload) => {
-  // return axiosClient({
-  //   url:''
-  // })
+export const addToWishlist = (payload) => {
+  return axiosClient({
+    url: `/favorites`,
+    method: 'POST',
+    data: payload,
+  })
 }
 
