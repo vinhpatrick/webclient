@@ -23,3 +23,22 @@ export const deleteProduct = (payload) => {
     data: payload,
   })
 }
+export const getOrder = () => {
+  return axiosClient({
+    url: '/admin/orders',
+    method: 'GET',
+  })
+}
+
+export const confirmOrder = (orderId) => {
+  return axiosClient({
+    url: `/admin/orders/${orderId}/status/confirm`,
+    method: 'PUT',
+  })
+}
+export const cancelOrder = (orderId) => {
+  return axiosClient({
+    url: `/admin/orders/${orderId}/status/cancel`,
+    method: 'PUT',
+  })
+}

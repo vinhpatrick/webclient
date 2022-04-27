@@ -41,11 +41,6 @@ import { useDispatch, useSelector } from 'react-redux'
      return sum
    }
    const shippingCost = orderItems(selectedItems) * 1000
-   //  const handleCost = () => {
-   //    const cost = orderItems(selectedItems) * 1000
-   //    setShippingCost(cost)
-   //  }
-
    const handleOrder = (e) => {
      //  console.log('shippingCost', shippingCost)
      //  console.log('select order', selectedItems)
@@ -60,7 +55,7 @@ import { useDispatch, useSelector } from 'react-redux'
          .then((res) => {
            Message.success('Đặt hàng thành công!')
            dispatch(_getMyCart())
-           navigate.push('/order', ORDER_STATUSES.WAITING_FOR_SELLER_CONFIRM)
+           navigate('/order', ORDER_STATUSES.WAITING_FOR_SELLER_CONFIRM)
          })
          .catch((e) => {
            const { status, data } = e.response

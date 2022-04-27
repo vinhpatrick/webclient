@@ -4,6 +4,8 @@ import { CContainer, CSpinner } from '@coreui/react'
 import AddProduct from '../views/products/AddProduct'
 import ChangeProduct from '../views/products/ChangeProduct'
 import DeleteProduct from '../views/products/DeleteProduct'
+import TableOrder from '../views/orders/TableOrder'
+import WaitingOrder from '../views/orders/WaitingOrder'
 import Dashboard from '../views/dashboard/Dashboard'
 import NotFound from '../../pages/NotFound'
 // routes config
@@ -17,6 +19,8 @@ const AppContent = () => {
           <Route path='add-product' element={<AddProduct />} />
           <Route path='change-product' element={<ChangeProduct />} />
           <Route path='delete-product' element={<DeleteProduct />} />
+          <Route path='orders' element={<TableOrder />} />
+          <Route path='waiting-orders' element={<WaitingOrder />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Suspense>

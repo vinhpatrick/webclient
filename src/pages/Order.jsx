@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getOrder, confirmOrder, cancelOrder } from '../api/userApi'
+import { getOrder } from '../api/userApi'
+import OrderItem from '../components/OrderItem'
 import { CBadge, CRow, CCol, CButton } from '@coreui/react-pro'
 import { ORDER_STATUSES_MAPPING } from '../helpers/order/index'
 import { message, Tabs, Spin, Typography, Modal } from 'antd'
@@ -18,7 +19,14 @@ const Order = (props) => {
   const navigate = useNavigate()
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
-  // const [status, setStatus] = useState(history.location.state || '')
+  const [status, setStatus] = useState('Waiting for seller confirm')
+  useEffect(() => {
+    getOrder({ status: status }).then((response) => {
+      setOrders(response.data)
+      console.log('order', response.data)
+      setLoading(false)
+    })
+  }, [loading])
   const getBadge = (status) => {
     switch (status) {
       case 'Delivered':
@@ -74,7 +82,7 @@ const Order = (props) => {
                   {orders.map((order, i) => {
                     return (
                       <div key={i}>
-                        {/* <OrderItem shopName={order.shop.name} itemData={order.items} /> */}
+                        <OrderItem itemData={order.items} />
                         <div className='mb-3'>
                           <CRow>
                             <CCol xs={8}>

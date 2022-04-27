@@ -47,7 +47,7 @@ export const editCartItem = (payload) => {
     data,
   })
 }
-
+//order
 export const order = (payload) => {
   return axiosClient({
     url: `/orders`,
@@ -55,6 +55,16 @@ export const order = (payload) => {
     data: payload,
   })
 }
+
+export const getOrder=()=>{
+  return axiosClient({
+    url: '/orders',
+    method: 'GET',
+  })
+}
+
+
+//
 
 export const searchProducts = (query) => {
   const queryString = query2string(query)
