@@ -26,7 +26,7 @@ const Cart = () => {
     const { _id: productId, name: productName, images: productImages, price, sizes } = product
     const thumbnail = productImages[0]
     return {
-      key: { cartItemId, quantity, price },
+      key: { cartItemId, size, productId, quantity, price },
       cartItemId,
       thumbnail,
       productId,
@@ -57,7 +57,7 @@ const Cart = () => {
                       },
                     }}
                     expandable={{
-                      // rowExpandable: (record) => record.cartItemId,
+                      rowExpandable: (record) => record.cartItemId,
                       expandedRowRender: (record) => <CartItemEditor {...record} />,
                       expandRowByClick: true,
                     }}

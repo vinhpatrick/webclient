@@ -48,14 +48,11 @@ export const editCartItem = (payload) => {
   })
 }
 
-export const order = ({ cartItems, receivingAddress }) => {
+export const order = (payload) => {
   return axiosClient({
     url: `/orders`,
     method: 'POST',
-    data: {
-      cartItems,
-      receivingAddress,
-    },
+    data: payload,
   })
 }
 

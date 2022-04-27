@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
 import { deleteWishList, getWishlist } from '../api/userApi'
 import { Spin, message as Message } from 'antd'
@@ -41,15 +42,11 @@ export default function FavoriteItem(props) {
         <Media heading>{name}</Media>
         <p>{description}</p>
         <Spin spinning={loading}>
-          <Button
-            type='submit'
-            value='submit'
-            outline
-            color='danger'
-            onClick={handleDeleteWishList}
-          >
-            <span className='fa fa-times'>Xóa</span>
-          </Button>
+          <a href='/favorites' onClick={handleDeleteWishList}>
+            <Button type='submit' value='submit' outline color='danger'>
+              <span className='fa fa-times'>Xóa</span>
+            </Button>
+          </a>
         </Spin>
       </Media>
     </Media>
