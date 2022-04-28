@@ -14902,7 +14902,7 @@ a.text-gray-light:focus {
   }
 }
 
-/*# sourceMappingURL=bootstrap.css.map */
+
 .mobile-block {
   display: none;
 }
@@ -14986,7 +14986,7 @@ a.text-gray-light:focus {
   }
 }
 
-/*# sourceMappingURL=responsive.css.map */
+
 /* @charset "UTF-8"; */
 /* ==== BASE STYLES ====*/
 /* ==================== GLOBAL STYLES ======================= */
@@ -16423,7 +16423,7 @@ a[class*='card']:hover .title {
   display: block;
 }
 
-/*# sourceMappingURL=ui.css.map */
+
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 .shop-only .pt-100 {
@@ -16592,3 +16592,4 @@ a:hover {
 .shop-only figure img {
   width: 200px;
 }
+

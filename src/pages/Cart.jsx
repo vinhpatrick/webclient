@@ -6,7 +6,7 @@ import Layout from '../layout/Layout'
 import CartItemProduct from '../components/CartTable/CartItemProduct'
 import CartFooter from '../components/CartTable/CartFooter'
 import CartItemEditor from '../components/CartTable/CartItemEditor'
-import styles from '../css_modules/css/all.module.css'
+// import styles from '../css_modules/css/all.module.css'
 // import { Spin } from 'antd'
 import { _getMyCart } from '../redux/action/cartAction'
 
@@ -43,7 +43,7 @@ const Cart = () => {
       {!auth && <Navigate to='/' />}
       {/* <Spin spinning={true}> */}
       <div>
-        <section className={`${styles['section-content']} ${styles['padding-y']}`}>
+        <section className='section-contentpadding-y'>
           <div className='container'>
             <div className='row'>
               <main className='col-md-12'>

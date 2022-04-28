@@ -19,7 +19,7 @@ const Order = (props) => {
   const navigate = useNavigate()
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
-  const [status, setStatus] = useState('In transit')
+  const [status, setStatus] = useState('')
   useEffect(() => {
     getOrder({ status: status }).then((response) => {
       console.log('status', status)

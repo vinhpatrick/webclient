@@ -120,14 +120,14 @@ const Home = (props) => {
               <div className='row'>
                 {sells.length &&
                   sells.map((item, index) => {
-                    return <ProductItem key={Math.random()} {...item} />
+                    return <ProductItem key={index} {...item} />
                   })}
               </div>
             </Spin>
           </div>
         </section>
         <div style={{ textDecoration: 'none' }} className='view-all-product'>
-          <Link to='/'>Xem tất cả sản phẩm</Link>
+          {/* <Link to='/'>Xem tất cả sản phẩm</Link> */}
         </div>
       </div>
     </Layout>

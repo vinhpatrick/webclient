@@ -133,7 +133,7 @@ const Header = () => {
             <div>
               <NavbarBrand className='okok' href='/'>
                 <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/logo5.png`}
+                  src={`${process.env.PUBLIC_URL}/assets/images/logoweb.png`}
                   height='30'
                   width='41'
                   alt='Ristorante Con Fusion'

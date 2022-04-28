@@ -9,9 +9,9 @@ import { addToWishlist } from '../api/userApi'
 import { ToastProvider } from '../contexts/ToastProvider'
 import { _showLogForm } from '../redux/action//changeFormAction'
 import { addToCart } from '../api/userApi'
-import styles from '../css_modules/css/all.module.css'
+// import styles from '../css_modules/css/all.module.css'
 import numberSeparator from '../helpers/validating/numberSeparator'
-import { _addToCart, _getMyCart } from '../redux/action/cartAction'
+import { _getMyCart } from '../redux/action/cartAction'
 
 const ProductDetail = () => {
   const navigate = useNavigate()
@@ -144,7 +144,11 @@ const ProductDetail = () => {
                     <aside className='col-md-6'>
                       <article className='gallery-wrap' style={{ textAlign: 'center' }}>
                         <div className='img-big-wrap'>
-                          <img className='card img-wrap' src={targetImage || product.images[0]} />
+                          <img
+                            className='card img-wrap'
+                            src={targetImage || product.images[0]}
+                            alt={product.name}
+                          />
                         </div>
 
                         <div className='thumbs-wrap'>
@@ -152,10 +156,11 @@ const ProductDetail = () => {
                             return (
                               <>
                                 <img
-                                  key={Math.random()}
+                                  key={index}
                                   className='item-thumb'
                                   src={image}
                                   onClick={(e) => setTargetImage(e.target.src)}
+                                  alt={product.name}
                                 />
                               </>
                             )
@@ -197,24 +202,21 @@ const ProductDetail = () => {
                             <i className='fa fa-book' /> So sánh{' '}
                           </a>
                           <Link
-                            to='/'
-                            //  to={`/search?keyword=${product.category}`}
+                            to={`/search?keyword=${product.category}`}
                             className='text-primary btn-link'
                           >
                             #{product.category}
                           </Link>
                         </div>
                         <hr />
-                        {/* Descroption */};
                         <div className='mb-3'>
                           <h6 style={{ fontWeight: 'bold' }}>Mô tả</h6>
                           <>
                             {product.description.split('\n').map((paragraph, index) => {
-                              return <p key={Math.random()}>{paragraph}</p>
+                              return <p key={index}>{paragraph}</p>
                             })}
                           </>
                         </div>
-                        {/* Sizes */};
                         <div className='form-group'>
                           <label className='text-dark' style={{ fontWeight: 'bold' }}>
                             Loại hàng
@@ -233,7 +235,7 @@ const ProductDetail = () => {
                                   const { name, numberInStock } = size
                                   return (
                                     <Radio.Button
-                                      key={Math.random()}
+                                      key={index}
                                       value={name}
                                       disabled={numberInStock === 0}
                                       style={{ margin: '3px' }}
@@ -290,9 +292,7 @@ const ProductDetail = () => {
 
               <article className='card mt-5'></article>
 
-              <div className='card-body'>
-                <ToastProvider>{/* <PriceChart productId={productId} /> */}</ToastProvider>
-              </div>
+              <div className='card-body'></div>
               <article className='card mt-5'>
                 <div className='card-body'>
                   <h5>Bình luận</h5>

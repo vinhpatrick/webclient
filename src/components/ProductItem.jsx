@@ -1,4 +1,3 @@
-import { Card, CardImg, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
 import styles from '../css_modules/css/all.module.css'
@@ -10,7 +9,7 @@ const ProductItem = (props) => {
       <div className={`${styles['col-md-3']}`}>
         <Link to={`/products/${_id}`}>
           <div className={`${styles['card']} ${styles['card-product-grid']}`}>
-            <a className={`${styles['img-wrap']}`}>{images && <img src={images[0]} />}</a>
+            <div className={`${styles['img-wrap']}`}>{images && <img src={images[0]} />}</div>
             <figcaption className={`${styles['info-wrap']}`}>
               <div
                 className={`${styles['title']}`}

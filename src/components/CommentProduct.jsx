@@ -112,7 +112,7 @@ const CommentProduct = ({ productId }) => {
       {comment.map((cmt, index) => {
         if (cmt.product === productId) {
           return (
-            <div key={Math.random()}>
+            <div key={index}>
               {/* {console.log('commentId', commentId)}
               {console.log('cmt.author._id', cmt.author._id)} */}
               <Comment
@@ -129,7 +129,7 @@ const CommentProduct = ({ productId }) => {
                     </Tooltip>
                   </div>,
                   <div>
-                    <p>{cmt.comment}</p>
+                    <p key={Math.random()}>{cmt.comment}</p>
                   </div>,
                 ]}
                 datetime={[

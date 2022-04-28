@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { Button, Label, Col, Row } from 'reactstrap'
+// import { Link } from 'react-router-dom'
 import { Control, Form, Errors } from 'react-redux-form'
 import Layout from '../layout/Layout'
 

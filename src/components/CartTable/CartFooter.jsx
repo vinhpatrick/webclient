@@ -17,7 +17,6 @@ import { useDispatch, useSelector } from 'react-redux'
    const addressUser = localStorage.getItem('address')
    const userId = localStorage.getItem('userId')
    const [address, setAddress] = useState('')
-   const { users } = useSelector((state) => state.logForm)
    //  const [shippingCost, setShippingCost] = useState(0)
    useEffect(() => {
      if (addressUser) {

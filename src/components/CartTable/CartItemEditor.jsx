@@ -1,4 +1,4 @@
-import styles from '../../css_modules/css/all.module.css'
+// import styles from '../../css_modules/css/all.module.css'
 
 import { Button, Select, InputNumber, message as Message } from 'antd'
 
@@ -51,14 +51,14 @@ const CartItemActions = (props) => {
   }
 
   return (
-    <div className={`${styles['row']}`}>
+    <div className='row'>
       <div className='col-sm-1'></div>
       <div className='col-sm-8'>
         <div className='row'>
-          <label className={`${styles['col-sm-2']}`} style={{ marginTop: '5px' }}>
+          <label className='col-sm-2' style={{ marginTop: '5px' }}>
             Loại hàng:{' '}
           </label>
-          <div className={`${styles['col']}`}>
+          <div className='col'>
             <Select
               id='size'
               value={!editSize ? size : editSize}
