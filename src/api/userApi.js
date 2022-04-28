@@ -56,12 +56,26 @@ export const order = (payload) => {
   })
 }
 
-export const getOrder=()=>{
+export const getOrder = (query) => {
+  const queryString = query2string(query)
   return axiosClient({
-    url: '/orders',
+    url: `/orders?${queryString}`,
     method: 'GET',
   })
 }
+export const confirmOrder = (orderId) => {
+  return axiosClient({
+    url: `/orders/${orderId}/status/confirm-received`,
+    method: 'PUT',
+  })
+}
+export const cancelOrder = (orderId) => {
+  return axiosClient({
+    url: `/orders/${orderId}/status/cancel`,
+    method: 'PUT',
+  })
+}
+
 
 
 //

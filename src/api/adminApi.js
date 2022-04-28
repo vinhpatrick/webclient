@@ -23,9 +23,10 @@ export const deleteProduct = (payload) => {
     data: payload,
   })
 }
-export const getOrder = () => {
+export const getOrder = (query) => {
+  const queryString = query2string(query)
   return axiosClient({
-    url: '/admin/orders',
+    url: `/admin/orders?${queryString}`,
     method: 'GET',
   })
 }

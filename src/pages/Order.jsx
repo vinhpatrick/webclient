@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getOrder } from '../api/userApi'
+import { getOrder, confirmOrder, cancelOrder } from '../api/userApi'
 import OrderItem from '../components/OrderItem'
 import { CBadge, CRow, CCol, CButton } from '@coreui/react-pro'
 import { ORDER_STATUSES_MAPPING } from '../helpers/order/index'
@@ -19,14 +19,26 @@ const Order = (props) => {
   const navigate = useNavigate()
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
-  const [status, setStatus] = useState('Waiting for seller confirm')
+  const [status, setStatus] = useState('In transit')
   useEffect(() => {
     getOrder({ status: status }).then((response) => {
+      console.log('status', status)
       setOrders(response.data)
-      console.log('order', response.data)
+      // console.log('order', response.data)
       setLoading(false)
     })
   }, [loading])
+  const confirmOd = (orderId) => {
+    confirmOrder(orderId)
+      .then((response) => {
+        message.success('Bạn đã nhận hàng thành công!')
+        setLoading(false)
+      })
+      .catch((err) => {
+        message.error('Lỗi hệ thống vui lòng thử lại sau!')
+        setLoading(false)
+      })
+  }
   const getBadge = (status) => {
     switch (status) {
       case 'Delivered':
@@ -44,8 +56,33 @@ const Order = (props) => {
     }
   }
   function callback(key) {
-    // setStatus(key)
+    setStatus(key)
     setLoading(true)
+  }
+  const delOrder = (orderId) => {
+    cancelOrder(orderId)
+      .then((response) => {
+        message.success('Bạn đã hủy đơn hàng thành công!')
+        setLoading(false)
+      })
+      .catch((err) => {
+        message.error('Lỗi hệ thống vui lòng thử lại sau!')
+        setLoading(false)
+      })
+  }
+  const showDeleteConfirm = (orderId) => {
+    confirm({
+      title: 'Bạn chắc chắn muốn hủy đơn hàng này?',
+      icon: <ExclamationCircleOutlined />,
+      okText: 'Đồng ý',
+      okType: 'danger',
+      cancelText: 'Quay lại',
+      onOk() {
+        setLoading(true)
+        delOrder(orderId)
+      },
+      onCancel() {},
+    })
   }
   return (
     <Layout>
@@ -74,7 +111,7 @@ const Order = (props) => {
             ></TabPane>
           </Tabs>
         </div>
-        <Spin spinning={false} delay={500}>
+        <Spin spinning={loading} delay={500}>
           <section className='section-content padding-y'>
             <div className='container'>
               <div className='row'>
@@ -102,7 +139,7 @@ const Order = (props) => {
                                   color='danger'
                                   shape='rounded-pill'
                                   onClick={() => {
-                                    // showDeleteConfirm(order._id)
+                                    showDeleteConfirm(order._id)
                                   }}
                                 >
                                   Hủy đơn hàng
@@ -119,7 +156,7 @@ const Order = (props) => {
                                   loading={true}
                                   onClick={() => {
                                     setLoading(true)
-                                    // confirmOd(order._id)
+                                    confirmOd(order._id)
                                   }}
                                 >
                                   Đã nhận hàng
