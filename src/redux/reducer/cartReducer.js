@@ -1,5 +1,6 @@
 const cartInitialState = {
   loading: false,
+  isload: false,
   data: [],
   items: [],
   error: '',
@@ -14,7 +15,7 @@ const cartReducer = (state = cartInitialState, action) => {
 
     case 'SET_CART': {
       const { data } = action.payload
-      return { ...state, data, loading: false, error: '' }
+      return { ...state, data, loading: false, isload: true, error: '' }
     }
 
     case 'ADD_TO_CART': {

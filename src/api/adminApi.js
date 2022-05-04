@@ -43,3 +43,10 @@ export const cancelOrder = (orderId) => {
     method: 'PUT',
   })
 }
+
+export const getUsers = () => {
+  return axiosClient({
+    url: '/users/',
+    method: 'GET',
+  })
+}

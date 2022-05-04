@@ -33,12 +33,6 @@ const _nav = [
     icon: <CIcon icon={cilUser} customClassName='nav-icon' />,
   },
   {
-    component: CNavItem,
-    name: 'Thêm cửa hàng',
-    to: '/seller/register-shop',
-    icon: <CIcon icon={cilLibraryAdd} customClassName='nav-icon' />,
-  },
-  {
     component: CNavTitle,
     name: 'Quản lý sản phẩm',
   },

@@ -4,6 +4,10 @@ import RegisterForm from './RegisterForm'
 import { logoutUser } from '../redux/action/userAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { _search } from '../redux/action/searchAction'
+import { Spin } from 'antd'
+import { _getMyCart } from '../redux/action/cartAction'
+import styles from '../css_modules/css/all.module.css'
+import { getCart } from '../api/userApi'
 import {
   Navbar,
   NavbarBrand,
@@ -123,19 +127,58 @@ const Header = () => {
       </Dropdown>
     )
   }
+  const Cart = (props) => {
+    // const [data, setData] = useState([])
+    const { loading, data, isload } = useSelector((state) => state.cart)
+    const user = localStorage.getItem('user')
+    useEffect(() => {
+      if (auth) {
+        dispatch(_getMyCart)
+        getCart().then((response) => {
+          // console.log('data', response.data)
+          // setData(response.data)
+        })
+      }
+    }, [isload])
+
+    const handleCartClick = (e) => {
+      if (!auth) {
+        dispatch(_showLogForm())
+      } else {
+        navigate('/cart')
+      }
+    }
+
+    return (
+      <>
+        <div className={`${styles['widget-header']} ${styles['mr-3']}`}>
+          <button
+            className={`${styles['icon']} ${styles['icon-sm']} ${styles['rounded-circle']} ${styles['border']}`}
+            onClick={handleCartClick}
+          >
+            <i className='fa fa-shopping-cart' />
+          </button>
+          <span
+            className={`${styles['badge']} ${styles['badge-pill']} ${styles['badge-danger']} ${styles['notify']}`}
+          >
+            <Spin spinning={loading}>{data.length}</Spin>
+          </span>
+        </div>
+      </>
+    )
+  }
 
   return (
     <div>
-      <Navbar style={{ backgroundColor: '#FFD700' }} expand='md' light>
+      <Navbar style={{ backgroundColor: '#fed700' }} expand='md' light={false}>
         <div className='container'>
           <NavbarToggler onClick={handleToggleNav} />
           <Collapse isOpen={toggleNav} navbar>
             <div>
-              <NavbarBrand className='okok' href='/'>
+              <NavbarBrand href='/'>
                 <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/logoweb.png`}
-                  height='30'
-                  width='41'
+                  style={{ maxWidth: '130px' }}
+                  src={`${process.env.PUBLIC_URL}/assets/images/logo.png`}
                   alt='Ristorante Con Fusion'
                 />
               </NavbarBrand>
@@ -188,9 +231,10 @@ const Header = () => {
                 </form>
               </NavItem>
               <NavItem className=''>
-                <NavLink className='nav-link' to='/cart'>
+                <Cart />
+                {/* <NavLink className='nav-link' to='/cart'>
                   <span className='fa fa-shopping-cart fa-lg'></span> Giỏ hàng
-                </NavLink>
+                </NavLink> */}
               </NavItem>
               <NavItem>{!auth ? <LogModal /> : <UserMenu />}</NavItem>
             </Nav>

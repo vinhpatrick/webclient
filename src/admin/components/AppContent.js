@@ -7,6 +7,7 @@ import DeleteProduct from '../views/products/DeleteProduct'
 import TableOrder from '../views/orders/TableOrder'
 import WaitingOrder from '../views/orders/WaitingOrder'
 import Dashboard from '../views/dashboard/Dashboard'
+import TableUser from '../views/customer/TableUser'
 import NotFound from '../../pages/NotFound'
 // routes config
 
@@ -21,6 +22,7 @@ const AppContent = () => {
           <Route path='delete-product' element={<DeleteProduct />} />
           <Route path='orders' element={<TableOrder />} />
           <Route path='waiting-orders' element={<WaitingOrder />} />
+          <Route path='shops' element={<TableUser />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Suspense>

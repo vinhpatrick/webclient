@@ -37,6 +37,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-toastify": "^8.2.0",
+    "react-transition-group": "^4.4.2",
     "reactstrap": "5.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",

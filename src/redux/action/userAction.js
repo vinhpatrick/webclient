@@ -2,6 +2,7 @@ import * as ActionTypes from './ActionTypes'
 // import { login } from '../../api/userApi'
 import { baseUrl } from '../../shared/baseUrl'
 import axiosClient from '../../api/axiosClient'
+import { toast } from 'react-toastify'
 
 export const requestLogin = (creds) => {
   return {
@@ -28,6 +29,7 @@ export const loginUser = (creds) => (dispatch) => {
   axiosClient
     .post(baseUrl + 'users/login', creds)
     .then((response) => {
+      toast.success('Bạn đã đăng nhập thành công')
       const { data } = response
       localStorage.setItem('token', data.token)
       localStorage.setItem('creds', JSON.stringify(creds))
@@ -38,51 +40,6 @@ export const loginUser = (creds) => (dispatch) => {
     })
     .catch((error) => dispatch(loginError(error.message)))
 }
-// export const loginUser = (creds) => (dispatch) => {
-//   // We dispatch requestLogin to kickoff the call to the API
-//   dispatch(requestLogin(creds))
-
-//   return fetch(baseUrl + 'users/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(creds),
-//   })
-//     .then(
-//       (response) => {
-//         if (response.ok) {
-//           console.log('dang nhap thanh cong')
-//           return response
-//         } else {
-//           var error = new Error('Error ' + response.status + ': ' + response.statusText)
-//           error.response = response
-//           throw error
-//         }
-//       },
-//       (error) => {
-//         throw error
-//       }
-//     )
-//     .then((response) => response.json())
-//     .then((response) => {
-//       if (response.success) {
-//         // If login was successful, set the token in local storage
-//         localStorage.setItem('token', response.token)
-//         localStorage.setItem('creds', JSON.stringify(creds))
-//         localStorage.setItem('admin', response.admin)
-//         localStorage.setItem('userId', response.userId)
-//         // Dispatch the success action
-//         // dispatch(fetchFavorites());
-//         dispatch(receiveLogin(response))
-//       } else {
-//         var error = new Error('Error ' + response.status)
-//         error.response = response
-//         throw error
-//       }
-//     })
-//     .catch((error) => dispatch(loginError(error.message)))
-// }
 
 export const requestLogout = () => {
   return {

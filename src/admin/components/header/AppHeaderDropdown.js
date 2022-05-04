@@ -1,5 +1,4 @@
 import React from 'react'
-// import { removeToken } from '../../../services/makeApiRequest'
 import {
   CAvatar,
   CDropdown,
@@ -10,8 +9,14 @@ import {
 } from '@coreui/react'
 import { cilHome, cilLockLocked } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
+import { logoutUser } from '../../../redux/action/userAction'
+import { useDispatch } from 'react-redux'
 
 const AppHeaderDropdown = () => {
+  const dispatch = useDispatch()
+  const handleLogout = () => {
+    dispatch(logoutUser())
+  }
   return (
     <div>
       <CDropdown variant='nav-item'>
@@ -24,10 +29,7 @@ const AppHeaderDropdown = () => {
             Quay về trang chủ
           </CDropdownItem>
           <CDropdownDivider />
-          <CDropdownItem
-            href='/'
-            // onClick={removeToken}
-          >
+          <CDropdownItem href='/' onClick={handleLogout}>
             <CIcon icon={cilLockLocked} className='me-2' />
             Đăng xuất
           </CDropdownItem>

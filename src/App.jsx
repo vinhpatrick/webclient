@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Home from './pages/Home'
 import About from './pages/About'
 import Favorites from './pages/Favorites'
@@ -16,22 +17,26 @@ import Seller from './admin/Seller'
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        {/* <Route exact path='/home' element={<Navigate to='/' replace />} /> */}
-        <Route path='/products/'>
-          <Route index element={<div>All products page</div>} />
-          <Route path=':productId' element={<ProductDetail />} />
-        </Route>
-        <Route path='/favorites' element={<Favorites />} />
-        <Route path='/aboutus' element={<About />} />
-        <Route path='/contactus' element={<Contact />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/order' element={<Order />} />
-        <Route path='/search' element={<Search />} />
-        <Route path='/seller/*' element={<Seller />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <TransitionGroup>
+        <CSSTransition className='page' timeout={100}>
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            {/* <Route exact path='/home' element={<Navigate to='/' replace />} /> */}
+            <Route path='/products/'>
+              <Route index element={<div>All products page</div>} />
+              <Route path=':productId' element={<ProductDetail />} />
+            </Route>
+            <Route path='/favorites' element={<Favorites />} />
+            <Route path='/aboutus' element={<About />} />
+            <Route path='/contactus' element={<Contact />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/order' element={<Order />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='/seller/*' element={<Seller />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </CSSTransition>
+      </TransitionGroup>
     </BrowserRouter>
   )
 }
