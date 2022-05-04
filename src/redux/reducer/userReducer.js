@@ -28,7 +28,12 @@ const userReducer = (
         token: action.token,
       }
     case ActionTypes.LOGIN_FAILURE:
-      return { ...state, isLoading: false, isAuthenticated: false, errMess: action.message }
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: false,
+        errMess: 'Tài khoản hoặc mật khẩu không chính xác!',
+      }
     case ActionTypes.LOGOUT_REQUEST:
       return { ...state, isLoading: true, isAuthenticated: true }
     case ActionTypes.LOGOUT_SUCCESS:

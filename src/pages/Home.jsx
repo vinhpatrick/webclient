@@ -6,6 +6,8 @@ import Layout from '../layout/Layout'
 import ProductItem from '../components/ProductItem'
 import BannerTop from '../components/BannerTop'
 import { searchProducts } from '../api/productApi'
+
+
 const Home = (props) => {
   const [loadingNews, setLoadingNews] = useState(false)
   const [news, setNews] = useState([])

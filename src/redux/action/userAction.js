@@ -2,7 +2,7 @@ import * as ActionTypes from './ActionTypes'
 // import { login } from '../../api/userApi'
 import { baseUrl } from '../../shared/baseUrl'
 import axiosClient from '../../api/axiosClient'
-import { toast } from 'react-toastify'
+import { _hideLogForm, _showLogForm } from '../action/changeFormAction'
 
 export const requestLogin = (creds) => {
   return {
@@ -24,12 +24,11 @@ export const loginError = (message) => {
     message,
   }
 }
-export const loginUser = (creds) => (dispatch) => {
+export const loginUser = (creds) => async (dispatch) => {
   dispatch(requestLogin(creds))
-  axiosClient
+  await axiosClient
     .post(baseUrl + 'users/login', creds)
     .then((response) => {
-      toast.success('Bạn đã đăng nhập thành công')
       const { data } = response
       localStorage.setItem('token', data.token)
       localStorage.setItem('creds', JSON.stringify(creds))
@@ -38,7 +37,12 @@ export const loginUser = (creds) => (dispatch) => {
       localStorage.setItem('address', data.user.address)
       dispatch(receiveLogin(response))
     })
-    .catch((error) => dispatch(loginError(error.message)))
+    .catch((error) => {
+      dispatch(loginError(error.message))
+    })
+    .finally((error) => {
+      dispatch(loginError(error.message))
+    })
 }
 
 export const requestLogout = () => {

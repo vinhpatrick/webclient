@@ -11,18 +11,19 @@ const validatePassword = (password) => passwordRegex.exec(password)
 const validateEmail = (email) => emailRegex.exec(email)
 
 module.exports = (props) => {
-  const { firstName, lastName, username, password, rePassword, phoneNumber, email } = props
+  const { firstname, lastname, username, password, rePassword, phoneNumber, email } = props
 
   const result = {}
-  if (!firstName) result.firstName = 'Thiếu Tên!'
-  if (!lastName) result.lastName = 'Thiếu Họ và đệm! '
+  if (!firstname) result.firstname = 'Thiếu Tên!'
+  if (!lastname) result.lastname = 'Thiếu Họ và đệm! '
   if (!username || !validateUsername(username))
     result.username = 'Tên đăng nhập từ 3 đến 30 ký tự, bao gồm chữ cái và chữ số!'
   if (!password || !validatePassword(password)) result.password = 'Mật khẩu cần ít nhất 8 ký tự!'
-  if (!rePassword || !validatePassword(rePassword)) result.rePassword = 'Mật khẩu cần ít nhất 8 ký tự!'
+  if (!rePassword || !validatePassword(rePassword))
+    result.rePassword = 'Mật khẩu cần ít nhất 8 ký tự!'
   if (password !== rePassword) result.rePassword = 'Mật khẩu không khớp!'
   if (!phoneNumber || !validatePhoneNumber(phoneNumber)) result.phoneNumber = 'Số điện thoại sai!'
-  if (email && !validateEmail(email)) result.email = 'Email sai!'
+  if (!email || !validateEmail(email)) result.email = 'Email sai!'
 
   return result
 }

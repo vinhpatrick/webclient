@@ -13,31 +13,30 @@ import NotFound from './pages/NotFound'
 import './scss/style.scss'
 import './App.css'
 import Seller from './admin/Seller'
-
+import { useLocation } from 'react-router-dom'
 function App() {
+  // const location = useLocation()
   return (
-    <BrowserRouter>
-      <TransitionGroup>
-        <CSSTransition className='page' timeout={100}>
-          <Routes>
-            <Route exact path='/' element={<Home />} />
-            {/* <Route exact path='/home' element={<Navigate to='/' replace />} /> */}
-            <Route path='/products/'>
-              <Route index element={<div>All products page</div>} />
-              <Route path=':productId' element={<ProductDetail />} />
-            </Route>
-            <Route path='/favorites' element={<Favorites />} />
-            <Route path='/aboutus' element={<About />} />
-            <Route path='/contactus' element={<Contact />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/order' element={<Order />} />
-            <Route path='/search' element={<Search />} />
-            <Route path='/seller/*' element={<Seller />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </CSSTransition>
-      </TransitionGroup>
-    </BrowserRouter>
+    <TransitionGroup>
+      <CSSTransition className='fade' timeout={300}>
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          {/* <Route exact path='/home' element={<Navigate to='/' replace />} /> */}
+          <Route path='/products/'>
+            <Route index element={<div>All products page</div>} />
+            <Route path=':productId' element={<ProductDetail />} />
+          </Route>
+          <Route path='/favorites' element={<Favorites />} />
+          <Route path='/aboutus' element={<About />} />
+          <Route path='/contactus' element={<Contact />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/order' element={<Order />} />
+          <Route path='/search' element={<Search />} />
+          <Route path='/seller/*' element={<Seller />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </CSSTransition>
+    </TransitionGroup>
   )
 }
 

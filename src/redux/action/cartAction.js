@@ -16,6 +16,9 @@ export const _getMyCart = (userId) => {
       })
       .catch((error) => {
         console.log('error', error)
+        dispatch({
+          type: 'CART_ERROR',
+        })
         // const { status, data } = error.response
         // if (status >= 500) {
         //   dispatch({

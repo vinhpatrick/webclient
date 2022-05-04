@@ -26,6 +26,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { _showLogForm, _hideLogForm } from '../redux/action/changeFormAction'
 
 const Header = () => {
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.logForm.isAuthenticated)
@@ -54,6 +55,7 @@ const Header = () => {
   const LogModal = (props) => {
     const { isOpen, mode } = useSelector((state) => state.changeForm)
     const dispatch = useDispatch()
+
     const handleShowLogForm = () => {
       dispatch(_showLogForm())
     }
@@ -127,20 +129,13 @@ const Header = () => {
       </Dropdown>
     )
   }
-  const Cart = (props) => {
-    // const [data, setData] = useState([])
-    const { loading, data, isload } = useSelector((state) => state.cart)
-    const user = localStorage.getItem('user')
+  const Cart = () => {
+    const { loading, data } = useSelector((state) => state.cart)
     useEffect(() => {
-      if (auth) {
-        dispatch(_getMyCart)
-        getCart().then((response) => {
-          // console.log('data', response.data)
-          // setData(response.data)
-        })
+      if (auth && data.length === 0) {
+        dispatch(_getMyCart())
       }
-    }, [isload])
-
+    }, [])
     const handleCartClick = (e) => {
       if (!auth) {
         dispatch(_showLogForm())

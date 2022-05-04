@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
-import { _changeLogForm } from '../redux/action/changeFormAction'
+import { _changeLogForm, _hideLogForm } from '../redux/action/changeFormAction'
 import { Spin } from 'antd'
 import {
   ModalHeader,
@@ -18,6 +18,9 @@ import { loginUser } from '../redux/action/userAction'
 // import { _hideLogForm } from '../redux/action/changeFormAction'
 
 const LoginForm = (props) => {
+  const { errMess } = useSelector((state) => state.logForm)
+  let err = errMess
+  const [status, setStatus] = useState(err)
   const toggle = props.isToggle
   const dispatch = useDispatch()
   const initial = { username: '', password: '' }
@@ -30,28 +33,43 @@ const LoginForm = (props) => {
   const handleRegister = () => {
     dispatch(_changeLogForm('register'))
   }
-  const login = (e) => {
-    dispatch(loginUser({ username: payload.username, password: payload.password }))
-    e.preventDefault()
-    // dispatch(_hideLogForm)
+  const handleErr = () => {
+    setStatus(null)
+  }
+  const login = (event) => {
+    event.preventDefault()
+   dispatch(loginUser({ username: payload.username, password: payload.password }))
   }
   return (
     <>
       <Spin spinning={loading}>
         <ModalHeader toggle={toggle}>Đăng Nhập</ModalHeader>
         <ModalBody>
-          <Form onSubmit={login}>
+          <Form>
             <FormGroup>
               <Label style={{ fontWeight: 'bold', marginBottom: '10px' }} htmlFor='username'>
                 Tên đăng Nhập
               </Label>
-              <Input type='text' id='username' name='username' onChange={handleValueChange} />
+              <Input
+                type='text'
+                id='username'
+                name='username'
+                onFocus={handleErr}
+                onChange={handleValueChange}
+              />
             </FormGroup>
             <FormGroup>
               <Label style={{ fontWeight: 'bold', margin: '12px 0' }} htmlFor='password'>
                 Mật Khẩu{' '}
               </Label>
-              <Input type='password' id='password' name='password' onChange={handleValueChange} />
+              <Input
+                type='password'
+                id='password'
+                name='password'
+                onFocus={handleErr}
+                onChange={handleValueChange}
+              />
+              <span style={{ color: 'red' }}>{status}</span>
             </FormGroup>
             <FormGroup check>
               <Label style={{ marginTop: '20px' }} check>
@@ -61,8 +79,8 @@ const LoginForm = (props) => {
             </FormGroup>
             <Button
               type='submit'
-              value='submit'
               color='primary'
+              onClick={login}
               style={{
                 marginLeft: '170px', //top right bottom left
                 textAlign: 'center',

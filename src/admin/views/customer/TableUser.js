@@ -55,7 +55,7 @@ const TableUser = () => {
       setUsers(response.data)
       setLoading(false)
     })
-  })
+  }, [])
 
   return (
     <div>
