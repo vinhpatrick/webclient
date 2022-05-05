@@ -2,7 +2,7 @@ import * as ActionTypes from './ActionTypes'
 // import { login } from '../../api/userApi'
 import { baseUrl } from '../../shared/baseUrl'
 import axiosClient from '../../api/axiosClient'
-import { _hideLogForm, _showLogForm } from '../action/changeFormAction'
+import { _hideLogForm } from '../action/changeFormAction'
 
 export const requestLogin = (creds) => {
   return {

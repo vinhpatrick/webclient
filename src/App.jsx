@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -13,12 +13,11 @@ import NotFound from './pages/NotFound'
 import './scss/style.scss'
 import './App.css'
 import Seller from './admin/Seller'
-import { useLocation } from 'react-router-dom'
 function App() {
-  // const location = useLocation()
+  const location = useLocation()
   return (
-    <TransitionGroup>
-      <CSSTransition className='fade' timeout={300}>
+    <TransitionGroup component={null}>
+      <CSSTransition key={location.key} classNames='page' timeout={300}>
         <Routes>
           <Route exact path='/' element={<Home />} />
           {/* <Route exact path='/home' element={<Navigate to='/' replace />} /> */}

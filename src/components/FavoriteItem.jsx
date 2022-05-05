@@ -10,13 +10,12 @@ export default function FavoriteItem(props) {
   const [loading, setLoading] = useState(false)
   const { _id: productId, name, description, images } = props
   const handleDeleteWishList = (e) => {
-    // e.preventDefault()
+    //e.preventDefault()
     setLoading(true)
     deleteWishList(productId)
       .then((response) => {
         Message.success('Bạn đã xóa thành công sản phẩm khỏi wishlist!')
         setLoading(false)
-        // navigate('/favorites')
       })
       .catch((error) => {
         Message.error('Lỗi hệ thống vui lòng thử lại sau!')
@@ -35,18 +34,16 @@ export default function FavoriteItem(props) {
           }}
           object
           src={images[0]}
-          alt='hihi'
+          alt={description}
         />
       </Media>
       <Media body className='ml-5'>
         <Media heading>{name}</Media>
         <p>{description}</p>
         <Spin spinning={loading}>
-          <a href='/favorites' onClick={handleDeleteWishList}>
-            <Button type='submit' value='submit' outline color='danger'>
-              <span className='fa fa-times'>Xóa</span>
-            </Button>
-          </a>
+          <Button onClick={handleDeleteWishList} outline color='danger'>
+            <span className='fa fa-times'>Xóa</span>
+          </Button>
         </Spin>
       </Media>
     </Media>

@@ -50,6 +50,7 @@ const Header = () => {
     setToggleNav(!toggleNav)
   }
   const handleLogout = () => {
+    dispatch(_hideLogForm())
     dispatch(logoutUser())
   }
   const LogModal = (props) => {
@@ -57,17 +58,26 @@ const Header = () => {
     const dispatch = useDispatch()
 
     const handleShowLogForm = () => {
-      dispatch(_showLogForm())
+      if (!auth) {
+        dispatch(_showLogForm())
+      }
     }
     const handleHideLogForm = () => {
       dispatch(_hideLogForm())
     }
     return (
       <div>
-        <NavLink onClick={handleShowLogForm} className='nav-link' to='#'>
+        <div onClick={handleShowLogForm} className='log-modal'>
           <span className='fa fa-user-circle fa-lg'></span> Login
-        </NavLink>
-        <Modal isOpen={isOpen} toggle={handleHideLogForm}>
+        </div>
+        <Modal
+          modalTransition={{
+            timeout: 700,
+          }}
+          fade={false}
+          isOpen={isOpen}
+          toggle={handleHideLogForm}
+        >
           {mode === 'login' ? (
             <LoginForm isToggle={handleHideLogForm} />
           ) : (
@@ -130,12 +140,13 @@ const Header = () => {
     )
   }
   const Cart = () => {
+    const user = localStorage.getItem('user')
     const { loading, data } = useSelector((state) => state.cart)
     useEffect(() => {
       if (auth && data.length === 0) {
         dispatch(_getMyCart())
       }
-    }, [])
+    }, [user])
     const handleCartClick = (e) => {
       if (!auth) {
         dispatch(_showLogForm())
@@ -174,7 +185,7 @@ const Header = () => {
                 <img
                   style={{ maxWidth: '130px' }}
                   src={`${process.env.PUBLIC_URL}/assets/images/logo.png`}
-                  alt='Ristorante Con Fusion'
+                  alt='VinhMobile'
                 />
               </NavbarBrand>
             </div>

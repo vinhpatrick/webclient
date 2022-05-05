@@ -7,6 +7,7 @@ import {
   cilFeaturedPlaylist,
   cilSpeedometer,
   cibShopify,
+  cilContact,
   cilUser,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
@@ -32,6 +33,16 @@ const _nav = [
     to: '/seller/shops',
     icon: <CIcon icon={cilUser} customClassName='nav-icon' />,
   },
+  // {
+  //   component: CNavTitle,
+  //   name: 'Người dùng',
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Quản lý người dùng',
+  //   to: '/admin/manage-users',
+  //   icon: <CIcon icon={cilContact} customClassName='nav-icon' />,
+  // },
   {
     component: CNavTitle,
     name: 'Quản lý sản phẩm',

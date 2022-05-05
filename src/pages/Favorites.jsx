@@ -8,7 +8,6 @@ import { Spin } from 'antd'
 const Favorites = () => {
   const [loading, setLoading] = useState(false)
   const [wishlist, setWishlist] = useState([])
-  // const user = localStorage.getItem('userId')
   useEffect(() => {
     setLoading(true)
     getWishlist()
@@ -21,7 +20,7 @@ const Favorites = () => {
       .catch((error) => {
         console.log(error)
       })
-  }, [])
+  }, [wishlist.length])
   // console.log('wishlist', wishlist)
   return (
     <Layout>
@@ -29,7 +28,7 @@ const Favorites = () => {
         <div className='container' style={{ minHeight: '600px' }}>
           <div className='row'>
             <div className='col-12'>
-              <h3>My Favorites</h3>
+              <h3>Danh sách sản phẩm yêu thích của bạn!</h3>
               <hr />
             </div>
           </div>
@@ -37,7 +36,7 @@ const Favorites = () => {
             <Media list>
               {wishlist.length > 0 ? (
                 wishlist.map((item, index) => {
-                  return <FavoriteItem key={Math.random()} {...item} />
+                  return <FavoriteItem key={index} {...item} />
                 })
               ) : (
                 <div>
