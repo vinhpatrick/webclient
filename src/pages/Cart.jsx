@@ -11,7 +11,6 @@ import CartItemEditor from '../components/CartTable/CartItemEditor'
 import { _getMyCart } from '../redux/action/cartAction'
 
 const Cart = () => {
-  const auth = useSelector((state) => state.logForm.isAuthenticated)
   const dispatch = useDispatch()
   const userId = localStorage.getItem('userId') ? localStorage.getItem('userId') : ''
   // console.log('userId', userId)
@@ -40,36 +39,43 @@ const Cart = () => {
   // console.log('data', tableData)
   return (
     <Layout>
-      {!auth && <Navigate to='/' />}
       {/* <Spin spinning={true}> */}
       <div>
-        <section className='section-contentpadding-y'>
+        <section style={{ minHeight: '700px' }} className='section-contentpadding-y'>
           <div className='container'>
             <div className='row'>
               <main className='col-md-12'>
                 <div className='card'>
-                  <Table
-                    dataSource={tableData}
-                    rowSelection={{
-                      type: 'checkbox',
-                      onChange: (items) => {
-                        selectedItems = items
-                      },
-                    }}
-                    expandable={{
-                      rowExpandable: (record) => record.cartItemId,
-                      expandedRowRender: (record) => <CartItemEditor {...record} />,
-                      expandRowByClick: true,
-                    }}
-                    loading={loading}
-                    pagination={{ position: ['bottomCenter'] }}
-                    footer={() => <CartFooter selectedItems={selectedItems} discount={discount} />}
-                  >
-                    <Table.Column
-                      title='SẢN PHẨM'
-                      render={(record) => <CartItemProduct key={record.cartItemId} {...record} />}
-                    />
-                  </Table>
+                  {data.length > 0 ? (
+                    <Table
+                      dataSource={tableData}
+                      rowSelection={{
+                        type: 'checkbox',
+                        onChange: (items) => {
+                          selectedItems = items
+                        },
+                      }}
+                      expandable={{
+                        rowExpandable: (record) => record.cartItemId,
+                        expandedRowRender: (record) => <CartItemEditor {...record} />,
+                        expandRowByClick: true,
+                      }}
+                      loading={loading}
+                      pagination={{ position: ['bottomCenter'] }}
+                      footer={() => (
+                        <CartFooter selectedItems={selectedItems} discount={discount} />
+                      )}
+                    >
+                      <Table.Column
+                        title='SẢN PHẨM'
+                        render={(record) => <CartItemProduct key={record.cartItemId} {...record} />}
+                      />
+                    </Table>
+                  ) : (
+                    <div>
+                      <h2>Bạn chưa có sản phẩm nào trong giỏ hàng!</h2>
+                    </div>
+                  )}
                 </div>
               </main>
             </div>

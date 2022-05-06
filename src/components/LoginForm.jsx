@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { _changeLogForm, _hideLogForm } from '../redux/action/changeFormAction'
 import { Spin } from 'antd'
 import {
@@ -23,10 +23,13 @@ const LoginForm = (props) => {
   const [status, setStatus] = useState(err)
   const toggle = props.isToggle
   const dispatch = useDispatch()
-  const initial = { username: '', password: '' }
+  const initial = { username: '', password: '', invalid: '' }
   const [payload, setPayload] = useState(initial)
+  const [suggest, setSuggest] = useState(initial)
+
   const loading = useSelector((state) => state.logForm.isLoading)
   const handleValueChange = (e) => {
+    setSuggest({ ...suggest, [e.target.name]: '' })
     setPayload({ ...payload, [e.target.name]: e.target.value.trim() })
     // dispatch(_setStatus('', ''))
   }
@@ -38,8 +41,33 @@ const LoginForm = (props) => {
   }
   const login = (event) => {
     event.preventDefault()
-   dispatch(loginUser({ username: payload.username, password: payload.password }))
+    let errCount = 0
+    const newSuggest = {}
+    const { username, password } = payload
+    if (!username) {
+      newSuggest.username = 'Vui lòng nhập tên đăng nhập!'
+      errCount++
+    }
+
+    if (!password) {
+      newSuggest.password = 'Vui lòng nhập password!'
+      errCount++
+    }
+
+    if (!errCount) {
+      dispatch(loginUser({ username: payload.username, password: payload.password }))
+      return
+    }
+
+    setSuggest(newSuggest)
   }
+
+  useEffect(() => {
+    if (errMess) {
+      setSuggest({ invalid: errMess })
+    }
+  }, [errMess])
+
   return (
     <>
       <Spin spinning={loading}>
@@ -57,6 +85,7 @@ const LoginForm = (props) => {
                 onFocus={handleErr}
                 onChange={handleValueChange}
               />
+              <span style={{ color: 'red' }}>{suggest.username}</span>
             </FormGroup>
             <FormGroup>
               <Label style={{ fontWeight: 'bold', margin: '12px 0' }} htmlFor='password'>
@@ -69,7 +98,8 @@ const LoginForm = (props) => {
                 onFocus={handleErr}
                 onChange={handleValueChange}
               />
-              <span style={{ color: 'red' }}>{status}</span>
+              <span style={{ color: 'red' }}>{suggest.password}</span>
+              <span style={{ color: 'red' }}>{suggest.invalid}</span>
             </FormGroup>
             <FormGroup check>
               <Label style={{ marginTop: '20px' }} check>
@@ -95,16 +125,12 @@ const LoginForm = (props) => {
             </Button>
           </Form>
           <Row>
-            <Col onClick={handleRegister}>
-              <a style={{ textDecoration: 'none' }} href='#'>
-                Chưa có tài khoản?
-              </a>
+            <Col className='hover-log' onClick={handleRegister}>
+              Chưa có tài khoản?
             </Col>
-            <Col style={{ textAlign: 'right' }}>
+            <Col className='hover-log' style={{ textAlign: 'right' }}>
               {' '}
-              <a style={{ textDecoration: 'none' }} href='#'>
-                Quên mật khẩu?
-              </a>
+              Quên mật khẩu?
             </Col>
           </Row>
         </ModalBody>

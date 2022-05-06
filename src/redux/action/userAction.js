@@ -2,15 +2,18 @@ import * as ActionTypes from './ActionTypes'
 // import { login } from '../../api/userApi'
 import { baseUrl } from '../../shared/baseUrl'
 import axiosClient from '../../api/axiosClient'
-import { _hideLogForm } from '../action/changeFormAction'
-
+import { _getMyCart } from './cartAction'
 export const requestLogin = (creds) => {
   return {
     type: ActionTypes.LOGIN_REQUEST,
     creds,
   }
 }
-
+export const resetLogin = () => {
+  return {
+    type: ActionTypes.RESET_LOGIN,
+  }
+}
 export const receiveLogin = (response) => {
   return {
     type: ActionTypes.LOGIN_SUCCESS,
@@ -36,11 +39,9 @@ export const loginUser = (creds) => async (dispatch) => {
       localStorage.setItem('userId', data.userId)
       localStorage.setItem('address', data.user.address)
       dispatch(receiveLogin(response))
+      dispatch(_getMyCart())
     })
     .catch((error) => {
-      dispatch(loginError(error.message))
-    })
-    .finally((error) => {
       dispatch(loginError(error.message))
     })
 }

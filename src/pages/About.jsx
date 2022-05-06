@@ -74,7 +74,7 @@ const About = () => {
             <Media left middle>
               <Media
                 object
-                src='https://scontent.fhan5-11.fna.fbcdn.net/v/t39.30808-1/257977999_3141760336104527_6914593917575493290_n.jpg?stp=dst-jpg_s200x200&_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=q5rWvwlngRMAX8mJomO&_nc_ht=scontent.fhan5-11.fna&oh=00_AT_05IQEo4Xhj_Ww6g8gg-C47c22J08nu0E05J7WxOKHgg&oe=62631627'
+                src='https://scontent.fhan5-11.fna.fbcdn.net/v/t39.30808-1/257977999_3141760336104527_6914593917575493290_n.jpg?stp=dst-jpg_s200x200&_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=VwlrGtkPlF4AX9QdB4l&tn=AHk7uGKXnZrqDZsF&_nc_ht=scontent.fhan5-11.fna&oh=00_AT_kYbySc8UGwWdgzqIc8RMvJ7SWxpAPbMtcWC7Pk00-Xg&oe=6278D6E7'
                 alt='vinhok'
               />
             </Media>

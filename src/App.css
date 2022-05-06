@@ -401,6 +401,10 @@ a {
 .log-modal:hover {
   cursor: pointer;
 }
+.hover-log:hover {
+  cursor: pointer;
+
+}
 
 /* transition group */
 .page-enter {

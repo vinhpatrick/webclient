@@ -4,8 +4,12 @@ import Layout from '../layout/Layout'
 import FavoriteItem from '../components/FavoriteItem'
 import { getWishlist } from '../api/userApi'
 import { Spin } from 'antd'
+import { useSelector, useDispatch } from 'react-redux'
+import { _showLogForm } from '../redux/action/changeFormAction'
+import { Navigate } from 'react-router-dom'
 
 const Favorites = () => {
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
   const [wishlist, setWishlist] = useState([])
   useEffect(() => {

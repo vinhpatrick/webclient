@@ -6,8 +6,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { _search } from '../redux/action/searchAction'
 import { Spin } from 'antd'
 import { _getMyCart } from '../redux/action/cartAction'
+import { resetLogin } from '../redux/action/userAction'
 import styles from '../css_modules/css/all.module.css'
-import { getCart } from '../api/userApi'
 import {
   Navbar,
   NavbarBrand,
@@ -26,13 +26,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { _showLogForm, _hideLogForm } from '../redux/action/changeFormAction'
 
 const Header = () => {
-
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.logForm.isAuthenticated)
   const user = useSelector((state) => state.logForm.user)
   const [keyword, setKeyword] = useState('')
-
   const { sort, limit } = useSelector((state) => state.search)
   const handleSearchClick = (e) => {
     e.preventDefault()
@@ -53,6 +51,13 @@ const Header = () => {
     dispatch(_hideLogForm())
     dispatch(logoutUser())
   }
+  const handleFavorite = (e) => {
+    if (!auth) {
+      dispatch(_showLogForm())
+    } else {
+      navigate('/favorites')
+    }
+  }
   const LogModal = (props) => {
     const { isOpen, mode } = useSelector((state) => state.changeForm)
     const dispatch = useDispatch()
@@ -64,6 +69,7 @@ const Header = () => {
     }
     const handleHideLogForm = () => {
       dispatch(_hideLogForm())
+      dispatch(resetLogin())
     }
     return (
       <div>
@@ -140,13 +146,7 @@ const Header = () => {
     )
   }
   const Cart = () => {
-    const user = localStorage.getItem('user')
     const { loading, data } = useSelector((state) => state.cart)
-    useEffect(() => {
-      if (auth && data.length === 0) {
-        dispatch(_getMyCart())
-      }
-    }, [user])
     const handleCartClick = (e) => {
       if (!auth) {
         dispatch(_showLogForm())
@@ -157,13 +157,11 @@ const Header = () => {
 
     return (
       <>
-        <div className={`${styles['widget-header']} ${styles['mr-3']}`}>
-          <button
-            className={`${styles['icon']} ${styles['icon-sm']} ${styles['rounded-circle']} ${styles['border']}`}
-            onClick={handleCartClick}
-          >
-            <i className='fa fa-shopping-cart' />
-          </button>
+        <div
+          style={{ marginLeft: '15px', marginTop: '3px' }}
+          className={`${styles['widget-header']} ${styles['mr-3']}`}
+        >
+          <span onClick={handleCartClick} className='hover-log fa fa-shopping-cart fa-2x'></span>
           <span
             className={`${styles['badge']} ${styles['badge-pill']} ${styles['badge-danger']} ${styles['notify']}`}
           >
@@ -183,7 +181,7 @@ const Header = () => {
             <div>
               <NavbarBrand href='/'>
                 <img
-                  style={{ maxWidth: '130px' }}
+                  style={{ maxWidth: '130px', marginBottom: '10px' }}
                   src={`${process.env.PUBLIC_URL}/assets/images/logo.png`}
                   alt='VinhMobile'
                 />
@@ -195,10 +193,10 @@ const Header = () => {
                   <span className='fa fa-home fa-lg'></span> Trang chủ
                 </NavLink>
               </NavItem>
-              <NavItem as='li'>
-                <NavLink className='nav-link' to='/favorites'>
+              <NavItem as='li' className='hover-log' onClick={handleFavorite}>
+                <div className='nav-link' to='/favorites'>
                   <span className='fa fa-heart fa-lg'></span> Wish List
-                </NavLink>
+                </div>
               </NavItem>
               <NavItem>
                 <NavLink className='nav-link' to='/aboutus'>

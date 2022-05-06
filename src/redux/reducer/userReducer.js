@@ -1,21 +1,20 @@
 import * as ActionTypes from '../action/ActionTypes'
 
+const INIT_STATE = {
+  isLoading: false,
+  isAuthenticated: localStorage.getItem('token') ? true : false,
+  token: localStorage.getItem('token'),
+  user: localStorage.getItem('creds') ? JSON.parse(localStorage.getItem('creds')) : null,
+  userId: localStorage.getItem('userId') ? localStorage.getItem('userId') : '',
+  errMess: null,
+  address: '',
+  email: '',
+}
+
 // The auth reducer. The starting state sets authentication
 // based on a token being in local storage. In a real app,
 // we would also want a util to check if the token is expired.
-const userReducer = (
-  state = {
-    isLoading: false,
-    isAuthenticated: localStorage.getItem('token') ? true : false,
-    token: localStorage.getItem('token'),
-    user: localStorage.getItem('creds') ? JSON.parse(localStorage.getItem('creds')) : null,
-    userId: localStorage.getItem('userId') ? localStorage.getItem('userId') : '',
-    errMess: null,
-    address: '',
-    email: '',
-  },
-  action
-) => {
+const userReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case ActionTypes.LOGIN_REQUEST:
       return { ...state, isLoading: true, isAuthenticated: false, user: action.creds }
@@ -34,6 +33,8 @@ const userReducer = (
         isAuthenticated: false,
         errMess: 'Tài khoản hoặc mật khẩu không chính xác!',
       }
+    case ActionTypes.RESET_LOGIN:
+      return INIT_STATE
     case ActionTypes.LOGOUT_REQUEST:
       return { ...state, isLoading: true, isAuthenticated: true }
     case ActionTypes.LOGOUT_SUCCESS:
