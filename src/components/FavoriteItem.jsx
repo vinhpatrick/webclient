@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
-import { deleteWishList, getWishlist } from '../api/userApi'
+import { deleteWishList } from '../api/userApi'
 import { Spin, message as Message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,18 +9,9 @@ export default function FavoriteItem(props) {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const { _id: productId, name, description, images } = props
-  const handleDeleteWishList = (e) => {
-    //e.preventDefault()
-    setLoading(true)
-    deleteWishList(productId)
-      .then((response) => {
-        Message.success('Bạn đã xóa thành công sản phẩm khỏi wishlist!')
-        setLoading(false)
-      })
-      .catch((error) => {
-        Message.error('Lỗi hệ thống vui lòng thử lại sau!')
-        setLoading(false)
-      })
+  const handleDeleteWishList = props.delete
+  const deleted = () => {
+    handleDeleteWishList(productId)
   }
   return (
     <Media tag='li'>
@@ -41,7 +32,7 @@ export default function FavoriteItem(props) {
         <Media heading>{name}</Media>
         <p>{description}</p>
         <Spin spinning={loading}>
-          <Button onClick={handleDeleteWishList} outline color='danger'>
+          <Button onClick={deleted} outline color='danger'>
             <span className='fa fa-times'>Xóa</span>
           </Button>
         </Spin>

@@ -3,10 +3,11 @@ import { Media } from 'reactstrap'
 import Layout from '../layout/Layout'
 import FavoriteItem from '../components/FavoriteItem'
 import { getWishlist } from '../api/userApi'
-import { Spin } from 'antd'
+import { Spin, message as Message } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import { _showLogForm } from '../redux/action/changeFormAction'
 import { Navigate } from 'react-router-dom'
+import { deleteWishList } from '../api/userApi'
 
 const Favorites = () => {
   const dispatch = useDispatch()
@@ -24,8 +25,32 @@ const Favorites = () => {
       .catch((error) => {
         console.log(error)
       })
-  }, [wishlist.length])
-  // console.log('wishlist', wishlist)
+  }, [])
+  const handleDeleteWishList = (idsDelete) => {
+    setLoading(true)
+    deleteWishList(idsDelete)
+      .then((response) => {
+        Message.success('Bạn đã xóa thành công sản phẩm khỏi wishlist!')
+        if (response.status > 200) {
+          getWishlist()
+            .then((response) => {
+              setLoading(false)
+              const [products] = response.data
+              const product = products.products
+              if (product) setWishlist(product)
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+        }
+        setLoading(false)
+      })
+      .catch((error) => {
+        Message.error('Lỗi hệ thống vui lòng thử lại sau!')
+        setLoading(false)
+      })
+  }
+
   return (
     <Layout>
       <Spin spinning={loading}>
@@ -40,7 +65,7 @@ const Favorites = () => {
             <Media list>
               {wishlist.length > 0 ? (
                 wishlist.map((item, index) => {
-                  return <FavoriteItem key={index} {...item} />
+                  return <FavoriteItem key={index} {...item} delete={handleDeleteWishList} />
                 })
               ) : (
                 <div>
