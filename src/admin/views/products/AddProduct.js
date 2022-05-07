@@ -60,21 +60,21 @@ const AddProduct = () => {
       warn('Sản phẩm cần tối thiểu một loại hàng')
       setLoading(false)
     } else {
-      console.log('data', data)
+      // console.log('data', data)
       // const token = localStorage.getItem('token')
       axiosClient
         .post('http://localhost:4000/products', data)
         .then((response) => {
           if (response.data.success === true) {
-            console.log('them sp thanh cong')
+            // console.log('them sp thanh cong')
             success(response.data.status)
-            console.log('data', response.data)
+            // console.log('data', response.data)
           } else {
             error(response.data.error)
           }
         })
         .catch((err) => {
-          console.log('them sp that bai')
+          // console.log('them sp that bai')
           error('Thêm sản phẩm thất bại')
           // error(err.response.data.message)
         })

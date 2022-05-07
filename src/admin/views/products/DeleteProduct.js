@@ -10,7 +10,7 @@ const DeleteProduct = () => {
       .then((response) => {
         const { products } = response.data
         setDataProducts(products)
-        console.log('lay sp thanh cong')
+        // console.log('lay sp thanh cong')
       })
       .catch((error) => {
         console.log('err', error)

@@ -68,7 +68,7 @@ const ProductDetail = () => {
           dispatch(_getMyCart())
         })
         .catch((e) => {
-          // const { status, data } = e.response
+          // const { status} = e.response
           // if (status >= 500) {
           // console.log('error', e)
           Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
@@ -154,15 +154,13 @@ const ProductDetail = () => {
                         <div className='thumbs-wrap'>
                           {product.images.map((image, index) => {
                             return (
-                              <>
-                                <img
-                                  key={index}
-                                  className='item-thumb'
-                                  src={image}
-                                  onClick={(e) => setTargetImage(e.target.src)}
-                                  alt={product.name}
-                                />
-                              </>
+                              <img
+                                key={index}
+                                className='item-thumb'
+                                src={image}
+                                onClick={(e) => setTargetImage(e.target.src)}
+                                alt={product.name}
+                              />
                             )
                           })}
                         </div>
@@ -296,9 +294,7 @@ const ProductDetail = () => {
               <article className='card mt-5'>
                 <div className='card-body'>
                   <h5>Bình luận</h5>
-                  <ToastProvider>
-                    <CommentProduct productId={productId} />
-                  </ToastProvider>
+                  <ToastProvider>{/* <CommentProduct productId={productId} /> */}</ToastProvider>
                 </div>
               </article>
             </div>

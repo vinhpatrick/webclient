@@ -170,9 +170,9 @@ const ListView = (props) => {
         <Spin spinning={searching}>
           {list.map((item, index) => {
             return (
-              <>
-                <ListItem key={Math.random()} {...item} />
-              </>
+              <div key={index}>
+                <ListItem {...item} />
+              </div>
             )
           })}
         </Spin>

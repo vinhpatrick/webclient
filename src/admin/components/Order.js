@@ -215,7 +215,7 @@ const Order = ({ getStatus }) => {
                     </CTableHead>
                     {item.items.map((data, i) => {
                       return (
-                        <CTableBody>
+                        <CTableBody key={i}>
                           <CTableRow>
                             <CTableDataCell>{data.product.name}</CTableDataCell>
                             <CTableDataCell>{data.size}</CTableDataCell>
@@ -263,7 +263,7 @@ const Order = ({ getStatus }) => {
                       <CRow>
                         <CCol xs>
                           <CButton
-                            disable={loading}
+                            // disable={loading}
                             color='success'
                             onClick={() => {
                               setLoading(true)
@@ -276,7 +276,7 @@ const Order = ({ getStatus }) => {
                         </CCol>
                         <CCol>
                           <CButton
-                            disable={loading}
+                            // disable={loading}
                             color='danger'
                             onClick={() => {
                               showDeleteConfirm(item.idOrder)

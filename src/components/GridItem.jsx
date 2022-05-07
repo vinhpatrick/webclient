@@ -4,7 +4,7 @@ import numberSeparator from '../helpers/validating/numberSeparator'
 import { Link } from 'react-router-dom'
 
 const GridItem = (props) => {
-  console.log(props)
+  // console.log(props)
   const { _id: productId, images = [], name, price, originalPrice, createdAt, sold, view } = props
   const created = new Date(createdAt).getTime()
   const isNew = Date.now() - created <= 7 * 24 * 60 * 60 * 1000
@@ -22,7 +22,7 @@ const GridItem = (props) => {
             )}
             <img src={images[0]} />
             <Link className={`${styles['btn-overlay']}`} to={`/products/${productId}`}>
-              <i className={`${styles['fa']} ${styles['fa-search-plus']}`} /> Xem sản phẩm
+              <i className='fa fa-search-plus' /> Xem sản phẩm
             </Link>
           </div>
           <figcaption className={`${styles['info-wrap']}`}>

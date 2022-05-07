@@ -175,11 +175,7 @@ const GridView = (props) => {
         <Spin spinning={searching}>
           <div className={`${styles['row']}`}>
             {list.map((item, index) => {
-              return (
-                <>
-                  <GridItem key={index} {...item} />
-                </>
-              )
+              return <GridItem key={index} {...item} />
             })}
           </div>
         </Spin>

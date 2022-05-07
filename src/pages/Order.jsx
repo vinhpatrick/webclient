@@ -22,8 +22,9 @@ const Order = (props) => {
   const [status, setStatus] = useState('')
   useEffect(() => {
     getOrder({ status: status }).then((response) => {
-      console.log('status', status)
-      setOrders(response.data)
+      // console.log('status', status)
+      const data = response.data
+      setOrders(data)
       // console.log('order', response.data)
       setLoading(false)
     })
@@ -153,7 +154,7 @@ const Order = (props) => {
                                 <CButton
                                   color='success'
                                   shape='rounded-pill'
-                                  loading={true}
+                                  // loading={loading}
                                   onClick={() => {
                                     setLoading(true)
                                     confirmOd(order._id)

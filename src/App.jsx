@@ -15,27 +15,55 @@ import './App.css'
 import Seller from './admin/Seller'
 function App() {
   const location = useLocation()
+  const routes = [
+    { path: '/', name: 'Home', exact: true, element: Home },
+    { path: '/products/:productId', exact: true, element: ProductDetail },
+    { path: '/favorites', name: 'Favorites', element: Favorites },
+    { path: '/aboutus', name: 'About', element: About },
+    { path: '/contactus', name: 'Contact', element: Contact },
+    { path: '/cart', name: 'Cart', element: Cart },
+    { path: '/order', name: 'Order', element: Order },
+    { path: '/search', name: 'Search', element: Search },
+    { path: '/seller/*', name: 'Seller', element: Seller },
+  ]
   return (
-    <TransitionGroup component={null}>
+    <TransitionGroup>
       <CSSTransition key={location.key} classNames='page' timeout={300}>
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          {/* <Route exact path='/home' element={<Navigate to='/' replace />} /> */}
-          <Route path='/products/'>
-            <Route index element={<div>All products page</div>} />
-            <Route path=':productId' element={<ProductDetail />} />
-          </Route>
-          <Route path='/favorites' element={<Favorites />} />
-          <Route path='/aboutus' element={<About />} />
-          <Route path='/contactus' element={<Contact />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/order' element={<Order />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='/seller/*' element={<Seller />} />
+        <Routes location={location}>
+          {routes.map((route, idx) => {
+            return (
+              route.element && (
+                <Route
+                  key={idx}
+                  path={route.path}
+                  exact={route.exact}
+                  name={route.name}
+                  element={<route.element />}
+                />
+              )
+            )
+          })}
           <Route path='*' element={<NotFound />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>
+
+    // <TransitionGroup>
+    //   <CSSTransition key={location.key} classNames='page' timeout={300}>
+    //     <Routes>
+    //       <Route exact path='/' element={<Home />} />
+    //       <Route path='/products/:productId' element={<ProductDetail />} />
+    //       <Route path='/favorites' element={<Favorites />} />
+    //       <Route path='/aboutus' element={<About />} />
+    //       <Route path='/contactus' element={<Contact />} />
+    //       <Route path='/cart' element={<Cart />} />
+    //       <Route path='/order' element={<Order />} />
+    //       <Route path='/search' element={<Search />} />
+    //       <Route path='/seller/*' element={<Seller />} />
+    //       <Route path='*' element={<NotFound />} />
+    //     </Routes>
+    //   </CSSTransition>
+    // </TransitionGroup>
   )
 }
 

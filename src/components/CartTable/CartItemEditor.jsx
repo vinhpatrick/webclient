@@ -17,7 +17,7 @@ const CartItemActions = (props) => {
   // console.log('cartitemid', cartItemId)
   const cartId = cartItemId && cartItemId
   const handleEditCartItem = (e) => {
-    console.log('bạn đang edit cart')
+    // console.log('bạn đang edit cart')
     dispatch({
       type: 'LOAD_CART',
     })

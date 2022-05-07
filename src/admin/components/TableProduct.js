@@ -104,7 +104,7 @@ const TableProduct = ({ columns, usersData, type }) => {
         scopedColumns={{
           rating: (item) => (
             <td>
-              <ReactStars size='30' value={item.rating} edit={false} disable />
+              <ReactStars size={30} value={item.rating} edit={false} disable />
             </td>
           ),
           price: (item) => <td>{numberSeparator(item.price)} VNĐ</td>,

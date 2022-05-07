@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import { logoutUser } from '../redux/action/userAction'
@@ -8,6 +8,7 @@ import { Spin } from 'antd'
 import { _getMyCart } from '../redux/action/cartAction'
 import { resetLogin } from '../redux/action/userAction'
 import styles from '../css_modules/css/all.module.css'
+// import Carts from '../components/Carts'
 import {
   Navbar,
   NavbarBrand,
@@ -26,6 +27,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { _showLogForm, _hideLogForm } from '../redux/action/changeFormAction'
 
 const Header = () => {
+  useEffect(() => {
+    if (auth) dispatch(_getMyCart())
+  }, [])
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const auth = useSelector((state) => state.logForm.isAuthenticated)
@@ -179,13 +183,13 @@ const Header = () => {
           <NavbarToggler onClick={handleToggleNav} />
           <Collapse isOpen={toggleNav} navbar>
             <div>
-              <NavbarBrand href='/'>
+              <Link to='/'>
                 <img
                   style={{ maxWidth: '130px', marginBottom: '10px' }}
                   src={`${process.env.PUBLIC_URL}/assets/images/logo.png`}
                   alt='VinhMobile'
                 />
-              </NavbarBrand>
+              </Link>
             </div>
             <Nav navbar>
               <NavItem>
@@ -249,4 +253,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default memo(Header)
