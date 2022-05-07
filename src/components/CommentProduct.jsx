@@ -11,56 +11,60 @@ const { TextArea } = Input
 
 const CommentProduct = ({ productId }) => {
   const userId = localStorage.getItem('userId') && localStorage.getItem('userId')
+  const auth = useSelector((state) => state.logForm.isAuthenticated)
   const { error, warn, success } = useToast()
   const [comment, setComment] = useState([])
   const [loading, setLoading] = useState(true)
   const [loadingbtn, setLoadingBtn] = useState(false)
-  const [ratting, setRatting] = useState()
-  const [commentText, setCommentText] = useState('')
+  const [ratting, setRatting] = useState(0)
+  const [text, setText] = useState('')
+  // const [commentText, setCommentText] = useState('')
   const [commentId, setCommentId] = useState(null)
-  const [newComment, setNewComment] = useState({})
-  useEffect(() => {
-    setNewComment({
-      product: productId,
-      author: userId,
-      comment: '',
-      ratting: 0,
-    })
-  }, [productId])
-  const handleChange = (e) => setNewComment({ ...newComment, [e.target.name]: e.target.value })
+  const [newComment, setNewComment] = useState({
+    product: productId,
+    author: userId,
+    comment: '',
+    ratting: 0,
+  })
+  const handleChange = (e) => {
+    setText(e.target.value)
+    setNewComment({ ...newComment, comment: text, [e.target.name]: e.target.value })
+  }
   useEffect(() => {
     getComment(productId).then((response) => {
-      // console.log('comments', response.data)
       response.data.map((cmt) => {
-        //  console.log('author', cmt.author._id)
         if (userId === cmt.author._id) {
-          setRatting(cmt.ratting)
+          // setRatting(cmt.ratting)
           setCommentId(cmt._id)
-          setCommentText(cmt.comment)
+          // setCommentText(cmt.comment)
         }
       })
       setComment(response.data)
       setLoading(false)
     })
   }, [loading])
-  //themcmt
+  //add comment
   const addComment = () => {
     setLoadingBtn(true)
     newComment.ratting = ratting
-    if (newComment.comment == '') {
+    if (!auth) {
+      warn('Bạn cần đăng nhập để đánh giá sản phẩm!!!')
+      setLoadingBtn(false)
+    } else if (newComment.comment == '') {
       warn('Bạn chưa nhập nội dung bình luận')
       setLoadingBtn(false)
-    } else if (ratting == null) {
+    } else if (ratting <= 0) {
       warn('Bạn vui lòng đánh giá sản phẩm')
       setLoadingBtn(false)
     } else {
       // console.log('newcomment', newComment)
       postComment(newComment)
         .then((respone) => {
-          success('Bạn đã đánh giá sp thành công')
           setLoading(true)
           setLoadingBtn(false)
-          // setRatting(0)
+          setRatting(0)
+          setText('')
+          success('Bạn đã đánh giá sp thành công')
           // setCommentText('')
         })
         .catch((err) => {
@@ -112,14 +116,14 @@ const CommentProduct = ({ productId }) => {
       {comment.map((cmt, index) => {
         if (cmt.product === productId) {
           return (
-            <div key={index}>
+            <div key={cmt._id}>
               {/* {console.log('commentId', commentId)}
               {console.log('cmt.author._id', cmt.author._id)} */}
               <Comment
                 // actions={commentId === cmt._id ? actions : []}
                 actions={actions}
                 author={[<a>{cmt.author.username}</a>]}
-                avatar={<Avatar src='https://joeschmoe.io/api/v1/random' alt='avt accommerce' />}
+                avatar={<Avatar src='https://joeschmoe.io/api/v1/random' alt='vinh god' />}
                 content={[
                   <div>
                     <Tooltip key='comment-basic-rate' title='Đánh giá'>
@@ -142,24 +146,21 @@ const CommentProduct = ({ productId }) => {
           )
         }
       })}
-      {userId != '' ? (
-        <>
-          <Form.Item>
-            <TextArea rows={4} name='comment' onChange={(e) => handleChange(e)} />
-            <span>
-              <Rate name='ratting' value={ratting} onChange={(value) => setRatting(value)} />
-            </span>
-          </Form.Item>
 
-          <Form.Item>
-            <Button onClick={addComment} type='primary' loading={loadingbtn}>
-              Bình luận
-            </Button>
-          </Form.Item>
-        </>
-      ) : (
-        ''
-      )}
+      <>
+        <Form.Item>
+          <TextArea rows={4} value={text} name='comment' onChange={(e) => handleChange(e)} />
+          <span>
+            <Rate name='ratting' value={ratting} onChange={(value) => setRatting(value)} />
+          </span>
+        </Form.Item>
+
+        <Form.Item>
+          <Button onClick={addComment} type='primary' loading={loadingbtn}>
+            Bình luận
+          </Button>
+        </Form.Item>
+      </>
     </div>
   )
 }

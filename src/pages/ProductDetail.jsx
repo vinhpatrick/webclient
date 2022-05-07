@@ -135,7 +135,10 @@ const ProductDetail = () => {
     <Layout>
       <Spin spinning={loading} size='large'>
         {Object.keys(product).length && (
-          <section style={{ marginTop: '100px' }} className='section-content padding-y bg'>
+          <section
+            style={{ marginTop: '100px', marginBottom: '30px' }}
+            className='section-content padding-y bg'
+          >
             <div className='container'>
               <article className='card'>
                 <div className='card-body'>
@@ -289,12 +292,13 @@ const ProductDetail = () => {
               </article>
 
               <article className='card mt-5'></article>
-
               <div className='card-body'></div>
               <article className='card mt-5'>
                 <div className='card-body'>
                   <h5>Bình luận</h5>
-                  <ToastProvider>{/* <CommentProduct productId={productId} /> */}</ToastProvider>
+                  <ToastProvider>
+                    <CommentProduct productId={productId} />
+                  </ToastProvider>
                 </div>
               </article>
             </div>
