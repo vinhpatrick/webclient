@@ -19,6 +19,8 @@ const ChangeProduct = () => {
     {
       label: 'Tên sản Phẩm',
       key: 'name',
+      filter: true,
+      sorter: true,
       _style: { width: '40%' },
       _props: { className: 'fw-semibold' },
     },
@@ -29,7 +31,6 @@ const ChangeProduct = () => {
     {
       label: 'Giá sản phẩm',
       key: 'price',
-      filter: true,
       sorter: false,
       _style: { width: '20%' },
     },

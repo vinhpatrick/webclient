@@ -90,7 +90,7 @@ const TableProduct = ({ columns, usersData, type }) => {
   return (
     <div>
       <CSmartTable
-        activePage={3}
+        activePage={1}
         cleaner
         clickableRows
         columns={columns}
