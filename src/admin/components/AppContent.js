@@ -8,6 +8,7 @@ import TableOrder from '../views/orders/TableOrder'
 import WaitingOrder from '../views/orders/WaitingOrder'
 import Dashboard from '../views/dashboard/Dashboard'
 import TableUser from '../views/customer/TableUser'
+import FeedBack from '../views/customer/FeedBack'
 import NotFound from '../../pages/NotFound'
 // routes config
 
@@ -22,7 +23,8 @@ const AppContent = () => {
           <Route path='delete-product' element={<DeleteProduct />} />
           <Route path='orders' element={<TableOrder />} />
           <Route path='waiting-orders' element={<WaitingOrder />} />
-          <Route path='shops' element={<TableUser />} />
+          <Route path='customer' element={<TableUser />} />
+          <Route path='feedback' element={<FeedBack />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Suspense>

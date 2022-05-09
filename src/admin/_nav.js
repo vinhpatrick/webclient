@@ -9,6 +9,7 @@ import {
   cibShopify,
   cilContact,
   cilUser,
+  cilCommentSquare,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -30,8 +31,14 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Danh sách khách hàng',
-    to: '/seller/shops',
+    to: '/seller/customer',
     icon: <CIcon icon={cilUser} customClassName='nav-icon' />,
+  },
+  {
+    component: CNavItem,
+    name: 'Phản hồi của khách hàng',
+    to: '/seller/feedback',
+    icon: <CIcon icon={cilCommentSquare} customClassName='nav-icon' />,
   },
   // {
   //   component: CNavTitle,

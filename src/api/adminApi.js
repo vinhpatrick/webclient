@@ -50,3 +50,10 @@ export const getUsers = () => {
     method: 'GET',
   })
 }
+
+export const getFeedBacks = () => {
+  return axiosClient({
+    url: '/feedback',
+    method: 'GET',
+  })
+}
