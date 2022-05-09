@@ -130,3 +130,11 @@ export const deleteWishList = (productId) => {
   })
 }
 
+export const postFeedback = (payload) => {
+  return axiosClient({
+    url: '/feedback',
+    method: 'POST',
+    data: payload,
+  })
+}
+
