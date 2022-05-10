@@ -119,9 +119,9 @@ const Contact = () => {
                       model='.firstname'
                       show='touched'
                       messages={{
-                        required: 'Required',
-                        minLength: 'Must be greater than 2 characters',
-                        maxLength: 'Must be 15 characters or less',
+                        required: 'Vui lòng nhập họ!',
+                        minLength: 'Họ phải lớn hơn 2 ký tự ! ',
+                        maxLength: 'Họ phải nhỏ hơn 15 ký tự !',
                       }}
                     />
                   </Col>
@@ -148,9 +148,9 @@ const Contact = () => {
                       model='.lastname'
                       show='touched'
                       messages={{
-                        required: 'Required',
-                        minLength: 'Must be greater than 2 characters',
-                        maxLength: 'Must be 15 characters or less',
+                        required: 'Vui lòng nhập tên ! ',
+                        minLength: 'Tên phải lớn hơn 2 ký tự !',
+                        maxLength: 'Tên phải nhỏ hơn 15  ký tự !',
                       }}
                     />
                   </Col>
@@ -178,10 +178,10 @@ const Contact = () => {
                       model='.telnum'
                       show='touched'
                       messages={{
-                        required: 'Required',
-                        minLength: 'Must be greater than 2 numbers',
-                        maxLength: 'Must be 15 numbers or less',
-                        isNumber: 'Must be a number',
+                        required: 'Vui lòng nhập số điện thoại !',
+                        minLength: 'Số điện thoại phải nhiều hơn 10 số !',
+                        maxLength: 'Số điện thoại phải nhỏ hơn 12 số !',
+                        isNumber: 'Vui lòng nhập số !',
                       }}
                     />
                   </Col>
@@ -207,8 +207,8 @@ const Contact = () => {
                       model='.email'
                       show='touched'
                       messages={{
-                        required: 'Required',
-                        validEmail: 'Invalid Email Address',
+                        required: 'Vui lòng nhập email !',
+                        validEmail: 'Email không đúng định dạng !',
                       }}
                     />
                   </Col>

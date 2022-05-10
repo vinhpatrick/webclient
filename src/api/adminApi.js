@@ -8,6 +8,13 @@ export const getProduct = (query) => {
     method: 'GET',
   })
 }
+export const addProduct = (payload) => {
+  return axiosClient({
+    url: '/products',
+    method: 'POST',
+    data: payload,
+  })
+}
 
 export const updateProduct = (productId, payload) => {
   return axiosClient({

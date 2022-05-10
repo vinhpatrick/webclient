@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import styles from '../css_modules/css/all.module.css'
+import numberSeparator from '../helpers/validating/numberSeparator'
 
 const ProductItem = (props) => {
   const { _id, name, images, price, originalPrice, sold, view } = props
@@ -29,11 +30,11 @@ const ProductItem = (props) => {
               </div>
               <div className={`${styles['row']} ${styles['col-sm-12']}`}>
                 <div className={`${styles['price']} ${styles['mt-1']}`} style={{ color: 'red' }}>
-                  ₫ {price}
+                  ₫ {numberSeparator(price)}
                 </div>
                 {price !== originalPrice && (
                   <div className={`${styles['price-old']} ${styles['mt-2']}`}>
-                    <del>₫ {originalPrice}</del>
+                    <del>₫ {numberSeparator(originalPrice)}</del>
                   </div>
                 )}
               </div>

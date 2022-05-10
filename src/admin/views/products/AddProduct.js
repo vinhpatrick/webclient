@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import axiosClient from '../../../api/axiosClient'
+import { addProduct } from '../../../api/adminApi'
 import {
   CButton,
   CCol,
@@ -62,12 +63,16 @@ const AddProduct = () => {
     } else {
       // console.log('data', data)
       // const token = localStorage.getItem('token')
-      axiosClient
-        .post('http://localhost:4000/products', data)
+      // axiosClient
+      //   .post('http://localhost:4000/products', data)
+      addProduct(data)
         .then((response) => {
           if (response.data.success === true) {
             // console.log('them sp thanh cong')
             success(response.data.status)
+            setData(initData)
+            setImages([])
+            setSizes([{ name: '', numberInStock: '' }])
             // console.log('data', response.data)
           } else {
             error(response.data.error)
@@ -80,7 +85,7 @@ const AddProduct = () => {
         })
         .finally(() => {
           setLoading(false)
-          setData(initData)
+          // setData(initData)
         })
     }
   }
