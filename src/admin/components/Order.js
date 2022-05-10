@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 // import { getShops, getOrders, confirmOrder, cancelOrder } from '../../api/adminApi'
 import { getOrder, confirmOrder, cancelOrder } from '../../api/adminApi'
 import { CSmartTable, CBadge, CFormSelect, CButton, CCollapse, CCardBody } from '@coreui/react-pro'
-import { ORDER_STATUSES_MAPPING } from '../../helpers/order/index'
+import { ORDER_STATUSES_MAPPING } from '../../helpers/order'
 import {
   CTableRow,
   CTable,
