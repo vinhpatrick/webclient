@@ -423,8 +423,8 @@ a {
     transform: translateX(0%);
     }
     
-    .page-exit-active {
+.page-exit-active {
       opacity: 0.01;
       transform: translateX(100%);
       transition: all 300ms ease-out;
-    }
+}

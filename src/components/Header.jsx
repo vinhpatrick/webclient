@@ -21,6 +21,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Button,
 } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -180,7 +181,15 @@ const Header = () => {
     <div>
       <Navbar style={{ backgroundColor: '#fed700' }} expand='md' light={false}>
         <div className='container'>
-          <NavbarToggler onClick={handleToggleNav} />
+          {/* <NavbarToggler onClick={handleToggleNav} /> */}
+          <button
+            style={{ border: '1px solid #374046' }}
+            type='button'
+            className='navbar-toggler'
+            onClick={handleToggleNav}
+          >
+            <i className='fa fa-solid fa-bars'></i>
+          </button>
           <Collapse isOpen={toggleNav} navbar>
             <div>
               <Link to='/'>

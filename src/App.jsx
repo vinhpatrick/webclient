@@ -27,26 +27,26 @@ function App() {
     { path: '/seller/*', name: 'Seller', element: Seller },
   ]
   return (
-    <TransitionGroup>
-      <CSSTransition key={location.key} classNames='page' timeout={300}>
-        <Routes location={location}>
-          {routes.map((route, idx) => {
-            return (
-              route.element && (
-                <Route
-                  key={idx}
-                  path={route.path}
-                  exact={route.exact}
-                  name={route.name}
-                  element={<route.element />}
-                />
-              )
-            )
-          })}
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </CSSTransition>
-    </TransitionGroup>
+    // <TransitionGroup>
+    //   <CSSTransition key={location.key} classNames='page' timeout={300}>
+    <Routes location={location}>
+      {routes.map((route, idx) => {
+        return (
+          route.element && (
+            <Route
+              key={idx}
+              path={route.path}
+              exact={route.exact}
+              name={route.name}
+              element={<route.element />}
+            />
+          )
+        )
+      })}
+      <Route path='*' element={<NotFound />} />
+    </Routes>
+    //   </CSSTransition>
+    // </TransitionGroup>
 
     // <TransitionGroup>
     //   <CSSTransition key={location.key} classNames='page' timeout={300}>
@@ -64,6 +64,12 @@ function App() {
     //     </Routes>
     //   </CSSTransition>
     // </TransitionGroup>
+
+    //   ,
+    // "engines": {
+    //   "node": "14.2.0",
+    //   "npm": "6.14.5"
+    // }
   )
 }
 
