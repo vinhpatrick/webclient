@@ -54,9 +54,9 @@ const Favorites = () => {
   return (
     <Layout>
       <Spin spinning={loading}>
-        <div className='container' style={{ minHeight: '600px' }}>
+        <div className='container page-wishlist' style={{ minHeight: '600px' }}>
           <div className='row'>
-            <div className='col-12'>
+            <div className='col-12 page-title'>
               <h3>Danh sách sản phẩm yêu thích của bạn!</h3>
               <hr />
             </div>

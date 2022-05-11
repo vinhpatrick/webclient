@@ -8,7 +8,7 @@ const ProductItem = (props) => {
   return (
     <>
       <div className={`${styles['col-md-3']}`}>
-        <Link to={`/products/${_id}`}>
+        <Link className='product-info' to={`/products/${_id}`}>
           <div className={`${styles['card']} ${styles['card-product-grid']}`}>
             <div className={`${styles['img-wrap']}`}>{images && <img src={images[0]} />}</div>
             <figcaption className={`${styles['info-wrap']}`}>

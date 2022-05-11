@@ -137,7 +137,7 @@ address{
   background-color:white;
   width: 350px;
   height: 40px;
-  border: 2px solid #fdb921;
+  
   border-radius: 50px;
   /* overflow: hidden; */
   display: flex;
@@ -393,10 +393,7 @@ a {
 .section-title {
   color: #212529;
 }
-.log-modal {
-  margin-top: 10px;
-  margin-left: 10px
-}
+
 
 .log-modal:hover {
   cursor: pointer;
@@ -427,4 +424,106 @@ a {
       opacity: 0.01;
       transform: translateX(100%);
       transition: all 300ms ease-out;
+}
+.navbar-expand-md .navbar-collapse {
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.header-left .logo img {
+  max-width: 168px;
+  display: block;
+  margin-top: -2px;
+}
+
+.navbar-expand-md .navbar-nav {
+  margin-left: 45px;
+}
+
+.navbar-expand-md .navbar-nav .nav-search {
+  margin-left: 45px;
+
+}
+
+.navbar-expand-md .navbar-nav .nav-link:hover {
+  color: #f36;
+}
+
+.navbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #000;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.header-right .dropdown .btn-secondary {
+  border: none;
+}
+
+.header-right .account .log-modal .fa,
+.header-right .mini-cart .hover-log {
+  font-size: 23px
+}
+
+.header-right .mini-cart {
+  margin-left: 20px;
+}
+
+.ant-spin-container .product-info .all_card__7F4mO {
+  display: block;
+  padding: 20px;
+}
+
+.all_card-product-grid__fj6GV .all_img-wrap__qEcHh {
+  height: auto;
+}
+
+.card-body .card.img-wrap {
+  border: none;
+  margin-top: 30px;
+}
+
+.page-wishlist .page-title {
+  margin-bottom: 60px;
+}
+
+.page-wishlist .page-title h3 {
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+
+.page-wishlist .media-list li:not(:last-child) {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ebebeb;
+
+}
+
+.page-wishlist .media-list li .media-left {
+  max-width: 150px;
+}
+
+.page-wishlist .media-list li .media-left img {
+  max-width: 100%;
+}
+
+.page-wishlist {
+  margin-bottom: 60px;
 }

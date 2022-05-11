@@ -88,7 +88,7 @@ const Home = (props) => {
       <div className=''>
         <section className='section-name padding-y-sm'>
           <div className='container'>
-            <header className='section-heading'>
+            <header className='hihi section-heading'>
               <h3 className='section-title'>Sản phẩm mới</h3>
             </header>
             <Spin spinning={loadingNews}>

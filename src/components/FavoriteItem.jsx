@@ -17,12 +17,12 @@ export default function FavoriteItem(props) {
     <Media tag='li'>
       <Media left middle>
         <Media
-          style={{
-            maxWidth: '200px',
-            maxHeight: '200px',
-            with: '150px',
-            height: '150px',
-          }}
+          // style={{
+          //   maxWidth: '200px',
+          //   maxHeight: '200px',
+          //   with: '150px',
+          //   height: '150px',
+          // }}
           object
           src={images[0]}
           alt={description}

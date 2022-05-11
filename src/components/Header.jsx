@@ -79,7 +79,7 @@ const Header = () => {
     return (
       <div>
         <div onClick={handleShowLogForm} className='log-modal'>
-          <span className='fa fa-user-circle fa-lg'></span> Login
+          <span className='fa fa-user-circle fa-2x'></span>
         </div>
         <Modal
           modalTransition={{
@@ -161,19 +161,16 @@ const Header = () => {
     }
 
     return (
-      <>
-        <div
-          style={{ marginLeft: '15px', marginTop: '3px' }}
-          className={`${styles['widget-header']} ${styles['mr-3']}`}
-        >
-          <span onClick={handleCartClick} className='hover-log fa fa-shopping-cart fa-2x'></span>
+      <div>
+        <div className={`${styles['widget-header']} ${styles['mr-3']}`}>
+          <span onClick={handleCartClick} className='hover-log fa fa-shopping-basket fa-2x'></span>
           <span
             className={`${styles['badge']} ${styles['badge-pill']} ${styles['badge-danger']} ${styles['notify']}`}
           >
             <Spin spinning={loading}>{data.length}</Spin>
           </span>
         </div>
-      </>
+      </div>
     )
   }
 
@@ -190,72 +187,73 @@ const Header = () => {
           >
             <i className='fa fa-solid fa-bars'></i>
           </button>
+          <Link className='logo' to='/'>
+            <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt='VinhMobile' />
+          </Link>
           <Collapse isOpen={toggleNav} navbar>
-            <div>
-              <Link to='/'>
-                <img
-                  style={{ maxWidth: '130px', marginBottom: '10px' }}
-                  src={`${process.env.PUBLIC_URL}/assets/images/logo.png`}
-                  alt='VinhMobile'
-                />
-              </Link>
-            </div>
-            <Nav navbar>
-              <NavItem>
-                <NavLink className='nav-link' to='/'>
-                  <span className='fa fa-home fa-lg'></span> Trang chủ
-                </NavLink>
-              </NavItem>
-              <NavItem as='li' className='hover-log' onClick={handleFavorite}>
-                <div className='nav-link' to='/favorites'>
-                  <span className='fa fa-heart fa-lg'></span> Wish List
-                </div>
-              </NavItem>
-              <NavItem>
-                <NavLink className='nav-link' to='/aboutus'>
-                  <span className='fa fa-info fa-lg'></span> About Us
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className='nav-link' to='/contactus'>
-                  <span className='fa fa-address-card fa-lg'></span>Liên hệ
-                </NavLink>
-              </NavItem>
-              <NavItem className='nav-search'>
-                <form>
-                  <div className='search'>
-                    <input
-                      type='text'
-                      name=''
-                      placeholder='Tìm kiếm mặt hàng,sản phẩm ...'
-                      onChange={(e) => {
-                        setKeyword(e.target.value)
-                      }}
-                      onKeyPress={handlePressEnter}
-                    />
-                    {keyword ? (
-                      <button onClick={handleSearchClick}>
-                        <i className='fa fa-search'></i>
-                      </button>
-                    ) : (
-                      <a href='/'>
-                        <button>
-                          <i className='fa fa-search'></i>
-                        </button>
-                      </a>
-                    )}
+            <div className='header-left'>
+              <Nav navbar>
+                <NavItem>
+                  <NavLink className='nav-link' to='/'>
+                    {/* <span className='fa fa-home fa-sm'></span>  */}
+                    Trang chủ
+                  </NavLink>
+                </NavItem>
+                <NavItem as='li' className='hover-log' onClick={handleFavorite}>
+                  <NavLink className='nav-link' to='/favorites'>
+                    {/* <span className='fa fa-heart fa-sm'></span>  */}
+                    Wish List
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className='nav-link' to='/aboutus'>
+                    {/* <span className='fa fa-info fa-sm'></span>  */}
+                    About Us
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className='nav-link' to='/contactus'>
+                    {/* <span className='fa fa-address-card fa-sm'></span> */}
+                    Liên hệ
+                  </NavLink>
+                </NavItem>
+                <NavItem className='nav-search'>
+                  <div className='content-search'>
+                    <form>
+                      <div className='search'>
+                        <input
+                          type='text'
+                          name=''
+                          placeholder='Tìm kiếm mặt hàng,sản phẩm ...'
+                          onChange={(e) => {
+                            setKeyword(e.target.value)
+                          }}
+                          onKeyPress={handlePressEnter}
+                        />
+                        {keyword ? (
+                          <button id='testvinhok' onClick={handleSearchClick}>
+                            <i className='fa fa-search'></i>
+                          </button>
+                        ) : (
+                          <a href='/'>
+                            <button>
+                              <i className='fa fa-search'></i>
+                            </button>
+                          </a>
+                        )}
+                      </div>
+                    </form>
                   </div>
-                </form>
-              </NavItem>
-              <NavItem className=''>
-                <Cart />
-                {/* <NavLink className='nav-link' to='/cart'>
-                  <span className='fa fa-shopping-cart fa-lg'></span> Giỏ hàng
-                </NavLink> */}
-              </NavItem>
-              <NavItem>{!auth ? <LogModal /> : <UserMenu />}</NavItem>
-            </Nav>
+                </NavItem>
+              </Nav>
+            </div>
           </Collapse>
+          <div className='header-right'>
+            <div className='account'>{!auth ? <LogModal /> : <UserMenu />}</div>
+            <div className='mini-cart'>
+              <Cart />
+            </div>
+          </div>
         </div>
       </Navbar>
     </div>
