@@ -180,14 +180,16 @@ const Header = () => {
       <Navbar style={{ backgroundColor: '#fed700' }} expand='md' light={false}>
         <div className='container'>
           {/* <NavbarToggler onClick={handleToggleNav} /> */}
-          <button
-            style={{ border: '1px solid #374046' }}
-            type='button'
-            className='navbar-toggler'
-            onClick={handleToggleNav}
-          >
-            <i className='fa fa-solid fa-bars'></i>
-          </button>
+          <div className='toggle-menu-mobile'>
+            <button
+              style={{ border: '1px solid #374046' }}
+              type='button'
+              className='navbar-toggler'
+              onClick={handleToggleNav}
+            >
+              <i className='fa fa-solid fa-bars'></i>
+            </button>
+          </div>
           <Link className='logo' to='/'>
             <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt='VinhMobile' />
           </Link>
@@ -197,25 +199,25 @@ const Header = () => {
                 <NavItem>
                   <NavLink className='nav-link' to='/'>
                     {/* <span className='fa fa-home fa-sm'></span>  */}
-                    Home
+                    Trang chủ
                   </NavLink>
                 </NavItem>
                 <NavItem as='li' className='hover-log' onClick={handleFavorite}>
                   <div className='nav-link'>
                     {/* <span className='fa fa-heart fa-sm'></span>  */}
-                    Wish List
+                    Sản phẩm yêu thích
                   </div>
                 </NavItem>
                 <NavItem>
                   <NavLink className='nav-link' to='/aboutus'>
                     {/* <span className='fa fa-info fa-sm'></span>  */}
-                    About Us
+                    Thông tin shop
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink className='nav-link' to='/contactus'>
                     {/* <span className='fa fa-address-card fa-sm'></span> */}
-                    Contact Us
+                    Liên hệ
                   </NavLink>
                 </NavItem>
                 <NavItem className='nav-search'>
