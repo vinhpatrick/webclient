@@ -10,6 +10,8 @@ import { Navigate } from 'react-router-dom'
 import { deleteWishList } from '../api/userApi'
 
 const Favorites = () => {
+  const auth = useSelector((state) => state.logForm.isAuthenticated)
+
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
   const [wishlist, setWishlist] = useState([])
@@ -23,9 +25,10 @@ const Favorites = () => {
         if (product) setWishlist(product)
       })
       .catch((error) => {
+        setLoading(false)
         console.log(error)
       })
-  }, [])
+  }, [auth])
   const handleDeleteWishList = (idsDelete) => {
     setLoading(true)
     deleteWishList(idsDelete)

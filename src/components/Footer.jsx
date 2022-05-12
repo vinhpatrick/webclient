@@ -9,17 +9,17 @@ function Footer(props) {
             <div className='col-4 offset-1 col-sm-2'>
               <h5>Liên Kết</h5>
               <ul className='list-unstyled'>
-                <li>
-                  <Link to='/'>Trang chủ</Link>
+                <li className='link-footer'>
+                  <Link to='/'>Home</Link>
                 </li>
-                <li>
-                  <Link to='favorites'>Wishlist</Link>
+                <li className='link-footer'>
+                  <Link to='/favorites'>Wishlist</Link>
                 </li>
-                <li>
+                <li className='link-footer'>
                   <Link to='/aboutus'>About Us</Link>
                 </li>
-                <li>
-                  <Link to='/contactus'>Liên hệ</Link>
+                <li className='link-footer'>
+                  <Link to='/contactus'>Contact Us</Link>
                 </li>
               </ul>
             </div>

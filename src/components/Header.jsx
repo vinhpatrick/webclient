@@ -57,6 +57,7 @@ const Header = () => {
     dispatch(logoutUser())
   }
   const handleFavorite = (e) => {
+    e.preventDefault()
     if (!auth) {
       dispatch(_showLogForm())
     } else {
@@ -196,14 +197,14 @@ const Header = () => {
                 <NavItem>
                   <NavLink className='nav-link' to='/'>
                     {/* <span className='fa fa-home fa-sm'></span>  */}
-                    Trang chủ
+                    Home
                   </NavLink>
                 </NavItem>
                 <NavItem as='li' className='hover-log' onClick={handleFavorite}>
-                  <NavLink className='nav-link' to='/favorites'>
+                  <div className='nav-link'>
                     {/* <span className='fa fa-heart fa-sm'></span>  */}
                     Wish List
-                  </NavLink>
+                  </div>
                 </NavItem>
                 <NavItem>
                   <NavLink className='nav-link' to='/aboutus'>
@@ -214,7 +215,7 @@ const Header = () => {
                 <NavItem>
                   <NavLink className='nav-link' to='/contactus'>
                     {/* <span className='fa fa-address-card fa-sm'></span> */}
-                    Liên hệ
+                    Contact Us
                   </NavLink>
                 </NavItem>
                 <NavItem className='nav-search'>

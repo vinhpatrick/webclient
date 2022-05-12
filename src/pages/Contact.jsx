@@ -61,7 +61,9 @@ const Contact = () => {
               <i className='fa fa-fax'></i>: +84 344 661 168
               <br />
               <i className='fa fa-envelope'></i>:{' '}
-              <a href='mailto:confusion@food.net'>vinh572000@gmail.com</a>
+              <a style={{ color: 'black' }} href='mailto:vinh572000@gmail.com'>
+                vinh572000@gmail.com
+              </a>
             </address>
           </div>
           <div className='col-12 col-sm-6 offset-sm-1'>
@@ -84,7 +86,7 @@ const Contact = () => {
               <a role='button' className='btn btn-info'>
                 <i className='fa fa-skype'></i> Skype
               </a>
-              <a role='button' className='btn btn-success' href='mailto:confusion@food.net'>
+              <a role='button' className='btn btn-success' href='mailto:vinh572000@gmail.coms'>
                 <i className='fa fa-envelope-o'></i> Email
               </a>
             </div>
@@ -106,7 +108,7 @@ const Contact = () => {
                       model='.firstname'
                       id='firstname'
                       name='firstname'
-                      placeholder='First Name'
+                      placeholder='Họ'
                       className='form-control'
                       validators={{
                         required,
@@ -135,7 +137,7 @@ const Contact = () => {
                       model='.lastname'
                       id='lastname'
                       name='lastname'
-                      placeholder='Last Name'
+                      placeholder='Tên'
                       className='form-control'
                       validators={{
                         required,
@@ -164,7 +166,7 @@ const Contact = () => {
                       model='.telnum'
                       id='telnum'
                       name='telnum'
-                      placeholder='Tel. Number'
+                      placeholder='Số điện thoại'
                       className='form-control'
                       validators={{
                         required,

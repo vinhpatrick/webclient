@@ -527,3 +527,16 @@ a {
 .page-wishlist {
   margin-bottom: 60px;
 }
+.link-footer {
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.link-footer a {
+  color: #000000;
+}
+
+.link-footer a:hover {
+  color: #f36
+}
