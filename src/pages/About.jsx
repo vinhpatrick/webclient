@@ -5,9 +5,9 @@ import Layout from '../layout/Layout'
 const About = () => {
   return (
     <Layout>
-      <div className='container'>
+      <div className='container page-wishlist'>
         <div className='row'>
-          <div className='col-12'>
+          <div className='col-12 page-title'>
             <h3>Thông tin về chúng tôi</h3>
             <hr />
           </div>

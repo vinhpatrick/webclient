@@ -36,9 +36,9 @@ const Contact = () => {
   }
   return (
     <Layout>
-      <div className='container'>
+      <div className='container page-wishlist'>
         <div className='row'>
-          <div className='col-12'>
+          <div className='col-12 page-title'>
             <h3>Liên hệ với chúng tôi</h3>
             <hr />
           </div>

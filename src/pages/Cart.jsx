@@ -42,11 +42,11 @@ import CartItemEditor from '../components/CartTable/CartItemEditor'
        {/* <Spin spinning={true}> */}
        <div>
          <section style={{ minHeight: '700px' }} className='section-contentpadding-y'>
-           <div className='container'>
+           <div className='container '>
              <div className='row'>
                <main className='col-md-12'>
-                 <div className='card'>
-                   {data.length > 0 ? (
+                 {data.length > 0 ? (
+                   <div className='card'>
                      <Table
                        dataSource={tableData}
                        key={2}
@@ -72,12 +72,17 @@ import CartItemEditor from '../components/CartTable/CartItemEditor'
                          render={(record) => <CartItemProduct {...record} />}
                        />
                      </Table>
-                   ) : (
-                     <div>
-                       <h2>Bạn chưa có sản phẩm nào trong giỏ hàng!</h2>
+                   </div>
+                 ) : (
+                   <div className='container page-wishlist'>
+                     <div className='row'>
+                       <div className='col-12 page-title'>
+                         <h3>Bạn chưa có sản phẩm nào trong giỏ hàng</h3>
+                         <hr />
+                       </div>
                      </div>
-                   )}
-                 </div>
+                   </div>
+                 )}
                </main>
              </div>
            </div>

@@ -60,7 +60,11 @@ const Favorites = () => {
         <div className='container page-wishlist' style={{ minHeight: '600px' }}>
           <div className='row'>
             <div className='col-12 page-title'>
-              <h3>Danh sách sản phẩm yêu thích của bạn!</h3>
+              {wishlist.length > 0 ? (
+                <h3>Danh sách sản phẩm yêu thích của bạn</h3>
+              ) : (
+                <h3>Bạn chưa có sản phẩm nào trong danh sách yêu thích</h3>
+              )}
               <hr />
             </div>
           </div>
@@ -71,9 +75,7 @@ const Favorites = () => {
                   return <FavoriteItem key={index} {...item} delete={handleDeleteWishList} />
                 })
               ) : (
-                <div>
-                  <h2>Bạn chưa có sản phẩm nào trong Wishlist!!!</h2>
-                </div>
+                <div></div>
               )}
             </Media>
           </div>
