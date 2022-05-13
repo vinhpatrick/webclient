@@ -80,7 +80,10 @@ const Header = () => {
     return (
       <div>
         <div onClick={handleShowLogForm} className='log-modal'>
-          <span className='fa fa-user-circle fa-2x'></span>
+          <span
+            style={{ marginRight: '10px', fontSize: '30px' }}
+            className='fa fa-sign-in fa-2x'
+          ></span>
         </div>
         <Modal
           modalTransition={{
@@ -110,13 +113,14 @@ const Header = () => {
       <Dropdown isOpen={menu} toggle={handleUserMenu}>
         <DropdownToggle
           style={{
-            backgroundColor: 'white',
-            borderRadius: '25px',
+            // outline: 'none',
+            backgroundColor: '#fed700',
+            // borderRadius: '25px',
           }}
           caret
         >
-          {!user ? '' : user.username}
-          <span className='fa fa-user-circle fa-lg'></span>
+          {/* <span style={{ fontWeight: 'bold' }}> {!user ? '' : user.username}</span> */}
+          <span style={{ fontSize: '25px', marginTop: '2px' }} className='fa fa-user-circle'></span>
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem>

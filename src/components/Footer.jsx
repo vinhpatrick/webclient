@@ -39,27 +39,43 @@ function Footer(props) {
               </address>
             </div>
             <div className='col-12 col-sm-4 align-self-center'>
-              <div className='text-center'>
-                <a className='btn btn-social-icon btn-google' href='http://google.com/+'>
-                  <i className='fa fa-google-plus'></i>
+              <div className='text-center footer-icon'>
+                <a
+                  style={{ backgroundColor: '#dd4b39' }}
+                  className='btn btn-social-icon'
+                  href='http://google.com/+'
+                >
+                  <i style={{ color: 'white' }} className='fa fa-google-plus'></i>
                 </a>
                 <a
-                  className='btn btn-social-icon btn-facebook'
+                  style={{ backgroundColor: '#2d4373' }}
+                  className='btn btn-social-icon'
                   href='http://www.facebook.com/profile.php?id='
                 >
-                  <i className='fa fa-facebook'></i>
+                  <i style={{ color: 'white' }} className='fa fa-facebook'></i>
                 </a>
-                <a className='btn btn-social-icon btn-linkedin' href='http://www.linkedin.com/in/'>
-                  <i className='fa fa-linkedin'></i>
+
+                <a
+                  style={{ backgroundColor: '#005983' }}
+                  className='btn btn-social-icon'
+                  href='http://www.linkedin.com/in/'
+                >
+                  <i style={{ color: 'white' }} className='fa fa-linkedin'></i>
                 </a>
-                <a className='btn btn-social-icon btn-twitter' href='http://twitter.com/'>
-                  <i className='fa fa-twitter'></i>
+
+                <a
+                  style={{ backgroundColor: '#2795E9' }}
+                  className='btn btn-social-icon '
+                  href='http://twitter.com/'
+                >
+                  <i style={{ color: 'white' }} className='fa fa-twitter'></i>
                 </a>
-                <a className='btn btn-social-icon btn-google' href='http://youtube.com/'>
-                  <i className='fa fa-youtube'></i>
-                </a>
-                <a className='btn btn-social-icon' href='mailto:'>
-                  <i className='fa fa-envelope-o'></i>
+                <a
+                  style={{ backgroundColor: '#c23321' }}
+                  className='btn btn-social-icon'
+                  href='http://youtube.com/'
+                >
+                  <i style={{ color: 'white' }} className='fa fa-youtube'></i>
                 </a>
               </div>
             </div>

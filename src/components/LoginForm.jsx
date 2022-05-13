@@ -102,7 +102,7 @@ const LoginForm = (props) => {
               <span style={{ color: 'red' }}>{suggest.invalid}</span>
             </FormGroup>
             <FormGroup check>
-              <Label style={{ marginTop: '20px' }} check>
+              <Label style={{ marginTop: '20px', fontWeight: 'bold' }} check>
                 <Input type='checkbox' name='remember' />
                 Remember me
               </Label>
@@ -125,10 +125,10 @@ const LoginForm = (props) => {
             </Button>
           </Form>
           <Row>
-            <Col className='hover-log' onClick={handleRegister}>
+            <Col style={{ fontWeight: 'bold' }} className='hover-log' onClick={handleRegister}>
               Chưa có tài khoản?
             </Col>
-            <Col className='hover-log' style={{ textAlign: 'right' }}>
+            <Col className='hover-log' style={{ textAlign: 'right', fontWeight: 'bold' }}>
               {' '}
               Quên mật khẩu?
             </Col>
@@ -142,13 +142,15 @@ const LoginForm = (props) => {
                 width: '4em',
                 height: '4em',
                 borderRadius: '50%',
-                backgroundColor: '#40a9ff',
+                backgroundColor: '#dd4b39',
+                color: 'white',
               }}
             >
-              <img
+              <i class='fa fa-google-plus fa-2x' aria-hidden='true'></i>
+              {/* <img
                 style={{ height: '2.5em', width: '2.5em' }}
                 src={`${process.env.PUBLIC_URL}/icons/Google.png`}
-              />
+              /> */}
             </Button>
           </Col>
           <Col xs='4' style={{ textAlign: 'center' }}>
@@ -157,13 +159,15 @@ const LoginForm = (props) => {
                 width: '4em',
                 height: '4em',
                 borderRadius: '50%',
-                backgroundColor: '#40a9ff',
+                backgroundColor: '#2d4373',
+                color: 'white',
               }}
             >
-              <img
+              <i class='fa fa-facebook fa-2x' aria-hidden='true'></i>
+              {/* <img
                 style={{ height: '3em', width: '3em' }}
                 src={`${process.env.PUBLIC_URL}/icons/Facebook.png`}
-              />
+              /> */}
             </Button>
           </Col>
           <Col xs='4' style={{ textAlign: 'center' }}>
@@ -172,13 +176,15 @@ const LoginForm = (props) => {
                 width: '4em',
                 height: '4em',
                 borderRadius: '50%',
-                backgroundColor: '#40a9ff',
+                backgroundColor: '#2795E9',
+                color: 'white',
               }}
             >
-              <img
+              <i class='fa fa-apple fa-2x' aria-hidden='true'></i>
+              {/* <img
                 style={{ height: '3em', width: '3em' }}
                 src={`${process.env.PUBLIC_URL}/icons/Apple.png`}
-              />
+              /> */}
             </Button>
           </Col>
         </Row>
