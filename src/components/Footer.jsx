@@ -26,18 +26,16 @@ function Footer(props) {
             <div className='col-7 col-sm-5'>
               <h5>Địa chỉ của chúng tôi</h5>
               <address>
-                444, Cầu Giấy
-                <br />
-                Hà Nội
-                <br />
-                Việt Nam
+                444-Cầu Giấy,Hà Nội,Việt Nam
                 <br />
                 <i className='fa fa-phone fa-lg'></i>: +84 386 259 007
                 <br />
                 <i className='fa fa-fax fa-lg'></i>: +84 344 661 168
                 <br />
                 <i className='fa fa-envelope fa-lg'></i>:{' '}
-                <a href='mailto:vinh572000@gmail.com'>vinh572000@gmail.com</a>
+                <a style={{ color: 'black' }} href='mailto:vinh572000@gmail.com'>
+                  vinh572000@gmail.com
+                </a>
               </address>
             </div>
             <div className='col-12 col-sm-4 align-self-center'>
@@ -68,7 +66,7 @@ function Footer(props) {
           </div>
           <div className='row justify-content-center'>
             <div className='col-auto'>
-              <p>© Copyright 2022 vinhmobile</p>
+              <p style={{ fontWeight: 'bold' }}>© Copyright 2022 vinhmobile</p>
             </div>
           </div>
         </div>

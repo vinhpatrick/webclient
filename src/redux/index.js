@@ -7,12 +7,14 @@ import changeFormReducer from './reducer/changeFormReducer'
 import cartReducer from './reducer/cartReducer'
 import searchReducer from './reducer/searchReducer'
 import { InitialFeedback } from './reducer/form'
+import changeState from './reducer/sideBarShow'
 
 const reducers = combineReducers({
   logForm: userReducer,
   changeForm: changeFormReducer,
   cart: cartReducer,
   search: searchReducer,
+  sidebarShow: changeState,
   ...createForms({
     feedback: InitialFeedback,
   }),

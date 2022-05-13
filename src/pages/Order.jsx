@@ -89,7 +89,7 @@ const Order = (props) => {
     <Layout>
       <div style={{ minHeight: '600px' }}>
         <section className='section-pagetop bg'>
-          <div className='container'>
+          <div className='container' style={{ marginTop: '45px', marginBottom: '45px' }}>
             <Title level={2}>Trạng thái đơn hàng</Title>
           </div>
         </section>
