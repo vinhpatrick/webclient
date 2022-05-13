@@ -1,12 +1,12 @@
 const initialState = {
   sidebarShow: true,
 }
-const changeState = (state = initialState, { type, ...rest }) => {
-  switch (type) {
-    case 'set':
-      return { ...state, ...rest }
+const changeSideBar = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SHOW_SIDEBAR':
+      return { sidebarShow: action.sidebarShow }
     default:
       return state
   }
 }
-export default changeState
+export default changeSideBar
