@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Home from './pages/Home'
@@ -10,6 +10,7 @@ import Order from './pages/Order'
 import Search from './pages/Search'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+
 import './scss/style.scss'
 import './App.css'
 import Seller from './admin/Seller'

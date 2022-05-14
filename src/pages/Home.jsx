@@ -9,9 +9,6 @@ import { searchProducts } from '../api/productApi'
 
 
 const Home = (props) => {
-  useEffect(() => {
-    // console.log('goi api home')
-  }, [])
   const [loadingNews, setLoadingNews] = useState(false)
   const [news, setNews] = useState([])
 
