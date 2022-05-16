@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getFeedBacks } from '../../../api/adminApi'
+import FormDetailFeedback from '../../components/FormDetailFeedback'
 import {
   CSmartTable,
   CBadge,
@@ -19,24 +20,32 @@ const TableUser = () => {
     {
       label: 'FirstName',
       key: 'firstname',
-      // _style: { width: '25%' },
+      _style: { width: '25%' },
       _props: { className: 'fw-semibold' },
     },
     {
       label: 'LastName',
       key: 'lastname',
-      // _style: { width: '25%' },
+      _style: { width: '25%' },
       _props: { className: 'fw-semibold' },
     },
     {
       label: 'Số điện thoại',
       key: 'telnum',
-      // _style: { width: '25%' },
+      _style: { width: '25%' },
       _props: { className: 'fw-semibold' },
     },
     {
       label: 'Email',
       key: 'email',
+    },
+    {
+      key: 'show_details',
+      label: '',
+      _style: { width: '1%' },
+      filter: false,
+      sorter: false,
+      _props: { color: 'primary', className: 'fw-semibold' },
     },
     // {
     //   label: 'Liên hệ',
@@ -61,13 +70,28 @@ const TableUser = () => {
       setLoading(false)
     })
   }, [])
+  const idFeedback = []
+  users.map((user, i) => {
+    idFeedback[i] = user._id
+    user.idFeedback = user._id
+  })
+  const toggleDetails = (index) => {
+    const position = details.indexOf(index)
+    let newDetails = details.slice()
+    if (position !== -1) {
+      newDetails.splice(position, 1)
+    } else {
+      newDetails = [...details, index]
+    }
+    setDetails(newDetails)
+  }
 
   return (
     <div>
       <div className='mb-3'>
         <CRow>
           <CCol xs='9'>
-            <h2>Danh sách các cửa hàng đã đăng ký </h2>
+            <h2>Danh sách các phản hồi của khách hàng </h2>
           </CCol>
         </CRow>
       </div>
@@ -76,7 +100,7 @@ const TableUser = () => {
         cleaner
         clickableRows
         columns={columns}
-        noItemsLabel='Chưa có khách hàng nào!'
+        noItemsLabel='Chưa có phản hồi nào!'
         columnFilter
         columnSorter
         loading={loading}
@@ -84,12 +108,6 @@ const TableUser = () => {
         itemsPerPageSelect
         itemsPerPage={5}
         pagination
-        sorterValue={{ column: 'name', state: 'asc' }}
-        tableFilter
-        tableProps={{
-          striped: true,
-          hover: true,
-        }}
         scopedColumns={{
           show_details: (item) => {
             return (
@@ -100,23 +118,12 @@ const TableUser = () => {
                     variant='outline'
                     shape='square'
                     size='sm'
-                    // onClick={() => {
-                    //   toggleDetails(item._id)
-                    // }}
+                    onClick={() => {
+                      toggleDetails(item._id)
+                    }}
                   >
                     {details.includes(item._id) ? 'Hide' : 'Show'}
                   </CButton>
-                  {/* {type === 'fix' ? (
-                    ''
-                  ) : ( */}
-                  {/* <input
-                      className='form-check-input'
-                      type='checkbox'
-                      idDelete={idDelete.includes(item._id)}
-                      onChange={() => handleCheck(item._id)}
-                      id='checkProduct'
-                    ></input>
-                  )} */}
                 </div>
               </td>
             )
@@ -125,11 +132,20 @@ const TableUser = () => {
             return (
               <CCollapse visible={details.includes(item._id)}>
                 <CCardBody>
-                  {/* {type === 'fix' ? <FormDetail data={item} /> : <FormDetailDelete data={item} />} */}
+                  <FormDetailFeedback data={item} />
                 </CCardBody>
               </CCollapse>
             )
           },
+        }}
+        sorterValue={{ column: 'name', state: 'asc' }}
+        tableFilter
+        tableHeadProps={{
+          color: 'none',
+        }}
+        tableProps={{
+          striped: true,
+          hover: true,
         }}
       />
     </div>
