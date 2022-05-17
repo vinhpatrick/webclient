@@ -1,6 +1,7 @@
 import React, { useEffect, useState, memo } from 'react'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
+import ForgotPassword from './ForgotPassword'
 import { logoutUser } from '../redux/action/userAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { _search } from '../redux/action/searchAction'
@@ -91,12 +92,15 @@ const Header = () => {
           }}
           fade={false}
           isOpen={isOpen}
+          // centered={true}
           toggle={handleHideLogForm}
         >
           {mode === 'login' ? (
             <LoginForm isToggle={handleHideLogForm} />
-          ) : (
+          ) : mode === 'register' ? (
             <RegisterForm isToggle={handleHideLogForm} />
+          ) : (
+            <ForgotPassword isToggle={handleHideLogForm} />
           )}
         </Modal>
       </div>
@@ -181,7 +185,7 @@ const Header = () => {
 
   return (
     <div>
-      <Navbar style={{ backgroundColor: '#fed700' }} expand='md' light={false}>
+      <Navbar style={{ backgroundColor: '#fed700' }} expand='md' light={false} fixed='top'>
         <div className='container'>
           {/* <NavbarToggler onClick={handleToggleNav} /> */}
           <div className='toggle-menu-mobile'>

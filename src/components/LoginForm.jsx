@@ -36,6 +36,9 @@ const LoginForm = (props) => {
   const handleRegister = () => {
     dispatch(_changeLogForm('register'))
   }
+  const handleForgotPassword = () => {
+    dispatch(_changeLogForm('forgot'))
+  }
   const handleErr = () => {
     setStatus(null)
   }
@@ -82,6 +85,7 @@ const LoginForm = (props) => {
                 type='text'
                 id='username'
                 name='username'
+                placeholder='Vui lòng nhập tên đăng nhập'
                 onFocus={handleErr}
                 onChange={handleValueChange}
               />
@@ -95,6 +99,7 @@ const LoginForm = (props) => {
                 type='password'
                 id='password'
                 name='password'
+                placeholder='Vui lòng nhập mật khẩu'
                 onFocus={handleErr}
                 onChange={handleValueChange}
               />
@@ -128,7 +133,11 @@ const LoginForm = (props) => {
             <Col style={{ fontWeight: 'bold' }} className='hover-log' onClick={handleRegister}>
               Chưa có tài khoản?
             </Col>
-            <Col className='hover-log' style={{ textAlign: 'right', fontWeight: 'bold' }}>
+            <Col
+              className='hover-log'
+              style={{ textAlign: 'right', fontWeight: 'bold' }}
+              onClick={handleForgotPassword}
+            >
               {' '}
               Quên mật khẩu?
             </Col>
