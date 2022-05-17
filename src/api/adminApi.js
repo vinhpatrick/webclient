@@ -64,3 +64,11 @@ export const getFeedBacks = () => {
     method: 'GET',
   })
 }
+
+export const getRevenue = (query) => {
+  const queryString = query2string(query)
+  return axiosClient({
+    url: `/statistics/order-statistics?${queryString}`,
+    method: 'GET',
+  })
+}

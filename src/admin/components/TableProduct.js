@@ -96,7 +96,7 @@ const TableProduct = ({ columns, usersData, type }) => {
         columns={columns}
         columnFilter
         columnSorter
-        loading={false}
+        loading={loading}
         items={usersData}
         itemsPerPageSelect
         itemsPerPage={5}

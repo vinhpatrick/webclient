@@ -146,7 +146,7 @@ const LoginForm = (props) => {
                 color: 'white',
               }}
             >
-              <i class='fa fa-google-plus fa-2x' aria-hidden='true'></i>
+              <i className='fa fa-google-plus fa-2x' aria-hidden='true'></i>
               {/* <img
                 style={{ height: '2.5em', width: '2.5em' }}
                 src={`${process.env.PUBLIC_URL}/icons/Google.png`}
@@ -163,7 +163,7 @@ const LoginForm = (props) => {
                 color: 'white',
               }}
             >
-              <i class='fa fa-facebook fa-2x' aria-hidden='true'></i>
+              <i className='fa fa-facebook fa-2x' aria-hidden='true'></i>
               {/* <img
                 style={{ height: '3em', width: '3em' }}
                 src={`${process.env.PUBLIC_URL}/icons/Facebook.png`}
@@ -180,7 +180,7 @@ const LoginForm = (props) => {
                 color: 'white',
               }}
             >
-              <i class='fa fa-apple fa-2x' aria-hidden='true'></i>
+              <i className='fa fa-apple fa-2x' aria-hidden='true'></i>
               {/* <img
                 style={{ height: '3em', width: '3em' }}
                 src={`${process.env.PUBLIC_URL}/icons/Apple.png`}

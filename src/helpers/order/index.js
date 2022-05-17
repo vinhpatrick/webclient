@@ -1,29 +1,3 @@
-export function sendResponse(data = true, message = 'Thành công', eMessage = 'OK', status = 200) {
-  return (req, res, next) => {
-    res.status(status).json({ success: true, data, message, eMessage })
-  }
-}
-
-export function sendError(error, req, res, next) {
-  console.error(error)
-
-  // send response with error code
-  res.status(error.status || 500).json({
-    success: false,
-    message: error.message,
-    eMessage: error.eMessage || '',
-    devInfo: { ...error, stack: error.stack },
-  })
-}
-
-export function CustomError(message = '', eMessage = '', status = 400) {
-  const error = new Error(message)
-  error.eMessage = eMessage
-  error.status = status
-
-  return error
-}
-
 export const ORDER_STATUSES = {
   WAITING_FOR_SELLER_CONFIRM: 'Waiting for seller confirm',
   IN_TRANSIT: 'In transit',

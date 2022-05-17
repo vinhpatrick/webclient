@@ -9,6 +9,7 @@ import WaitingOrder from '../views/orders/WaitingOrder'
 import Dashboard from '../views/dashboard/Dashboard'
 import TableUser from '../views/customer/TableUser'
 import FeedBack from '../views/customer/FeedBack'
+import Statistic from '../views/statistic/Statistic'
 import NotFound from '../../pages/NotFound'
 // routes config
 
@@ -25,6 +26,7 @@ const AppContent = () => {
           <Route path='waiting-orders' element={<WaitingOrder />} />
           <Route path='customer' element={<TableUser />} />
           <Route path='feedback' element={<FeedBack />} />
+          <Route path='statistics' element={<Statistic />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Suspense>

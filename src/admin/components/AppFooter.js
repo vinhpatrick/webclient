@@ -3,17 +3,17 @@ import { CFooter } from '@coreui/react'
 
 const AppFooter = () => {
   return (
-    <CFooter>
+    <CFooter className='footer-admin'>
       <div>
-        <a href="https://accommerce.cuongdm.tech/" target="_blank" rel="noopener noreferrer">
-          accomerce
+        <a href='http://vvmobile.herokuapp.com/' target='_blank' rel='noopener noreferrer'>
+          Vmobile
         </a>
-        <span className="ms-1">&copy; 2021 </span>
+        <span className='ms-1'>&copy; 2022 </span>
       </div>
-      <div className="ms-auto">
-        <span className="me-1">Powered by</span>
-        <a href="https://accommerce.cuongdm.tech/" target="_blank" rel="noopener noreferrer">
-          accomerce
+      <div className='ms-auto'>
+        <span className='me-1'>Powered by</span>
+        <a href='http://vvmobile.herokuapp.com/' target='_blank' rel='noopener noreferrer'>
+          Vmobile
         </a>
       </div>
     </CFooter>

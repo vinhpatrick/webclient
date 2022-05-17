@@ -538,6 +538,10 @@ a {
 .link-footer a {
   color: #000000;
 }
+.footer-admin {
+  width: 100%;
+  background-color: white;
+}
 
 .link-footer a:hover {
   color: #f36
