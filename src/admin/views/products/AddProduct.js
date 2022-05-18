@@ -15,7 +15,6 @@ import {
   CRow,
   CSpinner,
 } from '@coreui/react'
-import { useToast } from '../../../contexts/toast'
 import { toast } from 'react-toastify'
 
 const AddProduct = () => {
@@ -29,7 +28,6 @@ const AddProduct = () => {
     price: '',
     originalPrice: '',
   }
-  const { error, warn, info, success } = useToast()
   const inputFile = useRef(null)
   const [data, setData] = useState(initData)
 
@@ -58,7 +56,7 @@ const AddProduct = () => {
     setLoading(true)
     data.images = images
     if (data.sizes.length == 0) {
-      warn('Sản phẩm cần tối thiểu một loại hàng')
+      toast.warning('Sản phẩm cần tối thiểu một loại hàng', { autoClose: 2000 })
       setLoading(false)
     } else {
       // console.log('data', data)
@@ -69,18 +67,18 @@ const AddProduct = () => {
         .then((response) => {
           if (response.data.success === true) {
             // console.log('them sp thanh cong')
-            success(response.data.status)
+            toast.success(response.data.status, { autoClose: 2000 })
             setData(initData)
             setImages([])
             setSizes([{ name: '', numberInStock: '' }])
             // console.log('data', response.data)
           } else {
-            error(response.data.error)
+            toast.error(response.data.error)
           }
         })
         .catch((err) => {
           // console.log('them sp that bai')
-          error('Thêm sản phẩm thất bại')
+          toast.error('Thêm sản phẩm thất bại', { autoClose: 2000 })
           // error(err.response.data.message)
         })
         .finally(() => {
@@ -111,7 +109,9 @@ const AddProduct = () => {
   // // handle click event of the Add button
   const handleAddClick = () => {
     if (sizes[sizes.length - 1].name == '' || sizes[sizes.length - 1].name == '') {
-      warn('Vui lòng điền đủ thông tin về kích thước trước khi thêm mới')
+      toast.warning('Vui lòng điền đủ thông tin về kích thước trước khi thêm mới', {
+        autoClose: 2000,
+      })
     } else {
       setSizes([...sizes, { name: '', numberInStock: '' }])
     }

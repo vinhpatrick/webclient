@@ -7,7 +7,6 @@ import Layout from '../layout/Layout'
 import CommentProduct from '../components/CommentProduct'
 import { getProductById } from '../api/productApi'
 import { addToWishlist } from '../api/userApi'
-import { ToastProvider } from '../contexts/ToastProvider'
 import { _showLogForm } from '../redux/action//changeFormAction'
 import { addToCart } from '../api/userApi'
 import numberSeparator from '../helpers/validating/numberSeparator'
@@ -302,9 +301,7 @@ const ProductDetail = () => {
                 <article className='card mt-5'>
                   <div className='card-body'>
                     <h5>Bình luận</h5>
-                    <ToastProvider>
-                      <CommentProduct productId={productId} />
-                    </ToastProvider>
+                    <CommentProduct productId={productId} />
                   </div>
                 </article>
               </div>

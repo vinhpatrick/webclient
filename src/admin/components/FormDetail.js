@@ -15,10 +15,8 @@ import {
   CRow,
   CSpinner,
 } from '@coreui/react'
-import { useToast } from '../../contexts/toast'
-
+import { toast } from 'react-toastify'
 const FormDetail = (recvData) => {
-  const { error, warn, info, success } = useToast()
   const inputFile = useRef(null)
   const [data, setData] = useState({
     name: recvData.data.name,
@@ -43,11 +41,11 @@ const FormDetail = (recvData) => {
     setLoading(true)
     updateProduct(productId, data)
       .then((respone) => {
-        success('Update sản phẩm thành công !')
+        toast.success('Update sản phẩm thành công !', { autoClose: 2000 })
         // window.location.reload(false)
       })
       .catch((err) => {
-        error('Update sản phẩm thất bại')
+        toast.error('Update sản phẩm thất bại', { autoClose: 2000 })
         setLoading(false)
       })
       .finally(() => {
@@ -92,7 +90,9 @@ const FormDetail = (recvData) => {
   //handle click event of the Add button
   const handleAddClick = () => {
     if (sizes[sizes.length - 1].name == '' || sizes[sizes.length - 1].name == '') {
-      warn('Vui lòng điền đủ thông tin về kích thước trước khi thêm mới')
+      toast.warnimg('Vui lòng điền đủ thông tin về kích thước trước khi thêm mới', {
+        autoClose: 2000,
+      })
     } else {
       setSizes([...sizes, { name: '', numberInStock: '' }])
     }

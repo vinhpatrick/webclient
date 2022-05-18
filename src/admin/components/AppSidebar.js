@@ -26,7 +26,7 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className='d-none d-md-flex' to='/'>
-        <CImage rounded src={logos} width={70} />
+        <CImage rounded src={logos} width={80} style={{ marginRight: '10px' }} />
         <span>KÊNH BÁN HÀNG</span>
       </CSidebarBrand>
       <CSidebarNav>

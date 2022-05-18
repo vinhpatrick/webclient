@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { CSmartTable, CButton, CCollapse, CCardBody, CSpinner } from '@coreui/react-pro'
 import { deleteProduct } from '../../api/adminApi'
-import { useToast } from '../../contexts/toast'
+import { toast } from 'react-toastify'
 import { Modal } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import ReactStars from 'react-rating-stars-component'
@@ -11,7 +11,6 @@ import numberSeparator from '../../helpers/validating/numberSeparator'
 
 const { confirm } = Modal
 const TableProduct = ({ columns, usersData, type }) => {
-  const { error, warn, info, success } = useToast()
   const [details, setDetails] = useState([])
   const [idDelete, setIdDelete] = useState([])
   const [loading, setLoading] = useState(false)
@@ -29,20 +28,17 @@ const TableProduct = ({ columns, usersData, type }) => {
     setLoading(true)
     idDelete.map((id, i) => (idDeleteProduct.productIds[i] = idProduct[id]))
     if (idDeleteProduct.productIds.length == 0) {
-      warn('Vui lòng chọn sản phẩm cần xóa')
+      toast.warning('Vui lòng chọn sản phẩm cần xóa')
     } else {
       deleteProduct(idDeleteProduct)
         .then((respone) => {
           setIdDelete([])
-          success('Xóa sản phẩm thành công')
+          toast.success('Xóa sản phẩm thành công', { autoClose: 2000 })
           setTimeout(window.location.reload(), 3000)
         })
         .catch((err) => {
           {
-            error('Có lỗi vui lòng thử lại sau')
-            // err.response.status == 500
-            //   ? error('Có lỗi xảy ra. Vui lòng thử lại sau!')
-            //   : error(err.response.data.message)
+            toast.error('Có lỗi vui lòng thử lại sau', { autoClose: 2000 })
           }
         })
     }
@@ -69,7 +65,7 @@ const TableProduct = ({ columns, usersData, type }) => {
   }
   const showDeleteConfirm = () => {
     if (idDelete.length == 0) {
-      warn('Vui lòng chọn sản phẩm cần xóa')
+      toast.warning('Vui lòng chọn sản phẩm cần xóa', { autoClose: 2000 })
     } else {
       confirm({
         title: 'Bạn chắc chắn xóa sản phẩm này?',

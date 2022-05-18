@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-// import { getShops, getOrders, confirmOrder, cancelOrder } from '../../api/adminApi'
 import { getOrder, confirmOrder, cancelOrder } from '../../api/adminApi'
 import { CSmartTable, CBadge, CFormSelect, CButton, CCollapse, CCardBody } from '@coreui/react-pro'
 import { ORDER_STATUSES_MAPPING } from '../../helpers/order'
@@ -18,8 +17,8 @@ import {
   CInputGroupText,
   CRow,
 } from '@coreui/react'
-import { useToast } from '../../contexts/toast'
 import { Modal } from 'antd'
+import { toast } from 'react-toastify'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import numberSeparator from '../../helpers/validating/numberSeparator'
 
@@ -57,7 +56,6 @@ const Order = ({ getStatus }) => {
   const [listOrder, setListOrder] = useState([])
   const [details, setDetails] = useState([])
   const [loading, setLoading] = useState(true)
-  const { error, warn, info, success } = useToast()
   useEffect(() => {
     getOrder(getStatus).then((response) => {
       response.data.map((data, i) => {
@@ -98,22 +96,22 @@ const Order = ({ getStatus }) => {
   const cfOrder = (idOrder) => {
     confirmOrder(idOrder)
       .then((respone) => {
-        success('Bạn đã xác nhận thành công đơn hàng!')
+        toast.success('Bạn đã xác nhận thành công đơn hàng!', { autoClose: 2000 })
         setLoading(false)
       })
       .catch((err) => {
-        error('Xác nhận thất bại,lỗi hệ thống!')
+        toast.error('Xác nhận thất bại,lỗi hệ thống!', { autoClose: 2000 })
       })
   }
 
   const clOrder = (idOrder) => {
     cancelOrder(idOrder)
       .then((response) => {
-        success('Bạn đã hủy đơn hàng thành công!')
+        toast.success('Bạn đã hủy đơn hàng thành công!', { autoClose: 2000 })
         setLoading(false)
       })
       .catch((err) => {
-        error('Lỗi hệ thống vui lòng thử lại sau!')
+        toast.error('Lỗi hệ thống vui lòng thử lại sau!', { autoClose: 2000 })
       })
   }
   const showDeleteConfirm = (idOrder) => {
@@ -125,7 +123,7 @@ const Order = ({ getStatus }) => {
       okType: 'danger',
       cancelText: 'Quay lại',
       onOk() {
-       clOrder(idOrder)
+        clOrder(idOrder)
         setLoading(true)
       },
       onCancel() {

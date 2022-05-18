@@ -34,8 +34,8 @@ const Search = (props) => {
 
   return (
     <Layout>
-      <section className='section-content padding-y'>
-        <div className='container'>
+      <section className='section-content padding-y' style={{ minHeight: '750px' }}>
+        <div className='container' style={{ marginTop: '100px', marginBottom: '30px' }}>
           <div className='row'>
             {view === 'list' ? (
               <ListView list={items} changeView={(e) => setView('grid')} />
