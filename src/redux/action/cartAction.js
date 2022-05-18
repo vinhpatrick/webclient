@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 import { getCart, addToCart, removeFromCart } from '../../api/userApi'
 
 export const _getMyCart = (userId) => {
@@ -19,23 +20,6 @@ export const _getMyCart = (userId) => {
         dispatch({
           type: 'CART_ERROR',
         })
-        // const { status, data } = error.response
-        // if (status >= 500) {
-        //   dispatch({
-        //     type: 'CART_ERROR',
-        //     payload: {
-        //       error: 'Lỗi hệ thống, vui lòng thử lại sau!',
-        //     },
-        //   })
-        // } else {
-        //   // const { message } = e.response.data
-        //   dispatch({
-        //     type: 'CART_ERROR',
-        //     payload: {
-        //       error: 'loi cart',
-        //     },
-        //   })
-        // }
       })
   }
 }
@@ -75,6 +59,7 @@ export const _deleteCartItems = (cartItemIds) => {
     })
     return removeFromCart({ cartItemIds })
       .then((res) => {
+        toast.success('Bạn đã xóa sản phẩm khỏi giỏ hàng thành công.', { autoClose: 2000 })
         dispatch(_getMyCart())
       })
       .catch((err) => {

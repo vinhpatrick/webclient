@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Spin, Radio, InputNumber, message as Message } from 'antd'
+import { Spin, Radio, InputNumber } from 'antd'
+import { toast } from 'react-toastify'
 import Layout from '../layout/Layout'
 import CommentProduct from '../components/CommentProduct'
 import { getProductById } from '../api/productApi'
@@ -9,7 +10,6 @@ import { addToWishlist } from '../api/userApi'
 import { ToastProvider } from '../contexts/ToastProvider'
 import { _showLogForm } from '../redux/action//changeFormAction'
 import { addToCart } from '../api/userApi'
-// import styles from '../css_modules/css/all.module.css'
 import numberSeparator from '../helpers/validating/numberSeparator'
 import { _getMyCart } from '../redux/action/cartAction'
 
@@ -39,10 +39,18 @@ const ProductDetail = () => {
       .catch((error) => {
         const { status, data } = error.response
         if (status >= 500) {
-          Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
+          toast.error('Lỗi hệ thống vui lòng thử lại sau!', {
+            position: 'top-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
         } else {
           const { message } = data
-          Message.error(message)
+          toast.error(message)
         }
         setLoading(false)
       })
@@ -52,10 +60,18 @@ const ProductDetail = () => {
   const handleAddToCart = async (e) => {
     setLoading(true)
     if (!targetSize) {
-      Message.error('Vui lòng chọn size!')
+      toast.warning('Vui lòng chọn size!', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
       setLoading(false)
     } else if (!quantity) {
-      Message.error('Vui lòng nhập số lượng muốn mua!')
+      toast.warning('Vui lòng nhập số lượng muốn mua!', { autoClose: 2000 })
       setLoading(false)
     } else if (!auth) {
       dispatch(_showLogForm())
@@ -63,33 +79,28 @@ const ProductDetail = () => {
     } else {
       addToCart({ product: productId, size: targetSize, user: userId, quantity })
         .then((response) => {
-          Message.success(`Thêm ${quantity} sản phẩm vào giỏ hàng thành công !`)
+          toast.success(`Thêm ${quantity} sản phẩm vào giỏ hàng thành công !`, { autoClose: 2000 })
           setLoading(false)
           setQuantity(1)
           dispatch(_getMyCart())
         })
         .catch((e) => {
-          // const { status} = e.response
-          // if (status >= 500) {
-          // console.log('error', e)
-          Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
-          setLoading(false)
-          // } else {
-          //   const { message } = data
-          //   Message.error(message)
-          // }
-
-          // setLoading(false)
+          const { status } = e.response
+          if (status >= 500) {
+            console.log('error', status)
+            toast.error(status, { autoClose: 2000 })
+            setLoading(false)
+          }
         })
     }
   }
   const handleBuy = () => {
     setLoading(true)
     if (!targetSize) {
-      Message.error('Vui lòng chọn size!')
+      toast.warning('Vui lòng chọn size!', { autoClose: 2000 })
       setLoading(false)
     } else if (!quantity) {
-      Message.error('Vui lòng nhập số lượng muốn mua!')
+      toast.warning('Vui lòng nhập số lượng muốn mua!', { autoClose: 2000 })
       setLoading(false)
     } else if (!auth) {
       dispatch(_showLogForm())
@@ -97,24 +108,19 @@ const ProductDetail = () => {
     } else {
       addToCart({ product: productId, size: targetSize, user: userId, quantity })
         .then((response) => {
-          Message.success(`Thêm ${quantity} sản phẩm vào giỏ hàng thành công !`)
+          toast.success(`Thêm ${quantity} sản phẩm vào giỏ hàng thành công !`, { autoClose: 2000 })
           setLoading(false)
           setQuantity(1)
           dispatch(_getMyCart())
           navigate('/cart')
         })
         .catch((e) => {
-          // const { status, data } = e.response
-          // if (status >= 500) {
-          // console.log('error', e)
-          Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
-          setLoading(false)
-          // } else {
-          //   const { message } = data
-          //   Message.error(message)
-          // }
-
-          // setLoading(false)
+          const { status, data } = e.response
+          if (status >= 500) {
+            console.log('error', e)
+            toast.error('Lỗi hệ thống, vui lòng thử lại sau!', { autoClose: 2000 })
+            setLoading(false)
+          }
         })
     }
   }
@@ -125,17 +131,18 @@ const ProductDetail = () => {
       userId: userId,
     })
       .then((response) => {
-        Message.success('Bạn đã thêm thành công sản phẩm vào Wishlist!')
+        toast.success('Bạn đã thêm thành công sản phẩm vào Wishlist!', { autoClose: 2000 })
       })
       .catch((error) => {
-        Message.warning('Sản phẩm bạn vừa thêm đã có trong wishlist!')
+        if (error.response.status >= 400)
+          toast.warning('Sản phẩm bạn vừa thêm đã có trong wishlist!', { autoClose: 2000 })
       })
   }
 
   return (
     <Layout>
       <div className='page-product-detail'>
-        <Spin spinning={loading}>
+        <Spin spinning={loading} style={{ paddingTop: '700px' }}>
           {Object.keys(product).length && (
             <section className='section-content padding-y bg'>
               <div className='container'>

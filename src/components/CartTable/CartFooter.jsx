@@ -1,7 +1,7 @@
 import styles from '../../css_modules/css/all.module.css'
 
-import { Button, Form, Input, message as Message, Spin } from 'antd'
-
+import { Button, Form, Input } from 'antd'
+import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -44,27 +44,23 @@ const CartFooter = (props) => {
     //  console.log('shippingCost', shippingCost)
     //  console.log('select order', selectedItems)
     if (selectedItems.length === 0) {
-      Message.error('Chọn ít nhất một món hàng!')
+      toast.error('Chọn ít nhất một món hàng!', { autoClose: 2000 })
     } else if (!address) {
-      Message.error('Vui lòng nhập địa chỉ nhận hàng!')
+      toast.error('Vui lòng nhập địa chỉ nhận hàng!', { autoClose: 2000 })
     } else {
       const cartItems = selectedItems.map((item) => item.cartItemId)
       const orderItems = selectedItems.map((item) => ({ ...item }))
       order({ cartItems, orderItems, shippingCost, receiverAddress: address, user: userId })
         .then((res) => {
-          Message.success('Đặt hàng thành công!')
+          toast.success('Đặt hàng thành công!', { autoClose: 2000 })
           dispatch(_getMyCart())
           navigate('/order', { state: ORDER_STATUSES.WAITING_FOR_SELLER_CONFIRM })
         })
         .catch((e) => {
           const { status, data } = e.response
           if (status >= 500) {
-            Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
-          } else {
-            const { message } = data
-            Message.error(message)
+            toast.error('Lỗi hệ thống, vui lòng thử lại sau!')
           }
-
           dispatch(_getMyCart())
         })
     }

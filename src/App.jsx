@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import 'react-toastify/dist/ReactToastify.css'
 import Home from './pages/Home'
 import About from './pages/About'
 import Favorites from './pages/Favorites'

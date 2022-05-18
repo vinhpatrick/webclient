@@ -1,7 +1,7 @@
 // import styles from '../../css_modules/css/all.module.css'
 
-import { Button, Select, InputNumber, message as Message } from 'antd'
-
+import { Button, Select, InputNumber } from 'antd'
+import { toast } from 'react-toastify'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { _getMyCart } from '../../redux/action/cartAction'
@@ -27,19 +27,11 @@ const CartItemActions = (props) => {
       quantity: editQuantity || quantity,
     })
       .then((res) => {
-        // const { message } = res.data
-        Message.success('Bạn đã cập nhật giỏ hàng thành công')
+        toast.success('Bạn đã cập nhật giỏ hàng thành công', { autoClose: 2000 })
         dispatch(_getMyCart())
       })
       .catch((e) => {
-        // const { status, data } = e.response
-        // if (status >= 500) {
-        Message.error('Lỗi hệ thống, vui lòng thử lại sau!')
-        // } else {
-        //   const { message } = data
-        //   Message.error(message)
-        // }
-
+        toast.error('Lỗi hệ thống, vui lòng thử lại sau!', { autoClose: 2000 })
         setEditSize(size)
         setEditQuantity(quantity)
 

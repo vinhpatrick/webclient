@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { getOrder, confirmOrder, cancelOrder } from '../api/userApi'
 import OrderItem from '../components/OrderItem'
 import { CBadge, CRow, CCol, CButton } from '@coreui/react-pro'
 import { ORDER_STATUSES_MAPPING } from '../helpers/order/index'
-import { message, Tabs, Spin, Typography, Modal } from 'antd'
+import { Tabs, Spin, Typography, Modal } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 
 // import OrderItem from './components/OrderItem'
@@ -16,7 +16,6 @@ const { TabPane } = Tabs
 const { Title } = Typography
 
 const Order = (props) => {
-  const navigate = useNavigate()
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
   const [status, setStatus] = useState('')
@@ -32,11 +31,11 @@ const Order = (props) => {
   const confirmOd = (orderId) => {
     confirmOrder(orderId)
       .then((response) => {
-        message.success('Bạn đã nhận hàng thành công!')
+        toast.success('Bạn đã nhận hàng thành công!', { autoClose: 2000 })
         setLoading(false)
       })
       .catch((err) => {
-        message.error('Lỗi hệ thống vui lòng thử lại sau!')
+        toast.error('Lỗi hệ thống vui lòng thử lại sau!', { autoClose: 2000 })
         setLoading(false)
       })
   }
@@ -63,11 +62,11 @@ const Order = (props) => {
   const delOrder = (orderId) => {
     cancelOrder(orderId)
       .then((response) => {
-        message.success('Bạn đã hủy đơn hàng thành công!')
+        toast.success('Bạn đã hủy đơn hàng thành công!', { autoClose: 2000 })
         setLoading(false)
       })
       .catch((err) => {
-        message.error('Lỗi hệ thống vui lòng thử lại sau!')
+        toast.error('Lỗi hệ thống vui lòng thử lại sau!', { autoClose: 2000 })
         setLoading(false)
       })
   }
@@ -87,7 +86,7 @@ const Order = (props) => {
   }
   return (
     <Layout>
-      <div style={{ minHeight: '600px' }}>
+      <div style={{ minHeight: '600px', marginTop: '120px' }}>
         <section className='section-pagetop bg'>
           <div className='container' style={{ marginTop: '45px', marginBottom: '45px' }}>
             <Title level={2}>Trạng thái đơn hàng</Title>

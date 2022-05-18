@@ -3,11 +3,10 @@ import { Media } from 'reactstrap'
 import Layout from '../layout/Layout'
 import FavoriteItem from '../components/FavoriteItem'
 import { getWishlist } from '../api/userApi'
-import { Spin, message as Message } from 'antd'
+import { Spin } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
-import { _showLogForm } from '../redux/action/changeFormAction'
-import { Navigate } from 'react-router-dom'
 import { deleteWishList } from '../api/userApi'
+import { toast } from 'react-toastify'
 
 const Favorites = () => {
   const auth = useSelector((state) => state.logForm.isAuthenticated)
@@ -33,7 +32,16 @@ const Favorites = () => {
     setLoading(true)
     deleteWishList(idsDelete)
       .then((response) => {
-        Message.success('Bạn đã xóa thành công sản phẩm khỏi wishlist!')
+        toast.success('Bạn đã xóa thành công sản phẩm khỏi wishlist!', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+
         if (response.status > 200) {
           getWishlist()
             .then((response) => {
@@ -49,15 +57,23 @@ const Favorites = () => {
         setLoading(false)
       })
       .catch((error) => {
-        Message.error('Lỗi hệ thống vui lòng thử lại sau!')
+        toast.error('Lỗi hệ thống vui lòng thử lại sau!', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
         setLoading(false)
       })
   }
 
   return (
     <Layout>
-      <Spin spinning={loading}>
-        <div className='container page-wishlist' style={{ minHeight: '600px' }}>
+      <Spin spinning={loading} style={{ paddingTop: '700px' }}>
+        <div className='container page-wishlist' style={{ minHeight: '650px' }}>
           <div className='row'>
             <div className='col-12 page-title'>
               {wishlist.length > 0 ? (

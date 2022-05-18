@@ -9,6 +9,8 @@ import store from './redux/index'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+
 
 
 ReactDOM.render(
@@ -16,6 +18,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
+      <ToastContainer />
     </BrowserRouter>
   </Provider>,
   // </React.StrictMode>,

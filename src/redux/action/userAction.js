@@ -3,6 +3,7 @@ import * as ActionTypes from './ActionTypes'
 import { baseUrl } from '../../shared/baseUrl'
 import axiosClient from '../../api/axiosClient'
 import { _getMyCart } from './cartAction'
+import { toast } from 'react-toastify'
 export const requestLogin = (creds) => {
   return {
     type: ActionTypes.LOGIN_REQUEST,
@@ -32,6 +33,9 @@ export const loginUser = (creds) => async (dispatch) => {
   await axiosClient
     .post(baseUrl + 'users/login', creds)
     .then((response) => {
+      toast.success('Bạn đã đăng nhập thành công.', {
+        autoClose: 2000,
+      })
       const { data } = response
       localStorage.setItem('token', data.token)
       localStorage.setItem('creds', JSON.stringify(creds))

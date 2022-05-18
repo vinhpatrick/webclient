@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Label, Col, Row } from 'reactstrap'
-// import { Link } from 'react-router-dom'
-import { Spin, message as Message } from 'antd'
+import { Spin } from 'antd'
 import { Control, Form, Errors, actions } from 'react-redux-form'
 import Layout from '../layout/Layout'
 import { useState, useEffect } from 'react'
 import { postFeedback } from '../api/userApi'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 
 const required = (val) => val && val.length
 const maxLength = (len) => (val) => !val || val.length <= len
@@ -23,13 +23,13 @@ const Contact = () => {
     //console.log("Current State is: " + JSON.stringify(values));
     postFeedback(values)
       .then((response) => {
-        Message.success('Bạn đã  gửi phản hồi thành công!')
+        toast.success('Bạn đã  gửi phản hồi thành công!',{autoClose:2000})
         dispatch(actions.reset('feedback'))
         setLoading(false)
         // console.log('thanh cong', loading)
       })
       .catch((error) => {
-        Message.error('Lỗi hệ thống vui lòng thử lại sau!')
+        toast.error('Lỗi hệ thống vui lòng thử lại sau!',{autoClose: 2000})
         setLoading(false)
         // console.log('that bai', loading)
       })

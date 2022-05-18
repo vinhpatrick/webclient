@@ -5,14 +5,13 @@ import moment from 'moment'
 import { Comment, Tooltip, Avatar, Rate } from 'antd'
 import { getComment, postComment, deleteComment } from '../api/userApi'
 import { Form, Button, Input } from 'antd'
-import { useToast } from '../contexts/toast'
+import { toast } from 'react-toastify'
 
 const { TextArea } = Input
 
 const CommentProduct = ({ productId }) => {
   const userId = localStorage.getItem('userId') && localStorage.getItem('userId')
   const auth = useSelector((state) => state.logForm.isAuthenticated)
-  const { error, warn, success } = useToast()
   const [comment, setComment] = useState([])
   const [loading, setLoading] = useState(true)
   const [loadingbtn, setLoadingBtn] = useState(false)
@@ -48,13 +47,13 @@ const CommentProduct = ({ productId }) => {
     setLoadingBtn(true)
     newComment.ratting = ratting
     if (!auth) {
-      warn('Bạn cần đăng nhập để đánh giá sản phẩm!!!')
+      toast.warning('Bạn cần đăng nhập để đánh giá sản phẩm!!!')
       setLoadingBtn(false)
     } else if (newComment.comment == '') {
-      warn('Bạn chưa nhập nội dung bình luận')
+      toast.warning('Bạn chưa nhập nội dung bình luận')
       setLoadingBtn(false)
     } else if (ratting <= 0) {
-      warn('Bạn vui lòng đánh giá sản phẩm')
+      toast.warning('Bạn vui lòng đánh giá sản phẩm')
       setLoadingBtn(false)
     } else {
       // console.log('newcomment', newComment)
@@ -64,11 +63,11 @@ const CommentProduct = ({ productId }) => {
           setLoadingBtn(false)
           setRatting(0)
           setText('')
-          success('Bạn đã đánh giá sp thành công')
+          toast.success('Bạn đã đánh giá sp thành công')
           // setCommentText('')
         })
         .catch((err) => {
-          error('Đánh giá sản phẩm thất bại')
+          toast.error('Đánh giá sản phẩm thất bại')
           setLoading(true)
           setLoadingBtn(false)
         })
@@ -78,7 +77,7 @@ const CommentProduct = ({ productId }) => {
   const deleteCmt = () => {
     deleteComment(commentId)
       .then((response) => {
-        success('Bạn đã xóa comment thành công !')
+        toast.success('Bạn đã xóa comment thành công !')
         setNewComment({
           ...newComment,
           comment: '',
@@ -88,7 +87,7 @@ const CommentProduct = ({ productId }) => {
         setCommentId(null)
       })
       .catch((err) => {
-        error('Bạn không được xóa comment của người khác')
+        toast.error('Bạn không được xóa comment của người khác')
         setLoading(true)
       })
   }

@@ -10,7 +10,7 @@
     "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "prettier.endOfLine": "auto",
+    // "prettier.endOfLine": "auto",
     "prettier.tabWidth": 2,
     "prettier.printWidth": 100,
     "prettier.semi": false,
