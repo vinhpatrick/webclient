@@ -39,21 +39,24 @@ const ForgotPassword = (props) => {
               placeholder='Vui lòng nhập tên đăng nhập của bạn'
             />
           </FormGroup>
-          <Button
-            type='submit'
-            color='primary'
-            style={{
-              marginLeft: '170px', //top right bottom left
-              textAlign: 'center',
-              background: 'orange',
-              color: 'white',
-              width: '130px',
-              height: '50px',
-              borderRadius: '20px',
-            }}
-          >
-            Lấy lại mật khẩu
-          </Button>
+          <Row>
+            <Button
+              type='submit'
+              color='primary'
+              style={{
+                marginLeft: 'auto',
+                marginRight: 'auto', //top right bottom left
+                textAlign: 'center',
+                background: 'orange',
+                color: 'white',
+                width: '130px',
+                height: '50px',
+                borderRadius: '20px',
+              }}
+            >
+              Lấy lại mật khẩu
+            </Button>
+          </Row>
         </Form>
         <Row style={{ marginTop: '40px', marginBottom: '30px' }}>
           <Col style={{ fontWeight: 'bold' }} className='hover-log' onClick={handleLogin}>

@@ -6,6 +6,7 @@ const INIT_STATE = {
   token: localStorage.getItem('token'),
   user: localStorage.getItem('creds') ? JSON.parse(localStorage.getItem('creds')) : null,
   userId: localStorage.getItem('userId') ? localStorage.getItem('userId') : '',
+  userInfo: {},
   errMess: null,
   address: '',
   email: '',
@@ -24,6 +25,7 @@ const userReducer = (state = INIT_STATE, action) => {
         isLoading: false,
         isAuthenticated: true,
         errMess: '',
+        userInfo: action.userInfo,
         token: action.token,
       }
     case ActionTypes.LOGIN_FAILURE:

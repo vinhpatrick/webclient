@@ -2,6 +2,7 @@ import React, { useEffect, useState, memo } from 'react'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import ForgotPassword from './ForgotPassword'
+import Profile from './Profile'
 import { logoutUser } from '../redux/action/userAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { _search } from '../redux/action/searchAction'
@@ -65,6 +66,13 @@ const Header = () => {
       navigate('/favorites')
     }
   }
+  const [showFrofile, setShowFrofile] = useState(false)
+  const handleShowProfile = () => {
+    setShowFrofile(!showFrofile)
+  }
+  const handleToggle = () => {
+    setShowFrofile(!showFrofile)
+  }
   const LogModal = (props) => {
     const { isOpen, mode } = useSelector((state) => state.changeForm)
     const dispatch = useDispatch()
@@ -127,11 +135,12 @@ const Header = () => {
           <span style={{ fontSize: '25px', marginTop: '2px' }} className='fa fa-user-circle'></span>
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem>
-            <Link style={{ color: 'black', textDecoration: 'none' }} to='/contactus'>
+          <DropdownItem onClick={handleShowProfile}>
+            <div style={{ color: 'black', textDecoration: 'none' }} to='#'>
               <span style={{ marginRight: '10px' }} className=' fa fa-user-circle'></span>
               {!user ? '' : user.username}
-            </Link>
+            </div>
+            <Profile open={showFrofile} toggle={handleToggle} />
           </DropdownItem>
           <DropdownItem>
             <Link style={{ color: 'black', textDecoration: 'none' }} to='/order'>

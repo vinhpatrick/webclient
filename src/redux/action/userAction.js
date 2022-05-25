@@ -19,6 +19,7 @@ export const receiveLogin = (response) => {
   return {
     type: ActionTypes.LOGIN_SUCCESS,
     token: response.data.token,
+    userInfo: response.data.user,
   }
 }
 

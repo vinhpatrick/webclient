@@ -112,22 +112,25 @@ const LoginForm = (props) => {
                 Remember me
               </Label>
             </FormGroup>
-            <Button
-              type='submit'
-              color='primary'
-              onClick={login}
-              style={{
-                marginLeft: '170px', //top right bottom left
-                textAlign: 'center',
-                background: 'orange',
-                color: 'white',
-                width: '130px',
-                height: '50px',
-                borderRadius: '20px',
-              }}
-            >
-              Đăng Nhập
-            </Button>
+            <Row>
+              <Button
+                type='submit'
+                color='primary'
+                onClick={login}
+                style={{
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  textAlign: 'center',
+                  background: 'orange',
+                  color: 'white',
+                  width: '130px',
+                  height: '50px',
+                  borderRadius: '20px',
+                }}
+              >
+                Đăng Nhập
+              </Button>
+            </Row>
           </Form>
           <Row>
             <Col style={{ fontWeight: 'bold' }} className='hover-log' onClick={handleRegister}>

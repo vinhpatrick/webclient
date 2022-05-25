@@ -10,16 +10,16 @@ function Footer(props) {
               <h5>Liên Kết</h5>
               <ul className='list-unstyled'>
                 <li className='link-footer'>
-                  <Link to='/'>Home</Link>
+                  <Link to='/'>Trang chủ</Link>
                 </li>
                 <li className='link-footer'>
-                  <Link to='/favorites'>Wishlist</Link>
+                  <Link to='/favorites'>Sản phẩm yêu thích</Link>
                 </li>
                 <li className='link-footer'>
-                  <Link to='/aboutus'>About Us</Link>
+                  <Link to='/aboutus'>Thông tin shop</Link>
                 </li>
                 <li className='link-footer'>
-                  <Link to='/contactus'>Contact Us</Link>
+                  <Link to='/contactus'>Liên hệ</Link>
                 </li>
               </ul>
             </div>
