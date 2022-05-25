@@ -30,28 +30,28 @@ const CartItemProduct = (props) => {
           </Link>
 
           <div className='row'>
-            <Link to='/' className={`${styles['col']}`}>
+            <Link to='/' className={`${styles['col']} cart-fix`}>
               Shop: Vinhok
             </Link>
-            <div className='col row'>
-              <div className='col-sm-3'>Đơn giá: </div>
+            <div className='col row '>
+              <div className='cart-item-info'>Đơn giá: </div>
               <div className='col text-right'>₫ {numberSeparator(price)}</div>
             </div>
           </div>
 
           <div className='row'>
-            <div className={`${styles['col']}`}>Loại hàng: {size} </div>
+            <div className={`${styles['col']} cart-fix`}>Loại hàng: {size} </div>
             <div className='col row'>
-              <div className='col-sm-3'>Số lượng: </div>
+              <div className='cart-item-info'>Số lượng: </div>
               <div className='col text-right'>{quantity}</div>
             </div>
           </div>
 
           <div className='row'>
-            <div className={`${styles['col']}`}></div>
+            <div className={`${styles['col']} cart-fix`}></div>
 
             <div className='col row'>
-              <div className='col-sm-3'>Thành tiền: </div>
+              <div className='cart-item-info'>Thành tiền: </div>
               <div className='col text-right' style={{ color: 'red' }}>
                 ₫ {numberSeparator(price * quantity)}
               </div>

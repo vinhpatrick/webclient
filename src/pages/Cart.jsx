@@ -38,12 +38,12 @@ const Cart = () => {
     <Layout>
       {/* <Spin spinning={true}> */}
       <div>
-        <section style={{ minHeight: '700px' }} className='section-contentpadding-y'>
+        <section style={{ minHeight: '700px' }} className='section-contentpadding-y '>
           <div className='container '>
             <div className='row'>
               <main className='col-md-12'>
                 {data.length > 0 ? (
-                  <div className='card' style={{ marginTop: '130px' }}>
+                  <div className='card page-cart'>
                     <Table
                       dataSource={tableData}
                       key={2}

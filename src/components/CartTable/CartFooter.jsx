@@ -140,14 +140,15 @@ const CartFooter = (props) => {
       </Form>
 
       <div className='cart-footer row'>
-        <div className='col-sm-4'>
+        <div className='col-md-4 cart-footer-button'>
           <p className='text-center mb-3'>
             <img src={`${process.env.PUBLIC_URL}/assets/misc/payments.png`} />
           </p>
         </div>
 
-        <div className='col-sm-4' style={{ textAlign: 'center' }}>
+        <div className='col-md-4 cart-footer-button' style={{ textAlign: 'center' }}>
           <Button
+            style={{ minWidth: '181px' }}
             size='large'
             className='btn btn-success'
             data-toggle='tooltip'
@@ -159,7 +160,7 @@ const CartFooter = (props) => {
           </Button>
         </div>
 
-        <div className='col-sm-4' style={{ textAlign: 'center' }}>
+        <div className='col-md-4 cart-footer-button' style={{ textAlign: 'center' }}>
           <Button
             disabled={selectedItems.length === 0}
             size='large'

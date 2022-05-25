@@ -8,7 +8,7 @@ const ProductItem = (props) => {
   const { _id, name, images, price, originalPrice, sold, view } = props
   return (
     <>
-      <div className={`${styles['col-md-3']}`}>
+      <div className={`${styles['col-md-6']} ${styles['col-lg-4']}  ${styles['col-xl-3']}`}>
         <Link className='product-info' to={`/products/${_id}`}>
           <div className={`${styles['card']} ${styles['card-product-grid']} cart-items`}>
             <div className={`${styles['img-wrap']}`}>{images && <img src={images[0]} />}</div>
@@ -40,10 +40,10 @@ const ProductItem = (props) => {
                 )}
               </div>
               <div className={`${styles['row']} ${styles['mt-1']} ${styles['text-dark']}`}>
-                <div className='col-sm-6 text-left'>
+                <div className='col-6 text-left'>
                   Đã bán <b>{sold}</b>
                 </div>
-                <div className='col-sm-6 text-right'>
+                <div className='col-6 text-right'>
                   <b>{view}</b> lượt xem
                 </div>
               </div>

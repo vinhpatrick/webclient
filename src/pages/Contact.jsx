@@ -72,7 +72,7 @@ const Contact = () => {
               src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0211682182357!2d105.792010114202!3d21.031838993050666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab46184ecb01%3A0x33d1db0dcd76fc66!2zTmcuMzcgUC4gROG7i2NoIFbhu41uZywgROG7i2NoIFbhu41uZywgQ-G6p3UgR2nhuqV5LCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1650358931377!5m2!1svi!2s'
               width='800'
               height='450'
-              style={{ boder: '0' }}
+              style={{ boder: '0', maxWidth: '100%' }}
               allowFullScreen=''
               loading='lazy'
               referrerPolicy='no-referrer-when-downgrade'
