@@ -9,6 +9,7 @@ const INIT_STATE = {
   userInfo: {},
   errMess: null,
   address: '',
+  test: {},
   email: '',
 }
 

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { changeInfomation, changePassword } from '../api/userApi'
-import { logoutUser } from '../redux/action/userAction'
+import { logoutUser, receiveLogin } from '../redux/action/userAction'
+
+import { Spin } from 'antd'
 import {
   Modal,
   ModalHeader,
@@ -29,7 +31,6 @@ const Profile = (props) => {
   const isToggle = props.toggle
   // State for current active Tab
   const [activeTab, setActiveTab] = useState('1')
-  const handleEditProfile = () => {}
   //handleEditProfile
   const initialInfo = {
     firstname: '',
@@ -62,7 +63,7 @@ const Profile = (props) => {
         address,
       })
     }
-  }, [])
+  }, [username])
 
   useEffect(() => {
     const changed =
@@ -79,10 +80,10 @@ const Profile = (props) => {
       setInfoSuggest({ ...infoSuggest, [e.target.name]: '' })
       setInfoPayload({
         ...infoPayload,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value || user[`${e.target.name}`],
       })
     },
-    handleChangeInfo: (e) => {
+    handleChangeInfo: async (e) => {
       e.preventDefault()
       setChangingInfo(true)
       const phoneNumberRegex = /^([+84|84|0]+([35789]))+([0-9]{8})$/
@@ -97,8 +98,10 @@ const Profile = (props) => {
         }
         setChangingInfo(false)
       } else {
-        changeInfomation({ firstname, lastname, phoneNumber, email, address })
+        await changeInfomation({ firstname, lastname, phoneNumber, email, address })
           .then((response) => {
+            // const { firstname, lastname, phoneNumber, email, address } = response.data
+            // setInfoPayload({ firstname, lastname, phoneNumber, email, address })
             toast.success('Bạn đã thay đổi thông tin cá nhân thành công.', {
               position: 'top-right',
               autoClose: 2000,
@@ -108,14 +111,15 @@ const Profile = (props) => {
               draggable: true,
               progress: undefined,
             })
+            dispatch(receiveLogin(response))
             setChangingInfo(false)
             // setTimeout(() => {
             //   window.location.reload()
             // }, 1000)
           })
           .catch((err) => {
-            if (err.state > 500) {
-              toast.error('Bạn đã thay đổi thông tin cá nhân thành công.', {
+            if (err.state >= 500) {
+              toast.error('Lỗi hệ thống vui lòng thử lại sau.', {
                 position: 'top-right',
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -137,7 +141,7 @@ const Profile = (props) => {
       setPasswordPayload({ ...passwordPayload, [e.target.name]: e.target.value.trim() })
     },
     handleChangePassword: (e) => {
-      console.log('okokok', passwordSuggest)
+      // console.log('okokok', passwordSuggest)
       e.preventDefault()
       const validatePassword = (pw) => {
         const regex = /.{8,}/
@@ -229,198 +233,204 @@ const Profile = (props) => {
             </Nav>
             <TabContent style={{ marginTop: '20px' }} activeTab={activeTab}>
               <TabPane tabId='1'>
-                <Form style={{ textAlign: 'center' }}>
-                  <FormGroup>
+                <Spin spinning={changingInfo}>
+                  <Form style={{ textAlign: 'center' }}>
+                    <FormGroup>
+                      <Row>
+                        <Col xs='4'>
+                          <Label style={{ fontWeight: 'bold' }} htmlFor='firstname'>
+                            Tên
+                          </Label>
+                        </Col>
+                        <Col xs='8'>
+                          <Input
+                            type='text'
+                            id='firstname'
+                            name='firstname'
+                            placeholder={firstname}
+                            onChange={infoAction.handleChangeValue}
+                          />
+                        </Col>
+                      </Row>
+                    </FormGroup>
+                    <FormGroup>
+                      <Row>
+                        <Col xs='4'>
+                          <Label style={{ fontWeight: 'bold' }} htmlFor='lastname'>
+                            Họ và đện
+                          </Label>
+                        </Col>
+                        <Col xs='8'>
+                          <Input
+                            type='text'
+                            id='lastname'
+                            name='lastname'
+                            placeholder={lastname}
+                            onChange={infoAction.handleChangeValue}
+                          />
+                        </Col>
+                      </Row>
+                    </FormGroup>
+                    <FormGroup>
+                      <Row>
+                        <Col xs='4'>
+                          <Label style={{ fontWeight: 'bold' }} htmlFor='phoneNumber'>
+                            Số điện thoại
+                          </Label>
+                        </Col>
+                        <Col xs='8'>
+                          <Input
+                            type='text'
+                            id='phoneNumber'
+                            name='phoneNumber'
+                            placeholder={phoneNumber}
+                            onChange={infoAction.handleChangeValue}
+                          />
+                          <span style={{ color: 'red' }}>{infoSuggest.phoneNumber}</span>
+                        </Col>
+                      </Row>
+                    </FormGroup>
+                    <FormGroup>
+                      <Row>
+                        <Col xs='4'>
+                          <Label style={{ fontWeight: 'bold' }} htmlFor='address'>
+                            Địa chỉ
+                          </Label>
+                        </Col>
+                        <Col xs='8'>
+                          <Input
+                            type='text'
+                            id='address'
+                            name='address'
+                            placeholder={address}
+                            onChange={infoAction.handleChangeValue}
+                          />
+                        </Col>
+                      </Row>
+                    </FormGroup>
+                    <FormGroup>
+                      <Row>
+                        <Col xs='4'>
+                          <Label style={{ fontWeight: 'bold' }} htmlFor='email'>
+                            Email
+                          </Label>
+                        </Col>
+                        <Col xs='8'>
+                          <Input
+                            type='text'
+                            id='email'
+                            name='email'
+                            placeholder={email}
+                            onChange={infoAction.handleChangeValue}
+                          />
+                          <span style={{ color: 'red' }}>{infoSuggest.email}</span>
+                        </Col>
+                      </Row>
+                    </FormGroup>
                     <Row>
-                      <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='firstname'>
-                          Tên
-                        </Label>
-                      </Col>
-                      <Col xs='8'>
-                        <Input
-                          type='text'
-                          id='firstname'
-                          name='firstname'
-                          placeholder={firstname}
-                          onChange={infoAction.handleChangeValue}
-                        />
-                      </Col>
+                      <Button
+                        onClick={infoAction.handleChangeInfo}
+                        disabled={!changedInfo}
+                        type='submit'
+                        color='primary'
+                        style={{
+                          marginLeft: 'auto',
+                          marginRight: 'auto', //top right bottom left
+                          textAlign: 'center',
+                          background: 'orange',
+                          color: 'white',
+                          width: '130px',
+                          height: '50px',
+                          borderRadius: '20px',
+                        }}
+                      >
+                        Đổi thông tin
+                      </Button>
                     </Row>
-                  </FormGroup>
-                  <FormGroup>
-                    <Row>
-                      <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='lastname'>
-                          Họ và đện
-                        </Label>
-                      </Col>
-                      <Col xs='8'>
-                        <Input
-                          type='text'
-                          id='lastname'
-                          name='lastname'
-                          placeholder={lastname}
-                          onChange={infoAction.handleChangeValue}
-                        />
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                  <FormGroup>
-                    <Row>
-                      <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='phoneNumber'>
-                          Số điện thoại
-                        </Label>
-                      </Col>
-                      <Col xs='8'>
-                        <Input
-                          type='text'
-                          id='phoneNumber'
-                          name='phoneNumber'
-                          placeholder={phoneNumber}
-                          onChange={infoAction.handleChangeValue}
-                        />
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                  <FormGroup>
-                    <Row>
-                      <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='address'>
-                          Địa chỉ
-                        </Label>
-                      </Col>
-                      <Col xs='8'>
-                        <Input
-                          type='text'
-                          id='address'
-                          name='address'
-                          placeholder={address}
-                          onChange={infoAction.handleChangeValue}
-                        />
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                  <FormGroup>
-                    <Row>
-                      <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='email'>
-                          Email
-                        </Label>
-                      </Col>
-                      <Col xs='8'>
-                        <Input
-                          type='text'
-                          id='email'
-                          name='email'
-                          placeholder={email}
-                          onChange={infoAction.handleChangeValue}
-                        />
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                  <Row>
-                    <Button
-                      onClick={infoAction.handleChangeInfo}
-                      type='submit'
-                      color='primary'
-                      style={{
-                        marginLeft: 'auto',
-                        marginRight: 'auto', //top right bottom left
-                        textAlign: 'center',
-                        background: 'orange',
-                        color: 'white',
-                        width: '130px',
-                        height: '50px',
-                        borderRadius: '20px',
-                      }}
-                    >
-                      Đổi thông tin
-                    </Button>
-                  </Row>
-                </Form>
+                  </Form>
+                </Spin>
               </TabPane>
               <TabPane tabId='2'>
-                <Form style={{ textAlign: 'center' }}>
-                  <FormGroup>
+                <Spin spinning={changingPassword}>
+                  <Form style={{ textAlign: 'center' }}>
+                    <FormGroup>
+                      <Row>
+                        <Col xs='4'>
+                          <Label style={{ fontWeight: 'bold' }} htmlFor='oldPassword'>
+                            Mật khẩu cũ
+                          </Label>
+                        </Col>
+                        <Col xs='8'>
+                          <Input
+                            type='password'
+                            id='oldPassword'
+                            name='oldPassword'
+                            placeholder='Mật khẩu cũ...'
+                            onChange={passwordActions.handleChangeValue}
+                          />
+                          <span style={{ color: 'red' }}>{passwordSuggest.oldPassword}</span>
+                        </Col>
+                      </Row>
+                    </FormGroup>
+                    <FormGroup>
+                      <Row>
+                        <Col xs='4'>
+                          <Label style={{ fontWeight: 'bold' }} htmlFor='newPassword'>
+                            Mật Khẩu mới
+                          </Label>
+                        </Col>
+                        <Col xs='8'>
+                          <Input
+                            type='password'
+                            id='newPassword'
+                            name='newPassword'
+                            placeholder='Mật khẩu mới...'
+                            onChange={passwordActions.handleChangeValue}
+                          />
+                          <span style={{ color: 'red' }}>{passwordSuggest.newPassword}</span>
+                        </Col>
+                      </Row>
+                    </FormGroup>
+                    <FormGroup>
+                      <Row>
+                        <Col xs='4'>
+                          <Label style={{ fontWeight: 'bold' }} htmlFor='rePassword'>
+                            Nhập lại
+                          </Label>
+                        </Col>
+                        <Col xs='8'>
+                          <Input
+                            type='password'
+                            id='rePassword'
+                            name='rePassword'
+                            placeholder='Nhập lại mật khẩu mới...'
+                            onChange={passwordActions.handleChangeValue}
+                          />
+                          <span style={{ color: 'red' }}>{passwordSuggest.rePassword}</span>
+                        </Col>
+                      </Row>
+                    </FormGroup>
                     <Row>
-                      <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='oldPassword'>
-                          Mật khẩu cũ
-                        </Label>
-                      </Col>
-                      <Col xs='8'>
-                        <Input
-                          type='password'
-                          id='oldPassword'
-                          name='oldPassword'
-                          placeholder='Mật khẩu cũ...'
-                          onChange={passwordActions.handleChangeValue}
-                        />
-                        <span style={{ color: 'red' }}>{passwordSuggest.oldPassword}</span>
-                      </Col>
+                      <Button
+                        onClick={passwordActions.handleChangePassword}
+                        type='submit'
+                        color='primary'
+                        style={{
+                          marginLeft: 'auto',
+                          marginRight: 'auto',
+                          textAlign: 'center',
+                          background: 'orange',
+                          color: 'white',
+                          width: '130px',
+                          height: '50px',
+                          borderRadius: '20px',
+                        }}
+                      >
+                        Đổi mật khẩu
+                      </Button>
                     </Row>
-                  </FormGroup>
-                  <FormGroup>
-                    <Row>
-                      <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='newPassword'>
-                          Mật Khẩu mới
-                        </Label>
-                      </Col>
-                      <Col xs='8'>
-                        <Input
-                          type='password'
-                          id='newPassword'
-                          name='newPassword'
-                          placeholder='Mật khẩu mới...'
-                          onChange={passwordActions.handleChangeValue}
-                        />
-                        <span style={{ color: 'red' }}>{passwordSuggest.newPassword}</span>
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                  <FormGroup>
-                    <Row>
-                      <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='rePassword'>
-                          Nhập lại
-                        </Label>
-                      </Col>
-                      <Col xs='8'>
-                        <Input
-                          type='password'
-                          id='rePassword'
-                          name='rePassword'
-                          placeholder='Nhập lại mật khẩu mới...'
-                          onChange={passwordActions.handleChangeValue}
-                        />
-                        <span style={{ color: 'red' }}>{passwordSuggest.rePassword}</span>
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                  <Row>
-                    <Button
-                      onClick={passwordActions.handleChangePassword}
-                      // disabled={true}
-                      type='submit'
-                      color='primary'
-                      style={{
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                        textAlign: 'center',
-                        background: 'orange',
-                        color: 'white',
-                        width: '130px',
-                        height: '50px',
-                        borderRadius: '20px',
-                      }}
-                    >
-                      Đổi mật khẩu
-                    </Button>
-                  </Row>
-                </Form>
+                  </Form>
+                </Spin>
               </TabPane>
             </TabContent>
           </div>
