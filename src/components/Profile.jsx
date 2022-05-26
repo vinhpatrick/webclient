@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+import { changeInfomation, changePassword } from '../api/userApi'
+import { logoutUser } from '../redux/action/userAction'
 import {
   Modal,
   ModalHeader,
@@ -18,6 +21,7 @@ import {
   Input,
 } from 'reactstrap'
 const Profile = (props) => {
+  const dispatch = useDispatch()
   const userInfo = useSelector((state) => state.logForm.userInfo)
   const user = useSelector((state) => state.logForm.user)
   const { firstname, lastname, username, email, address, phoneNumber } = userInfo
@@ -26,6 +30,179 @@ const Profile = (props) => {
   // State for current active Tab
   const [activeTab, setActiveTab] = useState('1')
   const handleEditProfile = () => {}
+  //handleEditProfile
+  const initialInfo = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    phoneNumber: '',
+    address: '',
+  }
+  const [infoPayload, setInfoPayload] = useState(initialInfo)
+  const [infoSuggest, setInfoSuggest] = useState(initialInfo)
+  const [changingInfo, setChangingInfo] = useState(false)
+  const [changedInfo, setChangedInfo] = useState(false)
+
+  const initialPassword = {
+    oldPassword: '',
+    newPassword: '',
+    rePassword: '',
+  }
+  const [passwordPayload, setPasswordPayload] = useState(initialPassword)
+  const [passwordSuggest, setPasswordSuggest] = useState(initialPassword)
+  const [changingPassword, setChangingPassword] = useState(false)
+  useEffect(() => {
+    if (username) {
+      setInfoPayload({
+        username,
+        firstname,
+        lastname,
+        email,
+        phoneNumber,
+        address,
+      })
+    }
+  }, [])
+
+  useEffect(() => {
+    const changed =
+      firstname !== infoPayload.firstname ||
+      lastname !== infoPayload.lastname ||
+      phoneNumber !== infoPayload.phoneNumber ||
+      email !== infoPayload.email ||
+      address !== infoPayload.address
+    setChangedInfo(changed)
+  }, [infoPayload])
+
+  const infoAction = {
+    handleChangeValue: (e) => {
+      setInfoSuggest({ ...infoSuggest, [e.target.name]: '' })
+      setInfoPayload({
+        ...infoPayload,
+        [e.target.name]: e.target.value,
+      })
+    },
+    handleChangeInfo: (e) => {
+      e.preventDefault()
+      setChangingInfo(true)
+      const phoneNumberRegex = /^([+84|84|0]+([35789]))+([0-9]{8})$/
+      const emailRegex = /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/
+      const { firstname, lastname, email, address, phoneNumber } = infoPayload
+      if (!emailRegex.exec(email) || !phoneNumberRegex.exec(phoneNumber)) {
+        if (!emailRegex.exec(email)) {
+          setInfoSuggest({ ...infoSuggest, email: 'Email sai!' })
+        }
+        if (!phoneNumberRegex.exec(phoneNumber)) {
+          setInfoSuggest({ ...infoSuggest, phoneNumber: 'Số điện thoại sai!' })
+        }
+        setChangingInfo(false)
+      } else {
+        changeInfomation({ firstname, lastname, phoneNumber, email, address })
+          .then((response) => {
+            toast.success('Bạn đã thay đổi thông tin cá nhân thành công.', {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            })
+            setChangingInfo(false)
+            // setTimeout(() => {
+            //   window.location.reload()
+            // }, 1000)
+          })
+          .catch((err) => {
+            if (err.state > 500) {
+              toast.error('Bạn đã thay đổi thông tin cá nhân thành công.', {
+                position: 'top-right',
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              })
+              setChangingInfo(false)
+            }
+          })
+      }
+    },
+  }
+
+  const passwordActions = {
+    handleChangeValue: (e) => {
+      setPasswordSuggest({ ...passwordSuggest, [e.target.name]: '' })
+      setPasswordPayload({ ...passwordPayload, [e.target.name]: e.target.value.trim() })
+    },
+    handleChangePassword: (e) => {
+      console.log('okokok', passwordSuggest)
+      e.preventDefault()
+      const validatePassword = (pw) => {
+        const regex = /.{8,}/
+        return regex.exec(pw)
+      }
+      const { oldPassword, newPassword, rePassword } = passwordPayload
+      setChangingPassword(true)
+      if (newPassword !== rePassword) {
+        setPasswordSuggest({
+          ...passwordSuggest,
+          rePassword: 'Mật khẩu không khớp!',
+        })
+        console.log(passwordSuggest)
+        setChangingPassword(false)
+      } else if (!validatePassword(newPassword)) {
+        setPasswordSuggest({
+          ...passwordSuggest,
+          newPassword: 'Mật khẩu cần ít nhất 8 ký tự!',
+          rePassword: 'Mật khẩu cần ít nhất 8 ký tự!',
+        })
+        console.log(passwordSuggest)
+
+        setChangingPassword(false)
+      } else if (newPassword === oldPassword) {
+        setPasswordSuggest({
+          ...passwordSuggest,
+          newPassword: 'Mật khẩu mới phải khác mật khẩu cũ!',
+          rePassword: 'Mật khẩu mới phải khác mật khẩu cũ!',
+        })
+        console.log(passwordSuggest)
+
+        setChangingPassword(false)
+      } else {
+        changePassword({ oldPassword, newPassword })
+          .then((response) => {
+            toast.success('Bạn đã thay đổi mật khẩu thành công.', {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            })
+            setTimeout(() => {
+              setChangingPassword(false)
+              dispatch(logoutUser())
+            }, 1000)
+          })
+          .catch((error) => {
+            toast.error('Mật khẩu cũ không chính xác!', {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            })
+            setChangingPassword(false)
+          })
+      }
+    },
+  }
+
   return (
     <div>
       <Modal isOpen={isOpen} toggle={isToggle}>
@@ -52,32 +229,39 @@ const Profile = (props) => {
             </Nav>
             <TabContent style={{ marginTop: '20px' }} activeTab={activeTab}>
               <TabPane tabId='1'>
-                <Form onSubmit={handleEditProfile} style={{ textAlign: 'center' }}>
+                <Form style={{ textAlign: 'center' }}>
                   <FormGroup>
                     <Row>
                       <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='username'>
+                        <Label style={{ fontWeight: 'bold' }} htmlFor='firstname'>
                           Tên
                         </Label>
                       </Col>
                       <Col xs='8'>
-                        <Input type='text' id='username' name='username' value={username} />
+                        <Input
+                          type='text'
+                          id='firstname'
+                          name='firstname'
+                          placeholder={firstname}
+                          onChange={infoAction.handleChangeValue}
+                        />
                       </Col>
                     </Row>
                   </FormGroup>
                   <FormGroup>
                     <Row>
                       <Col xs='4'>
-                        <Label style={{ fontWeight: 'bold' }} htmlFor='fullname'>
+                        <Label style={{ fontWeight: 'bold' }} htmlFor='lastname'>
                           Họ và đện
                         </Label>
                       </Col>
                       <Col xs='8'>
                         <Input
                           type='text'
-                          id='fullname'
-                          name='fullname'
-                          value={firstname + lastname}
+                          id='lastname'
+                          name='lastname'
+                          placeholder={lastname}
+                          onChange={infoAction.handleChangeValue}
                         />
                       </Col>
                     </Row>
@@ -94,7 +278,8 @@ const Profile = (props) => {
                           type='text'
                           id='phoneNumber'
                           name='phoneNumber'
-                          value={phoneNumber}
+                          placeholder={phoneNumber}
+                          onChange={infoAction.handleChangeValue}
                         />
                       </Col>
                     </Row>
@@ -107,7 +292,13 @@ const Profile = (props) => {
                         </Label>
                       </Col>
                       <Col xs='8'>
-                        <Input type='text' id='address' name='address' value={address} />
+                        <Input
+                          type='text'
+                          id='address'
+                          name='address'
+                          placeholder={address}
+                          onChange={infoAction.handleChangeValue}
+                        />
                       </Col>
                     </Row>
                   </FormGroup>
@@ -119,12 +310,19 @@ const Profile = (props) => {
                         </Label>
                       </Col>
                       <Col xs='8'>
-                        <Input type='text' id='email' name='email' value={email} />
+                        <Input
+                          type='text'
+                          id='email'
+                          name='email'
+                          placeholder={email}
+                          onChange={infoAction.handleChangeValue}
+                        />
                       </Col>
                     </Row>
                   </FormGroup>
                   <Row>
                     <Button
+                      onClick={infoAction.handleChangeInfo}
                       type='submit'
                       color='primary'
                       style={{
@@ -144,7 +342,7 @@ const Profile = (props) => {
                 </Form>
               </TabPane>
               <TabPane tabId='2'>
-                <Form onSubmit={handleEditProfile} style={{ textAlign: 'center' }}>
+                <Form style={{ textAlign: 'center' }}>
                   <FormGroup>
                     <Row>
                       <Col xs='4'>
@@ -153,7 +351,14 @@ const Profile = (props) => {
                         </Label>
                       </Col>
                       <Col xs='8'>
-                        <Input type='password' id='oldPassword' name='oldPassword' />
+                        <Input
+                          type='password'
+                          id='oldPassword'
+                          name='oldPassword'
+                          placeholder='Mật khẩu cũ...'
+                          onChange={passwordActions.handleChangeValue}
+                        />
+                        <span style={{ color: 'red' }}>{passwordSuggest.oldPassword}</span>
                       </Col>
                     </Row>
                   </FormGroup>
@@ -165,7 +370,14 @@ const Profile = (props) => {
                         </Label>
                       </Col>
                       <Col xs='8'>
-                        <Input type='password' id='newPassword' name='newPassword' />
+                        <Input
+                          type='password'
+                          id='newPassword'
+                          name='newPassword'
+                          placeholder='Mật khẩu mới...'
+                          onChange={passwordActions.handleChangeValue}
+                        />
+                        <span style={{ color: 'red' }}>{passwordSuggest.newPassword}</span>
                       </Col>
                     </Row>
                   </FormGroup>
@@ -177,12 +389,21 @@ const Profile = (props) => {
                         </Label>
                       </Col>
                       <Col xs='8'>
-                        <Input type='password' id='rePassword' name='rePassword' />
+                        <Input
+                          type='password'
+                          id='rePassword'
+                          name='rePassword'
+                          placeholder='Nhập lại mật khẩu mới...'
+                          onChange={passwordActions.handleChangeValue}
+                        />
+                        <span style={{ color: 'red' }}>{passwordSuggest.rePassword}</span>
                       </Col>
                     </Row>
                   </FormGroup>
                   <Row>
                     <Button
+                      onClick={passwordActions.handleChangePassword}
+                      // disabled={true}
                       type='submit'
                       color='primary'
                       style={{

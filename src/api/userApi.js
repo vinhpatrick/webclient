@@ -137,4 +137,20 @@ export const postFeedback = (payload) => {
     data: payload,
   })
 }
+export const changeInfomation = ({ firstname, lastname, phoneNumber, email, address }) => {
+  const payload = { firstname, lastname, phoneNumber, email, address }
+  return axiosClient({
+    url: '/users/updateSelf',
+    method: 'PUT',
+    data: payload,
+  })
+}
 
+export const changePassword = ({ oldPassword, newPassword }) => {
+  const payload = { oldPassword, newPassword }
+  return axiosClient({
+    url: 'users/changepassword',
+    method: 'PUT',
+    data: payload,
+  })
+}
