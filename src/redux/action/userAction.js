@@ -19,7 +19,7 @@ export const receiveLogin = (response) => {
   return {
     type: ActionTypes.LOGIN_SUCCESS,
     token: response.data.token,
-    userInfo: response.data.user ? response.data.user : response.data,
+    userInfo: response.data.user,
   }
 }
 
@@ -43,6 +43,7 @@ export const loginUser = (creds) => async (dispatch) => {
       localStorage.setItem('admin', data.admin)
       localStorage.setItem('userId', data.userId)
       localStorage.setItem('address', data.user.address)
+      localStorage.setItem('info', JSON.stringify(response.data.user))
       dispatch(receiveLogin(response))
       dispatch(_getMyCart())
     })
@@ -71,6 +72,7 @@ export const logoutUser = () => (dispatch) => {
   localStorage.removeItem('admin')
   localStorage.removeItem('userId')
   localStorage.removeItem('address')
+  localStorage.removeItem('info')
   dispatch(receiveLogout())
   window.location.href = '/'
 }

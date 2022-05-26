@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { changeInfomation, changePassword } from '../api/userApi'
 import { logoutUser, receiveLogin } from '../redux/action/userAction'
+import { _hideLogForm } from '../redux/action/changeFormAction'
 
 import { Spin } from 'antd'
 import {
@@ -24,9 +25,14 @@ import {
 } from 'reactstrap'
 const Profile = (props) => {
   const dispatch = useDispatch()
-  const userInfo = useSelector((state) => state.logForm.userInfo)
+  // const userInfo = useSelector((state) => state.logForm.userInfo)
+  const userInfo = localStorage.getItem('info')
+  const infoToObj = JSON.parse(userInfo)
+  // console.log('type', typeof infook)
+  // console.log('info', userInfo)
   const user = useSelector((state) => state.logForm.user)
-  const { firstname, lastname, username, email, address, phoneNumber } = userInfo
+  const { firstname, lastname, username, email, address, phoneNumber } = infoToObj
+  // console.log('1', firstname)s
   const isOpen = props.open
   const isToggle = props.toggle
   // State for current active Tab
@@ -111,7 +117,7 @@ const Profile = (props) => {
               draggable: true,
               progress: undefined,
             })
-            dispatch(receiveLogin(response))
+            localStorage.setItem('info', JSON.stringify(response.data))
             setChangingInfo(false)
             // setTimeout(() => {
             //   window.location.reload()
@@ -186,6 +192,7 @@ const Profile = (props) => {
               draggable: true,
               progress: undefined,
             })
+            dispatch(_hideLogForm())
             setTimeout(() => {
               setChangingPassword(false)
               dispatch(logoutUser())

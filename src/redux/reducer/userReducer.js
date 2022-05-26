@@ -6,10 +6,9 @@ const INIT_STATE = {
   token: localStorage.getItem('token'),
   user: localStorage.getItem('creds') ? JSON.parse(localStorage.getItem('creds')) : null,
   userId: localStorage.getItem('userId') ? localStorage.getItem('userId') : '',
-  userInfo: {},
+  userInfo: localStorage.getItem('info') ? localStorage.getItem('info') : {},
   errMess: null,
   address: '',
-  test: {},
   email: '',
 }
 
