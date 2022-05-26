@@ -28,7 +28,7 @@ const GridView = (props) => {
       <main className={`${styles['col-md-12']}`}>
         <header className={`${styles['border-bottom']} ${styles['mb-4']} ${['pb-3']}`}>
           <div className={`${['form-inline']}`}>
-            <span className={`${styles['mr-md-auto']}`}>
+            <span className={`${styles['mr-md-auto']} listview-fix`}>
               {total} sản phẩm liên quan đến #<b>{decodeURIComponent(keyword)}</b>
             </span>
 
@@ -152,7 +152,7 @@ const GridView = (props) => {
               )}
             </Button>
 
-            <div className={`${styles['btn-group']}`}>
+            <div className={`${styles['btn-group']} btn-listview`}>
               <button
                 className='btn btn-outline-secondary'
                 data-toggle='tooltip'

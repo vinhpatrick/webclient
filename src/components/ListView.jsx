@@ -26,7 +26,7 @@ const ListView = (props) => {
       <main className={`${styles['col-md-12']}`}>
         <header className={`${styles['mb-4 pb-3']}`}>
           <div className={`${styles['form-inline']}`}>
-            <span className={`${styles['mr-md-auto']}`}>
+            <span className={`${styles['mr-md-auto']} listview-fix`}>
               {total} sản phẩm liên quan đến #<b>{decodeURIComponent(keyword)}</b>
             </span>
 
@@ -150,7 +150,7 @@ const ListView = (props) => {
               )}
             </Button>
 
-            <div className={[`${styles['btn-group']}`]}>
+            <div className={[`${styles['btn-group']} btn-listview`]}>
               <button className='btn btn-outline-secondary active' title='List view'>
                 <i className='fa fa-bars' />
               </button>

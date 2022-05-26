@@ -122,19 +122,19 @@ const Order = (props) => {
                         <OrderItem itemData={order.items} />
                         <div className='mb-3'>
                           <CRow>
-                            <CCol xs={8}>
+                            <CCol sm={6} className='oder-item1'>
                               <CBadge color={getBadge(order.status)}>
                                 {ORDER_STATUSES_MAPPING[order.status]}
                               </CBadge>
                             </CCol>
-                            <CCol xs={2}>
+                            <CCol sm={3} className='oder-item2'>
                               <p>
                                 Tổng số tiền: ₫{' '}
                                 {numberSeparator(order.totalPrice + order.shippingCost)}{' '}
                               </p>
                             </CCol>
                             {order.status == 'Waiting for seller confirm' ? (
-                              <CCol xs={2}>
+                              <CCol sm={3} className='oder-item3'>
                                 <CButton
                                   color='danger'
                                   shape='rounded-pill'
@@ -149,7 +149,7 @@ const Order = (props) => {
                               ''
                             )}
                             {order.status == 'In transit' ? (
-                              <CCol xs={2}>
+                              <CCol sm={3} className='oder-item3'>
                                 <CButton
                                   color='success'
                                   shape='rounded-pill'

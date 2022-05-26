@@ -73,7 +73,7 @@ const ListItem = (props) => {
               </p>
             </div>
           </div>
-          <aside className={`${styles['col-sm-3']}`}>
+          <aside className={`${styles['col-sm-3']} list-view-fix`}>
             <div className={`${styles['info-aside']}`}>
               <div className={`${styles['price-wrap']}`}>
                 <span className={`${styles['price']} ${styles['h5']}`}>

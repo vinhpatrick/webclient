@@ -4419,6 +4419,7 @@ body {
   color: #343a40;
   text-align: left;
   background-color: #fff;
+  overflow-x: hidden;
 }
 
 [tabindex='-1']:focus {
@@ -13658,6 +13659,7 @@ button.bg-gray-light:focus {
 
   .mr-md-auto,
   .mx-md-auto {
+    
     margin-right: auto !important;
   }
 
@@ -15865,10 +15867,12 @@ a[class*='card']:hover .title {
 /* GRID STYLE PRODUCT ITEM */
 .card-product-grid {
   margin-bottom: 20px;
+  padding: 20px;
 }
 .card-product-grid .img-wrap {
+  /* padding: 20px; */
   border-radius: 0.2rem 0.2rem 0 0;
-  height: 220px;
+  /* height: 220px; */
 }
 .card-product-grid .info-wrap {
   overflow: hidden;
@@ -15926,8 +15930,9 @@ a[class*='card']:hover .title {
   margin-bottom: 20px;
 }
 .card-product-list .img-wrap {
-  height: 220px;
+  max-width: 190px;
   border-radius: 0.37rem 0 0 0.37rem;
+  padding: 20px;
 }
 .card-product-list .info-main {
   padding: 1.5rem 1rem;

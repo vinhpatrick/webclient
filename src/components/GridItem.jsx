@@ -12,7 +12,7 @@ const GridItem = (props) => {
 
   return (
     <>
-      <div className={`${styles['col-md-3']}`}>
+      <div className={`${styles['col-md-6']} ${styles['col-lg-4']}  ${styles['col-xl-3']}`}>
         <figure className={`${styles['card']} ${styles['card-product-grid']}`}>
           <div className={`${styles['img-wrap']}`}>
             {isNew ? (
@@ -53,10 +53,10 @@ const GridItem = (props) => {
               )}
             </div>
             <div className={`${styles['row']} ${styles['mt-1']} ${styles['text-dark']}`}>
-              <div className='col-sm-6 text-left'>
+              <div className='col-6 text-left'>
                 Đã bán <b>{sold}</b>
               </div>
-              <div className='col-sm-6 text-right'>
+              <div className='col-6 text-right'>
                 <b>{view}</b> lượt xem
               </div>
             </div>

@@ -1,15 +1,8 @@
 {
-    "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "modificationsIfAvailable",
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "prettier.endOfLine": "auto",
     // "prettier.endOfLine": "auto",
     "prettier.tabWidth": 2,
     "prettier.printWidth": 100,
