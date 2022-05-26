@@ -26,13 +26,10 @@ import {
 const Profile = (props) => {
   const dispatch = useDispatch()
   // const userInfo = useSelector((state) => state.logForm.userInfo)
-  const userInfo = localStorage.getItem('info')
+  const userInfo = useSelector((state) => state.logForm.userInfo)
   const infoToObj = JSON.parse(userInfo)
-  // console.log('type', typeof infook)
-  // console.log('info', userInfo)
   const user = useSelector((state) => state.logForm.user)
   const { firstname, lastname, username, email, address, phoneNumber } = infoToObj
-  // console.log('1', firstname)s
   const isOpen = props.open
   const isToggle = props.toggle
   // State for current active Tab
@@ -213,6 +210,7 @@ const Profile = (props) => {
       }
     },
   }
+  
 
   return (
     <div>
