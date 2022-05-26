@@ -26,7 +26,7 @@ import {
 const Profile = (props) => {
   const dispatch = useDispatch()
   // const userInfo = useSelector((state) => state.logForm.userInfo)
-  const userInfo = useSelector((state) => state.logForm.userInfo)
+  const userInfo = localStorage.getItem('info') && localStorage.getItem('info')
   const infoToObj = JSON.parse(userInfo)
   const user = useSelector((state) => state.logForm.user)
   const { firstname, lastname, username, email, address, phoneNumber } = infoToObj
