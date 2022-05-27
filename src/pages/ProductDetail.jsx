@@ -23,12 +23,10 @@ const ProductDetail = () => {
   const [targetSize, setTargetSize] = useState('')
   const [targetStock, setTargetStock] = useState(0)
   const [quantity, setQuantity] = useState(1)
-
   useEffect(() => {
     setLoading(true)
     getProductById(productId)
       .then((response) => {
-        window.scrollTo(0, 0)
         const data = response.data
         // console.log(data)
         setProduct(data)
@@ -85,7 +83,7 @@ const ProductDetail = () => {
         .catch((e) => {
           const { status } = e.response
           if (status >= 500) {
-            console.log('error', status)
+            // console.log('error', status)
             toast.error(status, { autoClose: 2000 })
             setLoading(false)
           }
