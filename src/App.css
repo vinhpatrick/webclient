@@ -705,6 +705,16 @@ html {
 }
 
 @media only screen and (max-width: 991px) {
+  /* order */
+  .ant-tabs > .ant-tabs-nav .ant-tabs-nav-list {
+    flex-wrap: wrap;
+  }
+  .ant-tabs-top > .ant-tabs-nav .ant-tabs-ink-bar-animated,
+  .ant-tabs-top > .ant-tabs-nav:before {
+    display: none;
+  }
+  /* order */
+
   .listview-fix {
     display: block;
     width: 100%;
@@ -743,6 +753,18 @@ html {
 }
 
 @media only screen and (max-width: 767px) {
+  .ant-table-tbody .cart-fix {
+    width: 100%;
+    display: block;
+    flex-grow: unset;
+    flex-basis: 100%;
+  }
+  .ant-table-tbody .cart-fix ~ .row {
+    flex: unset;
+  }
+  .cart-fix > .row {
+    flex: unset;
+  }
   .btn-listview {
     margin-bottom: 20px;
   }
@@ -804,8 +826,36 @@ html {
     max-width: 148px;
   }
 }
+@media only screen and (max-width: 575px) {
+  .ant-spin-container .badge {
+    position: relative;
+  }
+  .oder-item1,
+  .oder-item2,
+  .oder-item3 {
+    width: 33.3333333333%;
+  }
+}
 
 @media only screen and (max-width: 480px) {
+  /* order */
+  .ant-tabs-tab + .ant-tabs-tab {
+    width: 100%;
+    margin-left: 0;
+  }
+  /* order */
+
+  .oder-item1,
+  .oder-item2 {
+    width: 50%;
+  }
+  .oder-item3 {
+    width: 100%;
+  }
+  .section-content .oder-item3 {
+    justify-content: center;
+    margin-top: 15px;
+  }
   .ant-table-cell > figure {
     flex-wrap: wrap;
   }

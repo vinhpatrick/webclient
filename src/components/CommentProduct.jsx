@@ -31,6 +31,7 @@ const CommentProduct = ({ productId }) => {
   useEffect(() => {
     getComment(productId).then((response) => {
       response.data.map((cmt) => {
+        console.log('cmt', cmt.author)
         if (userId === cmt.author._id) {
           // setRatting(cmt.ratting)
           setCommentId(cmt._id)
