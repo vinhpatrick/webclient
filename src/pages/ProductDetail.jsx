@@ -28,6 +28,7 @@ const ProductDetail = () => {
     getProductById(productId)
       .then((response) => {
         const data = response.data
+        window.scrollTo(0, 0)
         // console.log(data)
         setProduct(data)
         setLoading(false)
