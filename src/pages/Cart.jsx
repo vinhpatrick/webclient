@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
 import { Table } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
-import Layout from '../layout/Layout'
-import CartItemProduct from '../components/CartTable/CartItemProduct'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import CartFooter from '../components/CartTable/CartFooter'
 import CartItemEditor from '../components/CartTable/CartItemEditor'
+import CartItemProduct from '../components/CartTable/CartItemProduct'
+import Layout from '../layout/Layout'
 import { _getMyCart } from '../redux/action/cartAction'
 
 const Cart = () => {

@@ -1,20 +1,9 @@
-import React from 'react'
-import axios from 'axios'
-import { updateProduct } from '../../api/adminApi'
-import { useState, useRef } from 'react'
 import {
-  CButton,
-  CCol,
   CForm,
-  CFormInput,
-  CInputGroup,
-  CFormLabel,
-  CFormTextarea,
-  CInputGroupText,
-  CImage,
-  CRow,
-  CSpinner,
+  CFormInput, CFormLabel,
+  CFormTextarea
 } from '@coreui/react'
+import React from 'react'
 
 const FormDetailFeedback = (props) => {
   const { data } = props

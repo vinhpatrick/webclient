@@ -1,5 +1,4 @@
 import { Card, CardBody, CardHeader, Media } from 'reactstrap'
-// import { Link } from 'react-router-dom'
 import Layout from '../layout/Layout'
 
 const About = () => {

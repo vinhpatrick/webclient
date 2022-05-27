@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Spin, message as Message } from 'antd'
-
-import Layout from '../layout/Layout'
-import ProductItem from '../components/ProductItem'
-import BannerTop from '../components/BannerTop'
+import { message as Message, Spin } from 'antd'
+import React, { useEffect, useState } from 'react'
 import { searchProducts } from '../api/productApi'
-
+import BannerTop from '../components/BannerTop'
+import ProductItem from '../components/ProductItem'
+import Layout from '../layout/Layout'
 
 const Home = (props) => {
   const [loadingNews, setLoadingNews] = useState(false)

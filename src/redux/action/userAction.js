@@ -1,9 +1,8 @@
-import * as ActionTypes from './ActionTypes'
-// import { login } from '../../api/userApi'
-import { baseUrl } from '../../shared/baseUrl'
-import axiosClient from '../../api/axiosClient'
-import { _getMyCart } from './cartAction'
 import { toast } from 'react-toastify'
+import axiosClient from '../../api/axiosClient'
+import { baseUrl } from '../../shared/baseUrl'
+import * as ActionTypes from './ActionTypes'
+import { _getMyCart } from './cartAction'
 export const requestLogin = (creds) => {
   return {
     type: ActionTypes.LOGIN_REQUEST,

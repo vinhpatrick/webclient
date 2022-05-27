@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-import { getCart, addToCart, removeFromCart } from '../../api/userApi'
+import { addToCart, getCart, removeFromCart } from '../../api/userApi'
 
 export const _getMyCart = (userId) => {
   return (dispatch) => {

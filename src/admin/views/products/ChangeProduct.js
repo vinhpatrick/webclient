@@ -1,7 +1,8 @@
-import React, { useState, useEffect, Suspense } from 'react'
-import TableProduct from '../../components/TableProduct'
-import { getProduct } from '../../../api/adminApi'
 import { CSpinner } from '@coreui/react'
+import React, { Suspense, useEffect, useState } from 'react'
+import { getProduct } from '../../../api/adminApi'
+import TableProduct from '../../components/TableProduct'
+
 const ChangeProduct = () => {
   const [dataProducts, setDataProducts] = useState([])
   useEffect(() => {

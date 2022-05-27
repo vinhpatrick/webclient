@@ -1,16 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
 import {
   CCol,
   CForm,
-  CFormInput,
-  CInputGroup,
-  CFormLabel,
-  CFormTextarea,
-  CInputGroupText,
-  CImage,
-  CRow,
+  CFormInput, CFormLabel,
+  CFormTextarea, CImage, CInputGroup, CInputGroupText, CRow
 } from '@coreui/react'
+import React, { useState } from 'react'
 import numberSeparator from '../../helpers/validating/numberSeparator'
 
 const FormDetailDelete = (recvData) => {

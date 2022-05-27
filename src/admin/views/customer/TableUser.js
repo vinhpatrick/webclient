@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { getUsers } from '../../../api/adminApi'
 import {
-  CSmartTable,
-  CBadge,
-  CFormSelect,
-  CRow,
-  CCol,
-  CFormLabel,
-  CHeader as h1,
+  CCol, CRow, CSmartTable
 } from '@coreui/react-pro'
+import React, { useEffect, useState } from 'react'
+import { getUsers } from '../../../api/adminApi'
 
 const TableUser = () => {
   const columns = [

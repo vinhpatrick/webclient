@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import 'antd/dist/antd.min.css';
+import 'bootstrap-social/bootstrap-social.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import 'bootstrap-social/bootstrap-social.css'
-import 'antd/dist/antd.min.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import App from './App';
 import './index.css';
-import { Provider } from 'react-redux'
-import store from './redux/index'
-import App from './App'
-import reportWebVitals from './reportWebVitals'
-import { BrowserRouter } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
+import store from './redux/index';
+import reportWebVitals from './reportWebVitals';
 
 
 

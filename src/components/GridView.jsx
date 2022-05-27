@@ -1,10 +1,8 @@
-import styles from '../css_modules/css/all.module.css'
-
-import { Spin, Pagination, Button } from 'antd'
+import { Button, Pagination, Spin } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
-import GridItem from './GridItem'
-
+import styles from '../css_modules/css/all.module.css'
 import { _search } from '../redux/action/searchAction'
+import GridItem from './GridItem'
 
 const GridView = (props) => {
   const dispatch = useDispatch()

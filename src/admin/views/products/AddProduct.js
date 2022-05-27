@@ -1,21 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react'
-import axios from 'axios'
-import axiosClient from '../../../api/axiosClient'
-import { addProduct } from '../../../api/adminApi'
 import {
   CButton,
   CCol,
   CForm,
-  CFormInput,
-  CInputGroup,
-  CFormLabel,
-  CFormTextarea,
-  CInputGroupText,
-  CImage,
-  CRow,
-  CSpinner,
+  CFormInput, CFormLabel,
+  CFormTextarea, CImage, CInputGroup, CInputGroupText, CRow,
+  CSpinner
 } from '@coreui/react'
+import axios from 'axios'
+import React, { useRef, useState } from 'react'
 import { toast } from 'react-toastify'
+import { addProduct } from '../../../api/adminApi'
 
 const AddProduct = () => {
   const style = { color: 'red' }

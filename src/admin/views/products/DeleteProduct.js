@@ -1,7 +1,7 @@
-import React, { useState, useEffect, Suspense } from 'react'
-import TableProduct from '../../components/TableProduct'
+import React, { Suspense, useEffect, useState } from 'react'
 import { getProduct } from '../../../api/adminApi'
-import { CFormSelect, CSpinner } from '@coreui/react'
+import TableProduct from '../../components/TableProduct'
+
 const DeleteProduct = () => {
   const [dataProducts, setDataProducts] = useState([])
 

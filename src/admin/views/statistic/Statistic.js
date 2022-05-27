@@ -1,15 +1,14 @@
-import React, { lazy, useState, useEffect } from 'react'
-import { CButton, CButtonGroup, CCard, CCardBody, CCardFooter, CCol, CRow } from '@coreui/react'
+import { LoadingOutlined } from '@ant-design/icons'
+import { cilCloudDownload } from '@coreui/icons'
+import CIcon from '@coreui/icons-react'
+import { CButton, CButtonGroup, CCard, CCardBody, CCardFooter, CCol, CFormSelect, CRow } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils'
-import { cilCloudDownload } from '@coreui/icons'
-import { getRevenue } from '../../../api/adminApi.js'
-import { CFormSelect } from '@coreui/react'
 import { Spin } from 'antd'
-import { LoadingOutlined } from '@ant-design/icons'
-import numberSeparator from '../../../helpers/validating/numberSeparator'
 import moment from 'moment'
-import CIcon from '@coreui/icons-react'
+import React, { lazy, useEffect, useState } from 'react'
+import { getRevenue } from '../../../api/adminApi.js'
+import numberSeparator from '../../../helpers/validating/numberSeparator'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))

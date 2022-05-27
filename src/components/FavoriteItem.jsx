@@ -1,9 +1,7 @@
+import { Spin } from 'antd'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Media, Button } from 'reactstrap'
-import { deleteWishList } from '../api/userApi'
-import { Spin, message as Message } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import { Button, Media } from 'reactstrap'
 
 export default function FavoriteItem(props) {
   const navigate = useNavigate()

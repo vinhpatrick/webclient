@@ -1,18 +1,7 @@
 import React from 'react'
-import {
-  ModalHeader,
-  FormGroup,
-  Form,
-  Input,
-  Label,
-  Button,
-  ModalBody,
-  Row,
-  Col,
-  ModalFooter,
-} from 'reactstrap'
-import { _changeLogForm } from '../redux/action/changeFormAction'
 import { useDispatch } from 'react-redux'
+import { Button, Col, Form, FormGroup, Input, Label, ModalBody, ModalHeader, Row } from 'reactstrap'
+import { _changeLogForm } from '../redux/action/changeFormAction'
 
 const ForgotPassword = (props) => {
   const dispatch = useDispatch()

@@ -1,19 +1,19 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
-import { _changeLogForm, _hideLogForm } from '../redux/action/changeFormAction'
 import { Spin } from 'antd'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
-  ModalHeader,
-  FormGroup,
+  Button,
+  Col,
   Form,
+  FormGroup,
   Input,
   Label,
-  Button,
   ModalBody,
-  Row,
-  Col,
   ModalFooter,
+  ModalHeader,
+  Row,
 } from 'reactstrap'
+import { _changeLogForm } from '../redux/action/changeFormAction'
 import { loginUser } from '../redux/action/userAction'
 // import { _hideLogForm } from '../redux/action/changeFormAction'
 

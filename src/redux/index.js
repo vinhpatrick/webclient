@@ -1,13 +1,13 @@
-import thunk from 'redux-thunk'
 import { createForms } from 'react-redux-form'
-import { combineReducers, createStore, applyMiddleware } from 'redux'
-
-import userReducer from './reducer/userReducer'
-import changeFormReducer from './reducer/changeFormReducer'
+import { applyMiddleware, combineReducers, createStore } from 'redux'
+import thunk from 'redux-thunk'
 import cartReducer from './reducer/cartReducer'
-import searchReducer from './reducer/searchReducer'
+import changeFormReducer from './reducer/changeFormReducer'
 import { InitialFeedback } from './reducer/form'
+import searchReducer from './reducer/searchReducer'
 import changeState from './reducer/sideBarShow'
+import userReducer from './reducer/userReducer'
+
 
 const reducers = combineReducers({
   logForm: userReducer,

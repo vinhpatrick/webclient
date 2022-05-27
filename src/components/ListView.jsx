@@ -1,9 +1,8 @@
+import { Button, Pagination, Spin } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from '../css_modules/css/all.module.css'
-
-import { Spin, Pagination, Button } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
-import ListItem from './ListItem'
 import { _search } from '../redux/action/searchAction'
+import ListItem from './ListItem'
 
 const ListView = (props) => {
   const dispatch = useDispatch()

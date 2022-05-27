@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { Media } from 'reactstrap'
-import Layout from '../layout/Layout'
-import FavoriteItem from '../components/FavoriteItem'
-import { getWishlist } from '../api/userApi'
 import { Spin } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
-import { deleteWishList } from '../api/userApi'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { Media } from 'reactstrap'
+import { deleteWishList, getWishlist } from '../api/userApi'
+import FavoriteItem from '../components/FavoriteItem'
+import Layout from '../layout/Layout'
 
 const Favorites = () => {
   const auth = useSelector((state) => state.logForm.isAuthenticated)

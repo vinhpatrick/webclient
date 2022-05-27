@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom'
-import { CSmartTable } from '@coreui/react-pro'
-import { CImage, CRow, CCol } from '@coreui/react-pro'
-import numberSeparator from '../helpers/validating/numberSeparator'
+import { CCol, CImage, CRow, CSmartTable } from '@coreui/react-pro'
 import { Typography } from 'antd'
+import { Link } from 'react-router-dom'
+import numberSeparator from '../helpers/validating/numberSeparator'
 const { Title } = Typography
 const OrderItem = (props) => {
   const { itemData } = props

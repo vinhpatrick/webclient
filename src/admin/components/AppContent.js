@@ -1,16 +1,16 @@
+import { CContainer, CSpinner } from '@coreui/react'
 import React, { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { CContainer, CSpinner } from '@coreui/react'
+import NotFound from '../../pages/NotFound'
+import FeedBack from '../views/customer/FeedBack'
+import TableUser from '../views/customer/TableUser'
+import Dashboard from '../views/dashboard/Dashboard'
+import TableOrder from '../views/orders/TableOrder'
+import WaitingOrder from '../views/orders/WaitingOrder'
 import AddProduct from '../views/products/AddProduct'
 import ChangeProduct from '../views/products/ChangeProduct'
 import DeleteProduct from '../views/products/DeleteProduct'
-import TableOrder from '../views/orders/TableOrder'
-import WaitingOrder from '../views/orders/WaitingOrder'
-import Dashboard from '../views/dashboard/Dashboard'
-import TableUser from '../views/customer/TableUser'
-import FeedBack from '../views/customer/FeedBack'
 import Statistic from '../views/statistic/Statistic'
-import NotFound from '../../pages/NotFound'
 // routes config
 
 const AppContent = () => {

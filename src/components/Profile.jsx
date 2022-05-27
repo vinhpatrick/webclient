@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { toast } from 'react-toastify'
-import { changeInfomation, changePassword } from '../api/userApi'
-import { logoutUser, receiveLogin } from '../redux/action/userAction'
-import { _hideLogForm } from '../redux/action/changeFormAction'
-
 import { Spin } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  FormGroup,
-  Label,
-  TabContent,
-  TabPane,
-  NavItem,
-  NavLink,
-  Nav,
-  Row,
+  Button,
   Col,
   Form,
-  Button,
+  FormGroup,
   Input,
+  Label,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Nav,
+  NavItem,
+  NavLink,
+  Row,
+  TabContent,
+  TabPane,
 } from 'reactstrap'
+import { changeInfomation, changePassword } from '../api/userApi'
+import { _hideLogForm } from '../redux/action/changeFormAction'
+import { logoutUser } from '../redux/action/userAction'
+
 const Profile = (props) => {
   const dispatch = useDispatch()
   // const userInfo = useSelector((state) => state.logForm.userInfo)
@@ -210,7 +210,6 @@ const Profile = (props) => {
       }
     },
   }
-  
 
   return (
     <div>

@@ -1,7 +1,6 @@
-import styles from '../css_modules/css/all.module.css'
-
-import numberSeparator from '../helpers/validating/numberSeparator'
 import { Link } from 'react-router-dom'
+import styles from '../css_modules/css/all.module.css'
+import numberSeparator from '../helpers/validating/numberSeparator'
 
 const GridItem = (props) => {
   // console.log(props)

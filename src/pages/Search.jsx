@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import ListView from '../components/ListView'
 import GridView from '../components/GridView'
+import ListView from '../components/ListView'
 import Layout from '../layout/Layout'
-
 import { _search } from '../redux/action/searchAction'
 
 const Search = (props) => {

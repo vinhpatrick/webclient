@@ -1,15 +1,15 @@
+import { CImage, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import React from 'react'
-import { useSelector, useDispatch, action } from 'react-redux'
-
-import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler, CImage } from '@coreui/react'
-import { AppSidebarNav } from './AppSidebarNav'
-
+import { useDispatch, useSelector } from 'react-redux'
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
-
+import logos from '../assets/brand/logo.png'
 // sidebar nav config
 import navigation from '../_nav'
-import logos from '../assets/brand/logo.png'
+import { AppSidebarNav } from './AppSidebarNav'
+
+
+
 
 const AppSidebar = () => {
   const dispatch = useDispatch()

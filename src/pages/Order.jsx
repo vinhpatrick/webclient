@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
-import { getOrder, confirmOrder, cancelOrder } from '../api/userApi'
-import OrderItem from '../components/OrderItem'
-import { CBadge, CRow, CCol, CButton } from '@coreui/react-pro'
-import { ORDER_STATUSES_MAPPING } from '../helpers/order/index'
-import { Tabs, Spin, Typography, Modal } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
-
+import { CBadge, CButton, CCol, CRow } from '@coreui/react-pro'
+import { Modal, Spin, Tabs, Typography } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { cancelOrder, confirmOrder, getOrder } from '../api/userApi'
+import OrderItem from '../components/OrderItem'
+import { ORDER_STATUSES_MAPPING } from '../helpers/order/index'
+import numberSeparator from '../helpers/validating/numberSeparator'
 // import OrderItem from './components/OrderItem'
 import Layout from '../layout/Layout'
-import numberSeparator from '../helpers/validating/numberSeparator'
 
 const { confirm } = Modal
 const { TabPane } = Tabs

@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { getOrder, confirmOrder, cancelOrder } from '../../api/adminApi'
-import { CSmartTable, CBadge, CFormSelect, CButton, CCollapse, CCardBody } from '@coreui/react-pro'
-import { ORDER_STATUSES_MAPPING } from '../../helpers/order'
-import {
-  CTableRow,
-  CTable,
-  CTableHead,
-  CTableHeaderCell,
-  CTableDataCell,
-  CTableBody,
-  CHeaderBrand,
-  CCol,
-  CFormInput,
-  CInputGroup,
-  CFormLabel,
-  CInputGroupText,
-  CRow,
-} from '@coreui/react'
-import { Modal } from 'antd'
-import { toast } from 'react-toastify'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
+import {
+  CCol,
+  CFormInput, CFormLabel, CHeaderBrand, CInputGroup, CInputGroupText,
+  CRow, CTable, CTableBody, CTableDataCell, CTableHead,
+  CTableHeaderCell, CTableRow
+} from '@coreui/react'
+import { CBadge, CButton, CCardBody, CCollapse, CFormSelect, CSmartTable } from '@coreui/react-pro'
+import { Modal } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { cancelOrder, confirmOrder, getOrder } from '../../api/adminApi'
+import { ORDER_STATUSES_MAPPING } from '../../helpers/order'
 import numberSeparator from '../../helpers/validating/numberSeparator'
 
 const { confirm } = Modal

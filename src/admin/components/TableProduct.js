@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { CSmartTable, CButton, CCollapse, CCardBody, CSpinner } from '@coreui/react-pro'
-import { deleteProduct } from '../../api/adminApi'
-import { toast } from 'react-toastify'
-import { Modal } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { CButton, CCardBody, CCollapse, CSmartTable, CSpinner } from '@coreui/react-pro'
+import { Modal } from 'antd'
+import React, { useState } from 'react'
 import ReactStars from 'react-rating-stars-component'
+import { toast } from 'react-toastify'
+import { deleteProduct } from '../../api/adminApi'
+import numberSeparator from '../../helpers/validating/numberSeparator'
 import FormDetail from './FormDetail'
 import FormDetailDelete from './FormDetailDelete'
-import numberSeparator from '../../helpers/validating/numberSeparator'
 
 const { confirm } = Modal
 const TableProduct = ({ columns, usersData, type }) => {

@@ -1,24 +1,21 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
+import CIcon from '@coreui/icons-react'
 import {
   CContainer,
   CHeader,
   CHeaderBrand,
   CHeaderDivider,
   CHeaderNav,
-  CHeaderToggler,
-  CNavLink,
-  CNavItem,
-  CImage,
+  CHeaderToggler, CImage, CNavItem, CNavLink
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
-
-import { AppBreadcrumb } from './index'
-import { AppHeaderDropdown } from './header/index'
-import logos from '../assets/brand/logo.png'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { _showSideBar } from '../../redux/action/sidebarShow'
+import logos from '../assets/brand/logo.png'
+import { AppHeaderDropdown } from './header/index'
+import { AppBreadcrumb } from './index'
+
 const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow.sidebarShow)

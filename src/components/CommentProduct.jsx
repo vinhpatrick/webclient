@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { Avatar, Button, Comment, Form, Input, Rate, Tooltip } from 'antd'
 import 'antd/dist/antd.min.css'
 import moment from 'moment'
-import { Comment, Tooltip, Avatar, Rate } from 'antd'
-import { getComment, postComment, deleteComment } from '../api/userApi'
-import { Form, Button, Input } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { deleteComment, getComment, postComment } from '../api/userApi'
 
 const { TextArea } = Input
 

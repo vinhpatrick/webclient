@@ -1,21 +1,16 @@
-import React from 'react'
-import axios from 'axios'
-import { updateProduct } from '../../api/adminApi'
-import { useState, useRef } from 'react'
 import {
   CButton,
   CCol,
   CForm,
-  CFormInput,
-  CInputGroup,
-  CFormLabel,
-  CFormTextarea,
-  CInputGroupText,
-  CImage,
-  CRow,
-  CSpinner,
+  CFormInput, CFormLabel,
+  CFormTextarea, CImage, CInputGroup, CInputGroupText, CRow,
+  CSpinner
 } from '@coreui/react'
+import axios from 'axios'
+import React, { useRef, useState } from 'react'
 import { toast } from 'react-toastify'
+import { updateProduct } from '../../api/adminApi'
+
 const FormDetail = (recvData) => {
   const inputFile = useRef(null)
   const [data, setData] = useState({

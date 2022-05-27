@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import {
+  CButton, CCardBody, CCol, CCollapse, CRow, CSmartTable
+} from '@coreui/react-pro'
+import React, { useEffect, useState } from 'react'
 import { getFeedBacks } from '../../../api/adminApi'
 import FormDetailFeedback from '../../components/FormDetailFeedback'
-import {
-  CSmartTable,
-  CBadge,
-  CFormSelect,
-  CRow,
-  CCol,
-  CButton,
-  CFormLabel,
-  CCardBody,
-  CCollapse,
-  CHeader as h1,
-} from '@coreui/react-pro'
 // import { CSmartTable, CButton, CCollapse, CCardBody, CSpinner } from '@coreui/react-pro'
 
 const TableUser = () => {

@@ -1,6 +1,5 @@
-import styles from '../css_modules/css/all.module.css'
-
 import { Link } from 'react-router-dom'
+import styles from '../css_modules/css/all.module.css'
 import numberSeparator from '../helpers/validating/numberSeparator'
 
 const ListItem = (props) => {

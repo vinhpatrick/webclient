@@ -1,33 +1,28 @@
-import React, { useEffect, useState, memo } from 'react'
-import LoginForm from './LoginForm'
-import RegisterForm from './RegisterForm'
-import ForgotPassword from './ForgotPassword'
-import Profile from './Profile'
-import { logoutUser } from '../redux/action/userAction'
-import { Link, useNavigate } from 'react-router-dom'
-import { _search } from '../redux/action/searchAction'
 import { Spin } from 'antd'
-import { _getMyCart } from '../redux/action/cartAction'
-import { resetLogin } from '../redux/action/userAction'
-import styles from '../css_modules/css/all.module.css'
+import React, { memo, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 // import Carts from '../components/Carts'
 import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavbarToggler,
   Collapse,
-  NavItem,
-  Modal,
   Dropdown,
-  DropdownToggle,
-  DropdownMenu,
   DropdownItem,
-  Button,
+  DropdownMenu,
+  DropdownToggle,
+  Modal,
+  Nav,
+  Navbar,
+  NavItem,
 } from 'reactstrap'
-import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { _showLogForm, _hideLogForm } from '../redux/action/changeFormAction'
+import styles from '../css_modules/css/all.module.css'
+import { _getMyCart } from '../redux/action/cartAction'
+import { _hideLogForm, _showLogForm } from '../redux/action/changeFormAction'
+import { _search } from '../redux/action/searchAction'
+import { logoutUser, resetLogin } from '../redux/action/userAction'
+import ForgotPassword from './ForgotPassword'
+import LoginForm from './LoginForm'
+import Profile from './Profile'
+import RegisterForm from './RegisterForm'
 
 const Header = () => {
   useEffect(() => {

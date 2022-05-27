@@ -1,6 +1,6 @@
 import React from 'react'
-import { AppFooter, AppSidebar, AppHeader, AppContent } from './components/index'
 import '../scss/style.scss'
+import { AppContent, AppFooter, AppHeader, AppSidebar } from './components/index'
 const Seller = () => {
   return (
     <div>

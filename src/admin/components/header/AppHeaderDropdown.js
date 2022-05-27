@@ -1,17 +1,16 @@
-import React from 'react'
+import { cilHome, cilLockLocked } from '@coreui/icons'
+import CIcon from '@coreui/icons-react'
 import {
   CAvatar,
   CDropdown,
   CDropdownDivider,
   CDropdownItem,
   CDropdownMenu,
-  CDropdownToggle,
+  CDropdownToggle
 } from '@coreui/react'
-import { cilHome, cilLockLocked } from '@coreui/icons'
-import CIcon from '@coreui/icons-react'
-import { logoutUser } from '../../../redux/action/userAction'
+import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom' 
+import { logoutUser } from '../../../redux/action/userAction'
 
 const AppHeaderDropdown = () => {
   const dispatch = useDispatch()

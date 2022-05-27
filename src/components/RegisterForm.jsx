@@ -1,21 +1,21 @@
+import { message as Message, Spin } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {
-  ModalHeader,
-  FormGroup,
+  Button,
+  Col,
   Form,
+  FormGroup,
   Input,
   Label,
-  Button,
   ModalBody,
-  Row,
-  Col,
   ModalFooter,
+  ModalHeader,
+  Row,
 } from 'reactstrap'
-import { Spin, message as Message } from 'antd'
-import { _changeLogForm, _showLogForm } from '../redux/action/changeFormAction'
 import { register } from '../api/userApi'
 import validateInput from '../helpers/validating/validateInput'
+import { _changeLogForm } from '../redux/action/changeFormAction'
 
 export default function RegisterForm(props) {
   const toggle = props.isToggle
