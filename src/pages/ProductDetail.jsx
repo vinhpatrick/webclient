@@ -10,6 +10,7 @@ import numberSeparator from '../helpers/validating/numberSeparator'
 import Layout from '../layout/Layout'
 import { _showLogForm } from '../redux/action//changeFormAction'
 import { _getMyCart } from '../redux/action/cartAction'
+import PriceChart from '../components/PriceChart'
 
 const ProductDetail = () => {
   const navigate = useNavigate()
@@ -295,6 +296,9 @@ const ProductDetail = () => {
                 </article>
 
                 <article className='card mt-5'></article>
+                <div className='card-body'>
+                  <PriceChart productId={productId} />
+                </div>
                 <div className='card-body'></div>
                 <article className='card mt-5'>
                   <div className='card-body'>

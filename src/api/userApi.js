@@ -154,3 +154,11 @@ export const changePassword = ({ oldPassword, newPassword }) => {
     data: payload,
   })
 }
+
+export const getFlexPrice = (productId, query) => {
+  const queryString = query2string(query)
+  return axiosClient({
+    url: `/statistics/products/${productId}?${queryString}`,
+    method: 'GET',
+  })
+}
