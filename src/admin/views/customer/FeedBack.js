@@ -1,5 +1,5 @@
 import {
-  CButton, CCardBody, CCol, CCollapse, CRow, CSmartTable
+  CButton, CCardBody, CCol, CCollapse, CRow, CSmartTable, CSpinner
 } from '@coreui/react-pro'
 import React, { useEffect, useState } from 'react'
 import { getFeedBacks } from '../../../api/adminApi'
@@ -115,6 +115,12 @@ const TableUser = () => {
                   >
                     {details.includes(item._id) ? 'Hide' : 'Show'}
                   </CButton>
+                  <input
+                    className='form-check-input'
+                    type='checkbox'
+
+                    id='checkProduct'
+                  ></input>
                 </div>
               </td>
             )
@@ -139,6 +145,11 @@ const TableUser = () => {
           hover: true,
         }}
       />
+      <>
+        <CButton disabled={loading} color='danger'>
+          {!loading ? '' : <CSpinner component='span' size='sm' aria-hidden='true' />} Xóa{' '}
+        </CButton>
+      </>
     </div>
   )
 }

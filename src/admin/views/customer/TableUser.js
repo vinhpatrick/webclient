@@ -1,5 +1,5 @@
 import {
-  CCol, CRow, CSmartTable
+  CCol, CRow, CSmartTable, CBadge, CButton, CSpinner
 } from '@coreui/react-pro'
 import React, { useEffect, useState } from 'react'
 import { getUsers } from '../../../api/adminApi'
@@ -41,6 +41,12 @@ const TableUser = () => {
       filter: true,
       _style: { width: '100%' },
     },
+    {
+      label: 'Vai trò',
+      key: 'admin',
+      filter: true,
+      _style: { width: '100%' },
+    },
   ]
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
@@ -50,13 +56,12 @@ const TableUser = () => {
       setLoading(false)
     })
   }, [])
-
   return (
     <div>
       <div className='mb-3'>
         <CRow>
           <CCol xs='9'>
-            <h2>Danh sách các cửa hàng đã đăng ký </h2>
+            <h2>Danh sách các khách hàng đã đăng ký </h2>
           </CCol>
         </CRow>
       </div>
@@ -75,11 +80,41 @@ const TableUser = () => {
         pagination
         sorterValue={{ column: 'name', state: 'asc' }}
         tableFilter
+        scopedColumns={{
+          admin: (item) => (
+            item.admin ? (
+              <td>
+                <CBadge color='warning'>Admin</CBadge>
+              </td>) : (
+              <td>
+                <CBadge color='primary'>Khách hàng</CBadge>
+              </td>
+            )
+          ),
+          delete: (item) => (
+            <td className='py-2'>
+              <div>
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+
+                  id='checkProduct'
+                ></input>
+              </div>
+            </td>
+          )
+
+        }}
         tableProps={{
           striped: true,
           hover: true,
         }}
       />
+      <>
+        <CButton disabled={loading} color='danger'>
+          {!loading ? '' : <CSpinner component='span' size='sm' aria-hidden='true' />} Xóa{' '}
+        </CButton>
+      </>
     </div>
   )
 }

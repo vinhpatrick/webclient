@@ -52,7 +52,12 @@ const AddProduct = () => {
     if (data.sizes.length == 0) {
       toast.warning('Sản phẩm cần tối thiểu một loại hàng', { autoClose: 2000 })
       setLoading(false)
-    } else {
+    } if (data.price > data.originalPrice) {
+      toast.warning('Giá sản phẩm không thể lớn hơn giá gốc', { autoClose: 2000 })
+      setLoading(false)
+
+    }
+    else {
       // console.log('data', data)
       // const token = localStorage.getItem('token')
       // axiosClient
