@@ -31,7 +31,7 @@ const CommentProduct = ({ productId }) => {
   useEffect(() => {
     getComment(productId).then((response) => {
       response.data.map((cmt) => {
-        console.log('cmt', cmt.author)
+        // console.log('cmt', cmt.author)
         if (userId === cmt.author._id) {
           // setRatting(cmt.ratting)
           setCommentId(cmt._id)
@@ -67,9 +67,16 @@ const CommentProduct = ({ productId }) => {
           // setCommentText('')
         })
         .catch((err) => {
-          toast.error('Đánh giá sản phẩm thất bại')
-          setLoading(true)
-          setLoadingBtn(false)
+          // console.log('ok', err.response)
+          if (err.response.status >= 500) {
+            toast.error('Bạn chỉ có thể đánh giá sản phẩm mình đã mua')
+            setLoading(true)
+            setLoadingBtn(false)
+          } else {
+            toast.error('Đánh giá sản phẩm thất bại')
+            setLoading(true)
+            setLoadingBtn(false)
+          }
         })
     }
   }

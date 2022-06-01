@@ -22,17 +22,35 @@ const _nav = [
     name: 'Quản lý khách hàng',
   },
   {
-    component: CNavItem,
-    name: 'Danh sách khách hàng',
+    component: CNavGroup,
+    name: 'Khách hàng',
     to: '/seller/customer',
     icon: <CIcon icon={cilUser} customClassName='nav-icon' />,
+    items: [{
+      component: CNavItem,
+      name: 'Danh sách khách hàng',
+      to: '/seller/customer',
+      // icon: <CIcon icon={cilUser} customClassName='nav-icon' />,
+    }, {
+      component: CNavItem,
+      name: 'Phản hồi của khách hàng',
+      to: '/seller/feedback',
+      // icon: <CIcon icon={cilCommentSquare} customClassName='nav-icon' />,
+    }
+    ]
   },
-  {
-    component: CNavItem,
-    name: 'Phản hồi của khách hàng',
-    to: '/seller/feedback',
-    icon: <CIcon icon={cilCommentSquare} customClassName='nav-icon' />,
-  },
+  // {
+  //   component: CNavItem,
+  //   name: 'Danh sách khách hàng',
+  //   to: '/seller/customer',
+  //   icon: <CIcon icon={cilUser} customClassName='nav-icon' />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Phản hồi của khách hàng',
+  //   to: '/seller/feedback',
+  //   icon: <CIcon icon={cilCommentSquare} customClassName='nav-icon' />,
+  // },
   // {
   //   component: CNavTitle,
   //   name: 'Người dùng',

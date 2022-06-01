@@ -31,6 +31,11 @@ const FormDetail = (recvData) => {
     if (data.price == recvData.data.price) {
       delete data.price
     }
+    if (data.price > data.originalPrice) {
+      toast.warning('Giá sản phẩm không thể lớn hơn giá gốc', { autoClose: 2000 })
+      setLoading(false)
+
+    }
     data.images = imageUrls
     const productId = recvData.data.idProduct && recvData.data.idProduct
     setLoading(true)
