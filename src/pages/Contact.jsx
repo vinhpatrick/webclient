@@ -80,10 +80,10 @@ const Contact = () => {
           <div className='col-12 col-sm-11 offset-sm-1'>
             <div className='btn-group' role='group'>
               <a role='button' className='btn btn-primary' href='tel:+85212345678'>
-                <i className='fa fa-phone'></i> Call
+                <i className='fa fa-phone'></i> Gọi điện
               </a>
               <a role='button' className='btn btn-info'>
-                <i className='fa fa-skype'></i> Skype
+                <i className='fa fa-skype'></i> Zalo
               </a>
               <a role='button' className='btn btn-success' href='mailto:vinh572000@gmail.coms'>
                 <i className='fa fa-envelope-o'></i> Email
@@ -233,7 +233,7 @@ const Contact = () => {
                       name='contactType'
                       className='form-control'
                     >
-                      <option>Tel.</option>
+                      <option>Số điện thoại</option>
                       <option>Email</option>
                     </Control.select>
                   </Col>

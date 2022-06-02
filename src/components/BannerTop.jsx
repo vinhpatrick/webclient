@@ -25,7 +25,7 @@ export default function BannerTop() {
     cssEase: 'linear',
   }
   return (
-    <Slider {...settings}>
+    <Slider className='banner-top' {...settings}>
       <div>
         <section
           className='welcome_area bg-img background-overlay'

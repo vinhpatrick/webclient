@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import App from './App';
+import ScrollToTop from './components/ScrollToTop'
 import './index.css';
 import store from './redux/index';
 import reportWebVitals from './reportWebVitals';
@@ -18,7 +19,9 @@ ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
       <ToastContainer />
     </BrowserRouter>
   </Provider>,

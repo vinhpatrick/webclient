@@ -15,17 +15,17 @@ const About = () => {
           <div className='col-12 col-md-6'>
             <h2>Lịch sử phát triển</h2>
             <p>
-              Được thành lập vào năm 2010, Ristorante con Fusion nhanh chóng trở thành một biểu
-              tượng ẩm thực xuất sắc ở Hồng Kông. Với thương hiệu độc đáo của nền ẩm thực kết hợp
-              thế giới có thể không tìm thấy ở đâu khác, nó nhận được sự bảo trợ từ khách hàng hạng
-              A ở Hồng Kông. Với bốn trong số các đầu bếp ba sao Michelin giỏi nhất trên thế giới,
-              bạn sẽ không bao giờ biết điều gì sẽ đến trên đĩa của bạn vào lần tiếp theo bạn đến
-              thăm chúng tôi.
+              Vào năm 2022, Vmobile được ra mắt tại Việt Nam với định hướng là website thương mại
+              điện tử tử phát triển chủ yếu trên laptop, hoạt động như một mạng xã hội phục vụ nhu
+              cầu mua bán mọi lúc, mọi nơi cho người dùng. Tích hợp hệ thống vận hành, giao nhận và
+              hỗ trợ về khâu thanh toán, Vmobile là bên trung gian giúp việc mua sắm trực tuyến dễ
+              dàng và an toàn hơn cho cả bên mua lẫn bên bán.
             </p>
             <p>
-              Nhà hàng đánh dấu sự khởi đầu khiêm tốn của mình cho đến <em> The Frying Pan </em>,
-              một thành công chuỗi do Giám đốc điều hành của chúng tôi, ông Peter Pan, bắt đầu, lần
-              đầu tiên xuất hiện trên thế giới các món ăn ngon nhất trên chảo.
+              Mô hình ban đầu của Vmobile Việt Nam là C2C Marketplace - Trung gian trong quy trình
+              mua bán giữa các cá nhân với nhau.Tuy nhiên, hiện nay Vmobile Việt Nam đã trở thành mô
+              hình lai khi có cả B2C (doanh nghiệp đến người tiêu dùng). Vmobile đã tính phí của
+              người bán / hoa hồng và phí đăng bán sản phẩm.
             </p>
           </div>
           <div className='col-12 col-md-5'>
@@ -34,7 +34,7 @@ const About = () => {
               <CardBody>
                 <dl className='row p-1'>
                   <dt className='col-6'>Bắt đầu</dt>
-                  <dd className='col-6'>3 Tháng. 2013</dd>
+                  <dd className='col-6'>Tháng 3-2021</dd>
                   <dt className='col-6'>Cổ đông chính</dt>
                   <dd className='col-6'>Đồng Văn Vinh.</dd>
                   <dt className='col-6'>Doanh thu của năm ngoái</dt>
@@ -45,8 +45,8 @@ const About = () => {
               </CardBody>
             </Card>
           </div>
-          <div className='col-12'>
-            {/* <Card>
+          {/* <div className='col-12 col-md-5'>
+            <Card>
               <CardBody className='bg-faded'>
                 <blockquote className='blockquote'>
                   <p className='mb-0'>
@@ -61,8 +61,8 @@ const About = () => {
                   </footer>
                 </blockquote>
               </CardBody>
-            </Card> */}
-          </div>
+            </Card>
+          </div> */}
         </div>
         <div className='row row-content'>
           <div className='col-12'>
@@ -72,8 +72,8 @@ const About = () => {
             <Media left middle>
               <Media
                 object
-                src='https://scontent.fhan5-11.fna.fbcdn.net/v/t39.30808-1/257977999_3141760336104527_6914593917575493290_n.jpg?stp=dst-jpg_s200x200&_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=VwlrGtkPlF4AX9QdB4l&tn=AHk7uGKXnZrqDZsF&_nc_ht=scontent.fhan5-11.fna&oh=00_AT_kYbySc8UGwWdgzqIc8RMvJ7SWxpAPbMtcWC7Pk00-Xg&oe=6278D6E7'
-                alt='vinhok'
+                src={`${process.env.PUBLIC_URL}/assets/images/avartar.jpg`}
+                alt='avatar'
               />
             </Media>
             <Media body className='ml-5'>

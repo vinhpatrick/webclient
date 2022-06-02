@@ -11,9 +11,12 @@ export default function FavoriteItem(props) {
   const deleted = () => {
     handleDeleteWishList(productId)
   }
+  const handleToDetail = () => {
+    navigate(`/products/${productId}`)
+  }
   return (
     <Media tag='li'>
-      <Media left middle>
+      <Media left middle onClick={handleToDetail}>
         <Media
           // style={{
           //   maxWidth: '200px',

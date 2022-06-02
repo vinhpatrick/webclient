@@ -1,11 +1,13 @@
 import { message as Message, Spin } from 'antd'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { searchProducts } from '../api/productApi'
 import BannerTop from '../components/BannerTop'
 import ProductItem from '../components/ProductItem'
 import Layout from '../layout/Layout'
 
 const Home = (props) => {
+  const navigate = useNavigate()
   const [loadingNews, setLoadingNews] = useState(false)
   const [news, setNews] = useState([])
 
@@ -14,6 +16,10 @@ const Home = (props) => {
 
   const [loadingSells, setLoadingSells] = useState(false)
   const [sells, setSells] = useState([])
+  const handleToAllProduct = (e) => {
+    e.preventDefault()
+    navigate('/search/?keyword=')
+  }
   useEffect(() => {
     setLoadingNews(true)
     setLoadingPopulars(true)
@@ -126,7 +132,9 @@ const Home = (props) => {
           </div>
         </section>
         <div style={{ textDecoration: 'none' }} className='view-all-product'>
-          {/* <Link to='/'>Xem tất cả sản phẩm</Link> */}
+          <div className='all-products' onClick={handleToAllProduct}>
+            Xem tất cả sản phẩm
+          </div>
         </div>
       </div>
     </Layout>
