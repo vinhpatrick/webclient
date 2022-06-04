@@ -16,12 +16,13 @@ const Dashboard = () => {
   const [orderCount, setOrderCount] = useState([])
   const userId = localStorage.getItem('userId')
   useEffect(() => {
-    getRevenue({ from: moment().subtract(30, 'day'), to: moment() }).then((response) => {
-      // console.log('datane', response.data)
-      setTotalAmount(response.data.totalAmount)
-      setOrderCount(response.data.orderCount)
-      setStatistics(response.data.statistics)
-    })
+    getRevenue({ from: moment().subtract(30, 'day'), to: moment() })
+      .then((response) => {
+        // console.log('datane', response.data)
+        setTotalAmount(response.data.totalAmount)
+        setOrderCount(response.data.orderCount)
+        setStatistics(response.data.statistics)
+      })
   }, [])
 
   return (
