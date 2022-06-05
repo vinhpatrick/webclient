@@ -52,7 +52,9 @@ const AddProduct = () => {
     if (data.sizes.length == 0) {
       toast.warning('Sản phẩm cần tối thiểu một loại hàng', { autoClose: 2000 })
       setLoading(false)
-    } if (data.price > data.originalPrice) {
+    }
+    if (parseInt(data.price) > parseInt(data.originalPrice)) {
+
       toast.warning('Giá sản phẩm không thể lớn hơn giá gốc', { autoClose: 2000 })
       setLoading(false)
 
@@ -76,6 +78,7 @@ const AddProduct = () => {
           }
         })
         .catch((err) => {
+          console.error(err.response)
           // console.log('them sp that bai')
           toast.error('Thêm sản phẩm thất bại', { autoClose: 2000 })
           // error(err.response.data.message)
