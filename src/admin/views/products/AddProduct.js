@@ -78,7 +78,7 @@ const AddProduct = () => {
           }
         })
         .catch((err) => {
-          console.error(err.response)
+          // console.error(err.response)
           // console.log('them sp that bai')
           toast.error('Thêm sản phẩm thất bại', { autoClose: 2000 })
           // error(err.response.data.message)
