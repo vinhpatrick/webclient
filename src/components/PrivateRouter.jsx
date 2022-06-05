@@ -13,7 +13,7 @@ export const PrivateRouter = ({ children }) => {
 export const AdminRouter = ({ children }) => {
   const auth = useSelector((state) => state.logForm.isAuthenticated)
   const admin = localStorage.getItem('admin')
-  if (auth && admin === 'false') {
+  if ((auth && admin === 'false') || !admin) {
     alert('Chỉ quản trị viên mới có quyền vào trang quản trị ...')
     return <Navigate to='/' />
   }
