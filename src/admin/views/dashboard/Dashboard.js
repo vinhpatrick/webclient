@@ -2,7 +2,6 @@ import { cilCloudDownload } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { CButton, CButtonGroup, CCard, CCardBody, CCardFooter, CCol, CRow } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
-import { getStyle, hexToRgba } from '@coreui/utils'
 import moment from 'moment'
 import React, { lazy, useEffect, useState } from 'react'
 import { getRevenue } from '../../../api/adminApi.js'
@@ -63,9 +62,9 @@ const Dashboard = () => {
               datasets: [
                 {
                   label: 'Doanh thu',
-                  backgroundColor: hexToRgba(getStyle('--cui-info'), 10),
-                  borderColor: getStyle('--cui-info'),
-                  pointHoverBackgroundColor: getStyle('--cui-info'),
+                  backgroundColor: 'rgba(75,192,192,0.4)',
+                  borderColor: 'rgba(75,192,192,1)',
+                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                   borderWidth: 2,
                   data: statistics ? statistics.map((statistic) => statistic.totalAmount) : [],
                   fill: true,
@@ -145,9 +144,9 @@ const Dashboard = () => {
               datasets: [
                 {
                   label: 'Số đơn hàng',
-                  backgroundColor: hexToRgba(getStyle('--cui-info'), 10),
-                  borderColor: getStyle('--cui-info'),
-                  pointHoverBackgroundColor: getStyle('--cui-info'),
+                  backgroundColor: 'rgba(75,192,192,0.4)',
+                  borderColor: 'rgba(75,192,192,1)',
+                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                   borderWidth: 2,
                   data: statistics ? statistics.map((statistic) => statistic.orderCount) : [],
                   fill: true,

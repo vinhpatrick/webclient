@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 import { CButton, CButtonGroup, CCard, CCardBody, CCol, CRow } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
-import { getStyle, hexToRgba } from '@coreui/utils'
 import { getFlexPrice } from '../api/userApi'
 import moment from 'moment'
 
@@ -51,9 +50,9 @@ const PriceChart = ({ productId }) => {
               datasets: [
                 {
                   label: 'Giá',
-                  backgroundColor: hexToRgba(getStyle('--cui-info'), 10),
-                  borderColor: getStyle('--cui-info'),
-                  pointHoverBackgroundColor: getStyle('--cui-info'),
+                  backgroundColor: 'rgba(75,192,192,0.4)',
+                  borderColor: 'rgba(75,192,192,1)',
+                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                   borderWidth: 2,
                   data: statistics ? statistics.map((statistic) => statistic.price) : '',
                   fill: true,
