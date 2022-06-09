@@ -209,7 +209,7 @@ const Header = () => {
             </button>
           </div>
           <Link className='logo' to='/'>
-            <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt='VinhMobile' />
+            <img src={`${process.env.PUBLIC_URL}/assets/images/logos.png`} alt='VinhMobile' style={{maxWidth:'110px'}} />
           </Link>
           <Collapse isOpen={toggleNav} navbar>
             <div className='header-left'>

@@ -3,7 +3,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
-import logos from '../assets/brand/logo.png'
+import logos from '../assets/brand/logos.png'
 // sidebar nav config
 import navigation from '../_nav'
 import { AppSidebarNav } from './AppSidebarNav'

@@ -12,7 +12,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { _showSideBar } from '../../redux/action/sidebarShow'
-import logos from '../assets/brand/logo.png'
+import logos from '../assets/brand/logos.png'
 import { AppHeaderDropdown } from './header/index'
 import { AppBreadcrumb } from './index'
 
