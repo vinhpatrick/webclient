@@ -52,7 +52,7 @@ export default function BannerTop() {
             <div className='row h-100 align-items-center'>
               <div className='col-12'>
                 <div className='hero-content'>
-                  <h6>Hè 2022</h6>
+                  <h6  style={{color: 'red'}}>Hè 2022</h6>
                   <h2 style={{color: 'red'}}>Rất nhiều sản phẩm sale<br/> lên tới 50%</h2>
                 </div>
               </div>
@@ -103,8 +103,8 @@ export default function BannerTop() {
             <div className='row h-100 align-items-center'>
               <div className='col-12'>
                 <div className='hero-content'>
-                  <h6>Rất nhiều sản phẩm hấp dẫn đang chờ đón bạn</h6>
-                  <h2>Hãy xem ngay nào</h2>
+                  <h6  style={{color: 'red'}}>Rất nhiều sản phẩm hấp dẫn đang chờ đón bạn</h6>
+                  <h2  style={{color: 'red'}}>Hãy xem ngay nào</h2>
                 </div>
               </div>
             </div>

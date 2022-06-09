@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound'
 import Order from './pages/Order'
 import ProductDetail from './pages/ProductDetail'
 import Search from './pages/Search'
+import Statistics from './pages/Statistics'
 import { PrivateRouter, AdminRouter } from './components/PrivateRouter'
 import './scss/style.scss'
 
@@ -25,6 +26,7 @@ function App() {
     { path: '/aboutus', name: 'About', element: About },
     { path: '/contactus', name: 'Contact', element: Contact },
     { path: '/search', name: 'Search', element: Search },
+    { path: '/statistics', name: 'Statistics', element: Statistics },
     // { path: '/favorites', name: 'Favorites', element: Favorites },
     // { path: '/order', name: 'Order', element: Order },
     // { path: '/cart', name: 'Cart', element: Cart },

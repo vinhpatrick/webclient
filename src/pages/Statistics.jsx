@@ -1,68 +1,49 @@
+import React ,{ useEffect, useState }from 'react'
+import Layout from '../layout/Layout'
 import { LoadingOutlined } from '@ant-design/icons'
 import { cilCloudDownload } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { CButton, CButtonGroup, CCard, CCardBody, CCardFooter, CCol, CFormSelect, CRow } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
 import { Spin, Typography } from 'antd'
+import numberSeparator from '../helpers/validating/numberSeparator'
+import {getMyRevenue} from '../api/userApi'
 import moment from 'moment'
-import React, { useEffect, useState } from 'react'
-import { getUsers } from '../../../api/adminApi'
-import { getRevenueCustomer } from '../../../api/adminApi'
-import numberSeparator from '../../../helpers/validating/numberSeparator'
 const { Title } = Typography
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
-const StatisticCustomer = () => {
+const Statistics=()=> {
   const [statistics, setStatistics] = useState([])
   const [totalAmount, setTotalAmount] = useState([])
   const [orderCount, setOrderCount] = useState([])
-  const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
-  const [userId, setUserId] = useState('')
+  const userId=localStorage.getItem('userId')
   useEffect(() => {
-    getUsers().then((response) => {
-      setUsers(response.data)
-      setLoading(false)
-    })
-  }, [])
-  useEffect(() => {
-    if (userId != '' && userId != 1) {
-      getRevenueCustomer(userId, { from: moment().subtract(30, 'day'), to: moment() })
-        .then((response) => {
-          setTotalAmount(response.data.totalAmount)
-          setOrderCount(response.data.orderCount)
-          setStatistics(response.data.statistics)
-          setLoading(false);
-
-        })
-        .catch((error) => {
-          setLoading(false);
-        })
+    setLoading(true)
+    if(userId) {
+      getMyRevenue(userId, { from: moment().subtract(30, 'day'), to: moment() })
+      .then((response) => {
+        setTotalAmount(response.data.totalAmount)
+        setOrderCount(response.data.orderCount)
+        setStatistics(response.data.statistics)
+        setLoading(false);
+  
+      })
+      .catch((error) => {
+        setLoading(false);
+      })
     }
-  }, [userId])
+  },[])
   return (
-    <div>
-      <div className="mb-3" >
-        <CFormSelect
-          aria-label="Default select example"
-          onChange={(e) => {
-            setLoading(true)
-            setUserId(e.target.value)
-          }}
-        >
-          <option value="1">Chọn khách hàng để xem</option>
-          {
-            users.map((user) => {
-              return (
-                <option value={user._id} key={user._id}>
-                  {user.username}
-                </option>
-              )
-            })
-          }
-        </CFormSelect>
-      </div>
-      <Spin spinning={loading} indicator={antIcon}>
+   <Layout>
+      <div className='container page-wishlist' style={{ minHeight: '650px' }}>
+      <div className='row'>
+          <div className='col-12 page-title'>
+            <h3>Chi tiêu cá nhân</h3>
+            <hr />
+          </div>
+        </div>
+        <div>
+        <Spin spinning={loading}>
         {statistics && statistics.length > 0 ? (
           <div>
             <CCard className="mb-4">
@@ -214,15 +195,16 @@ const StatisticCustomer = () => {
                   }}
                 />
               </CCardBody>
-              <CCardFooter></CCardFooter>
             </CCard>
           </div>
         ) : (
-          'Khách hàng chưa chi tiêu cho sản phẩm nào'
+          <h3>Bạn chưa có chi tiêu nào</h3>
         )}
       </Spin>
-
-    </div>
+        </div>
+      </div>
+   </Layout>
   )
 }
-export default StatisticCustomer
+
+export default Statistics;

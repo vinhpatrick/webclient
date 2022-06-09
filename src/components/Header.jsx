@@ -143,6 +143,12 @@ const Header = () => {
               Đơn hàng
             </Link>
           </DropdownItem>
+          <DropdownItem>
+            <Link style={{ color: 'black', textDecoration: 'none' }} to='/statistics'>
+              <span style={{ marginRight: '10px' }} className='fa fa-line-chart'></span>
+            Xem chi tiêu
+            </Link>
+          </DropdownItem>
           {admin === 'true' ? (
             <DropdownItem>
               <Link style={{ color: 'black', textDecoration: 'none' }} to='/seller'>

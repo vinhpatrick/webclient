@@ -72,3 +72,10 @@ export const getRevenue = (query) => {
     method: 'GET',
   })
 }
+export const getRevenueCustomer = (userId, query) => {
+  const queryString = query2string(query)
+  return axiosClient({
+    url: `statistics/order-statistics/${userId}?${queryString}`,
+    method: 'GET',
+  })
+}

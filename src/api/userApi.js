@@ -163,10 +163,10 @@ export const getFlexPrice = (productId, query) => {
   })
 }
 
-export const getRevenueCustomer = (userId, query) => {
+export const getMyRevenue = (userId, query) => {
   const queryString = query2string(query)
   return axiosClient({
-    url: `statistics/order-statistics/${userId}?${queryString}`,
+    url: `statistics/myorder-statistics/${userId}?${queryString}`,
     method: 'GET',
   })
 }
