@@ -11,6 +11,7 @@ import AddProduct from '../views/products/AddProduct'
 import ChangeProduct from '../views/products/ChangeProduct'
 import DeleteProduct from '../views/products/DeleteProduct'
 import Statistic from '../views/statistic/Statistic'
+import StatisticCustomer from '../views/statistic/StatisticCustomer'
 // routes config
 
 const AppContent = () => {
@@ -27,6 +28,7 @@ const AppContent = () => {
           <Route path='customer' element={<TableUser />} />
           <Route path='feedback' element={<FeedBack />} />
           <Route path='statistics' element={<Statistic />} />
+          <Route path='statistics_customer' element={<StatisticCustomer />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Suspense>

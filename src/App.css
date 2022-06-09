@@ -594,7 +594,7 @@ a {
   width: 50px;
   color: #fff;
   cursor: pointer;
-  animation: 3s ease-in-out infinite;
+  animation:movebtn 3s ease-in-out infinite;
   transition: all 0.5s ease-in-out;
 }
 

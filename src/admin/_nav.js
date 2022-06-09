@@ -95,7 +95,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: 'Đơn hàng',
-    to: '/seller/a',
+    to: '/seller/',
     icon: <CIcon icon={cil3d} customClassName='nav-icon' />,
     items: [
       {
@@ -115,10 +115,22 @@ const _nav = [
     name: 'Extras',
   },
   {
-    component: CNavItem,
+    component: CNavGroup,
     name: 'Thống kê',
     to: '/seller/statistics',
     icon: <CIcon icon={cilChartPie} customClassName='nav-icon' />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Thống kê cửa hàng',
+        to: '/seller/statistics',
+      },
+      {
+        component: CNavItem,
+        name: 'Chi tiêu khách hàng',
+        to: '/seller/statistics_customer',
+      },
+    ]
   },
 ]
 

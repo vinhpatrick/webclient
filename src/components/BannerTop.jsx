@@ -19,14 +19,14 @@ export default function BannerTop() {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 1000,
     autoplaySpeed: 3000,
     cssEase: 'linear',
   }
   return (
     <Slider className='banner-top' {...settings}>
-      <div>
+      <div className=''>
         <section
           className='welcome_area bg-img background-overlay'
           style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/banner1.png)` }}
@@ -35,8 +35,8 @@ export default function BannerTop() {
             <div className='row h-100 align-items-center'>
               <div className='col-12'>
                 <div className='hero-content'>
-                  <h6>Shelby</h6>
-                  <h2>Vinh Shelby Mobile</h2>
+                  <h6  style={{color: 'red'}}>Chào hè 2022 tuần lễ vàng từ 19/6-25/6</h6>
+                  <h2  style={{color: 'red'}}>Hãy mua sắm ngay nào</h2>
                 </div>
               </div>
             </div>
@@ -52,8 +52,8 @@ export default function BannerTop() {
             <div className='row h-100 align-items-center'>
               <div className='col-12'>
                 <div className='hero-content'>
-                  <h6>Shelby</h6>
-                  <h2>Vinh Shelby Mobile</h2>
+                  <h6>Hè 2022</h6>
+                  <h2 style={{color: 'red'}}>Rất nhiều sản phẩm sale<br/> lên tới 50%</h2>
                 </div>
               </div>
             </div>
@@ -69,8 +69,8 @@ export default function BannerTop() {
             <div className='row h-100 align-items-center'>
               <div className='col-12'>
                 <div className='hero-content'>
-                  <h6>Shelby</h6>
-                  <h2>Vinh Shelby Mobile</h2>
+                  <h6></h6>
+                  <h2 style={{color: 'red',marginLeft:'300px' }} >Hãy mang cả thới giới <br/>công nghệ về nhà bạn</h2>
                 </div>
               </div>
             </div>
@@ -86,8 +86,8 @@ export default function BannerTop() {
             <div className='row h-100 align-items-center'>
               <div className='col-12'>
                 <div className='hero-content'>
-                  <h6>Shelby</h6>
-                  <h2>Vinh Shelby Mobile</h2>
+                  <h6 style={{color: 'red' }}>Tiệc sale lớn nhất năm</h6>
+                  <h2 style={{color: 'red' }}>Xả kho giảm hết</h2>
                 </div>
               </div>
             </div>
@@ -103,8 +103,8 @@ export default function BannerTop() {
             <div className='row h-100 align-items-center'>
               <div className='col-12'>
                 <div className='hero-content'>
-                  <h6>Shelby</h6>
-                  <h2>Vinh Shelby Mobile</h2>
+                  <h6>Rất nhiều sản phẩm hấp dẫn đang chờ đón bạn</h6>
+                  <h2>Hãy xem ngay nào</h2>
                 </div>
               </div>
             </div>
