@@ -6,7 +6,7 @@ import TableProduct from '../../components/TableProduct'
 const ChangeProduct = () => {
   const [dataProducts, setDataProducts] = useState([])
   useEffect(() => {
-    getProduct({ sort: '-createdAt' })
+    getProduct({ limit: 100, sort: '-createdAt' })
       .then((response) => {
         const { products } = response.data
         setDataProducts(products)
@@ -32,10 +32,17 @@ const ChangeProduct = () => {
     {
       label: 'Giá sản phẩm',
       key: 'price',
-      sorter: false,
+      sorter: true,
+      filter: false,
       _style: { width: '20%' },
     },
-    { label: 'Đánh giá', key: 'rating', _style: { width: '20%' } },
+    {
+      label: 'Đánh giá',
+      key: 'rating',
+      filter: false,
+      sorter: true,
+      _style: { width: '20%' }
+    },
     {
       key: 'show_details',
       label: '',

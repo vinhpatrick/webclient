@@ -39,7 +39,7 @@ const StatisticCustomer = () => {
           setLoading(false);
         })
     }
-  }, [userId])
+  }, [userId, loading])
   return (
     <div>
       <div className="mb-3" >

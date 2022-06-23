@@ -5,6 +5,7 @@ import NotFound from '../../pages/NotFound'
 import FeedBack from '../views/customer/FeedBack'
 import TableUser from '../views/customer/TableUser'
 import Dashboard from '../views/dashboard/Dashboard'
+import DashboardByMonth from '../views/dashboard/DashboardByMonth'
 import TableOrder from '../views/orders/TableOrder'
 import WaitingOrder from '../views/orders/WaitingOrder'
 import AddProduct from '../views/products/AddProduct'
@@ -20,6 +21,7 @@ const AppContent = () => {
       <Suspense fallback={<CSpinner color='primary' />}>
         <Routes>
           <Route path='/' element={<Dashboard />} />
+          <Route path='by-month' element={<DashboardByMonth />} />
           <Route path='add-product' element={<AddProduct />} />
           <Route path='change-product' element={<ChangeProduct />} />
           <Route path='delete-product' element={<DeleteProduct />} />

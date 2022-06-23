@@ -9,13 +9,16 @@ import { deleteComment, getComment, postComment } from '../api/userApi'
 const { TextArea } = Input
 
 const CommentProduct = ({ productId }) => {
-  const userId = localStorage.getItem('userId') && localStorage.getItem('userId')
+  let cmtRating = 0
+  const userId = localStorage.getItem('userId')
   const auth = useSelector((state) => state.logForm.isAuthenticated)
   const [comment, setComment] = useState([])
   const [loading, setLoading] = useState(true)
+  const [one, setOne] = useState(null)
   const [loadingbtn, setLoadingBtn] = useState(false)
   const [ratting, setRatting] = useState(0)
   const [text, setText] = useState('')
+  const admin = localStorage.getItem('admin')
   // const [commentText, setCommentText] = useState('')
   const [commentId, setCommentId] = useState(null)
   const [newComment, setNewComment] = useState({
@@ -31,7 +34,10 @@ const CommentProduct = ({ productId }) => {
   useEffect(() => {
     getComment(productId).then((response) => {
       response.data.map((cmt) => {
-        // console.log('cmt', cmt.author)
+        if (cmt.ratting === 1) {
+          setOne(true)
+        }
+        console.log('cmt', cmt.author)
         if (userId === cmt.author._id) {
           // setRatting(cmt.ratting)
           setCommentId(cmt._id)
@@ -42,6 +48,9 @@ const CommentProduct = ({ productId }) => {
       setLoading(false)
     })
   }, [loading])
+  useEffect(() => {
+    setOne(null)
+  }, [])
   //add comment
   const addComment = () => {
     setLoadingBtn(true)
@@ -118,56 +127,73 @@ const CommentProduct = ({ productId }) => {
     </Tooltip>,
   ]
   return (
-    <div>
-      {comment.map((cmt, index) => {
-        if (cmt.product === productId) {
-          return (
-            <div key={cmt._id}>
-              {/* {console.log('commentId', commentId)}
+    <>
+      <div>
+        {comment.map((cmt, index) => {
+          if (cmt.product === productId) {
+            if (admin === 'true' && cmt.ratting === 1) {
+              cmtRating++
+            }
+          }
+        })}
+        {cmtRating > 0 ? <span>Sản có {cmtRating} đánh giá 1 sao</span> : ''}
+      </div>
+      <div>
+        {comment.map((cmt, index) => {
+          if (cmt.product === productId) {
+            return (
+              <div key={cmt._id}>
+                {/* {admin === 'true' && cmt.ratting === 1 ? (
+                  <span className='comment-action'>Sản phẩm mới bị đánh giá 1 sao!</span>
+                ) : (
+                  <span className='comment-action'></span>
+                )} */}
+                {/* {console.log('commentId', commentId)}
               {console.log('cmt.author._id', cmt.author._id)} */}
-              <Comment
-                // actions={commentId === cmt._id ? actions : []}
-                actions={actions}
-                author={[<a>{cmt.author.username}</a>]}
-                avatar={<Avatar src='https://joeschmoe.io/api/v1/random' alt='vinh god' />}
-                content={[
-                  <div>
-                    <Tooltip key='comment-basic-rate' title='Đánh giá'>
-                      <a>
-                        <Rate disabled value={cmt.ratting} style={{ fontSize: 15 }} />
-                      </a>
-                    </Tooltip>
-                  </div>,
-                  <div>
-                    <p key={Math.random()}>{cmt.comment}</p>
-                  </div>,
-                ]}
-                datetime={[
-                  <Tooltip title={'Đánh giá lần cuối'}>
-                    <span>{moment(cmt.updatedAt).format('DD/MM/YYYY')}</span>
-                  </Tooltip>,
-                ]}
-              />
-            </div>
-          )
-        }
-      })}
+                <Comment
+                  // actions={commentId === cmt._id ? actions : []}
+                  actions={actions}
+                  author={[<a>{cmt.author.username}</a>]}
+                  avatar={<Avatar src='https://joeschmoe.io/api/v1/random' alt='vinh god' />}
+                  content={[
+                    <div>
+                      <Tooltip key='comment-basic-rate' title='Đánh giá'>
+                        <a>
+                          <Rate disabled value={cmt.ratting} style={{ fontSize: 15 }} />
+                        </a>
+                      </Tooltip>
+                    </div>,
+                    <div>
+                      <p key={Math.random()}>{cmt.comment}</p>
+                    </div>,
+                  ]}
+                  datetime={[
+                    <Tooltip title={'Đánh giá lần cuối'}>
+                      <span>{moment(cmt.updatedAt).format('DD/MM/YYYY')}</span>
+                    </Tooltip>,
+                  ]}
+                />
+              </div>
+            )
+          }
+        })}
 
-      <>
-        <Form.Item>
-          <TextArea rows={4} value={text} name='comment' onChange={(e) => handleChange(e)} />
-          <span>
-            <Rate name='ratting' value={ratting} onChange={(value) => setRatting(value)} />
-          </span>
-        </Form.Item>
+        <>
+          <Form.Item>
+            <TextArea rows={4} value={text} name='comment' onChange={(e) => handleChange(e)} />
+            <span>
+              <Rate name='ratting' value={ratting} onChange={(value) => setRatting(value)} />
+            </span>
+          </Form.Item>
 
-        <Form.Item>
-          <Button onClick={addComment} type='primary' loading={loadingbtn}>
-            Bình luận
-          </Button>
-        </Form.Item>
-      </>
-    </div>
+          <Form.Item>
+            <Button onClick={addComment} type='primary' loading={loadingbtn}>
+              Bình luận
+            </Button>
+          </Form.Item>
+        </>
+      </div>
+    </>
   )
 }
 

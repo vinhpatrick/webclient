@@ -82,7 +82,7 @@ function Footer(props) {
         </div>
         <div className='row justify-content-center'>
           <div className='col-auto'>
-            <p style={{ fontWeight: 'bold' }}>© Copyright 2022 vinhmobile</p>
+            <p style={{ fontWeight: 'bold' }}></p>
           </div>
         </div>
       </div>

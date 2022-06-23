@@ -4,22 +4,25 @@ import { CButton, CButtonGroup, CCard, CCardBody, CCardFooter, CCol, CRow } from
 import { CChartLine } from '@coreui/react-chartjs'
 import moment from 'moment'
 import React, { lazy, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { getRevenue } from '../../../api/adminApi.js'
+import { getRevenueByMonth } from '../../../api/adminApi.js'
 import numberSeparator from '../../../helpers/validating/numberSeparator'
+import { useNavigate } from 'react-router-dom'
+
 
 const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
 
-const Dashboard = () => {
+const DashboardByMonth = () => {
   const navigate = useNavigate()
+
   const [statistics, setStatistics] = useState([])
   const [totalAmount, setTotalAmount] = useState([])
   const [orderCount, setOrderCount] = useState([])
-  const [time, setTime] = useState('Ngày')
+  const timeStart = moment().month('January')
+  const timeEnd = moment().month('December')
+  const [time, setTime] = useState('Tháng')
   useEffect(() => {
-    getRevenue({ from: moment().subtract(30, 'day'), to: moment() })
-      .then((response) => {
-        // console.log('datane', response.data)
+    getRevenueByMonth({ from: timeStart, to: timeEnd })
+      .then(response => {
         setTotalAmount(response.data.totalAmount)
         setOrderCount(response.data.orderCount)
         setStatistics(response.data.statistics)
@@ -32,6 +35,7 @@ const Dashboard = () => {
 
     }
     else if (value === 'Ngày' || value === 'Năm') {
+      setTime(value)
       navigate('/seller')
     }
     setTime(value)
@@ -210,4 +214,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default DashboardByMonth
